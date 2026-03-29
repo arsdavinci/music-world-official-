@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="chars-title">キャラクター | ミュージックワールド ～バイオリン姫と魔法のシンフォニー～</title>
+  <link rel="icon" href="images/logos/favicon.png" type="image/png">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/effects.css">
+</head>
+<body>
+
+<div class="stars-bg"></div>
+
+<header>
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <span data-i18n="nav-logo-title">ミュージックワールド</span>
+      <span data-i18n="nav-logo-sub">バイオリン姫と魔法のシンフォニー</span>
+    </div>
+    <button class="hamburger" aria-label="メニュー">
+      <span></span><span></span><span></span>
+    </button>
+    <nav>
+      <ul>
+        <li><a href="index.html"      data-i18n="nav-top">トップ</a></li>
+        <li><a href="story.html"      data-i18n="nav-story">ストーリー</a></li>
+        <li><a href="characters.html" data-i18n="nav-characters">キャラクター</a></li>
+        <li><a href="world.html"      data-i18n="nav-world">ワールド</a></li>
+        <li><a href="gallery.html"    data-i18n="nav-gallery">ギャラリー</a></li>
+        <li><a href="lyrics.html"     data-i18n="nav-lyrics">歌詞</a></li>
+        <li><a href="book.html"       data-i18n="nav-book">絵本</a></li>
+      </ul>
+    </nav>
+    <div class="lang-switcher">
+      <button class="lang-btn" data-lang="ja">日本語</button>
+      <button class="lang-btn" data-lang="en">English</button>
+      <button class="lang-btn" data-lang="zh">中文</button>
+    </div>
+  </div>
+</header>
+
+<div class="page-hero">
+  <p class="subtitle">Characters</p>
+  <h1 data-i18n="chars-hero-h1">キャラクター</h1>
+</div>
+
+<div class="section">
+
+  <p style="text-align:center;color:var(--purple-pale);font-size:0.9rem;letter-spacing:0.1em;margin-bottom:0.3rem;"
+     data-i18n="chars-instruction">キャラクターアイコンをクリックすると詳細が表示されます</p>
+  <p style="text-align:center;color:rgba(201,184,232,0.45);font-size:0.72rem;font-family:var(--font-heading);letter-spacing:0.25em;margin-bottom:2.5rem;">
+    CLICK ICON TO VIEW DETAILS
+  </p>
+
+  <!-- ゲンガク国 -->
+  <div class="gold-divider fade-in" style="margin-bottom:1.2rem;"><span class="icon" style="color:#ffb7c5;">♦</span></div>
+  <p style="text-align:center;font-family:var(--font-heading);font-size:0.7rem;letter-spacing:0.3em;color:#ffb7c5;margin-bottom:1.2rem;text-transform:uppercase;"
+     data-i18n="chars-gengaku-label">ゲンガク国 — 弦楽器の国</p>
+
+  <div class="characters-grid" style="grid-template-columns:repeat(auto-fill,minmax(130px,1fr));">
+    <div class="char-icon" data-char="violin">
+      <div class="char-avatar char-avatar-has-img" style="border-color:#ffb7c5;box-shadow:0 0 12px rgba(255,183,197,0.35);">
+        <img src="images/characters/icon/violin-princess-icon.png" alt="バイオリン姫" class="char-avatar-image"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="char-avatar-fallback">🎻</span>
+      </div>
+      <span class="char-name" data-i18n="char-violin-name">バイオリン姫</span>
+      <span class="char-role" data-i18n="char-violin-role">主人公</span>
+    </div>
+    <div class="char-icon" data-char="harp">
+      <div class="char-avatar char-avatar-has-img" style="border-color:#ffb7c5;box-shadow:0 0 12px rgba(255,183,197,0.35);">
+        <img src="images/characters/icon/harp-queen-icon.png" alt="ハープ女王" class="char-avatar-image"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="char-avatar-fallback">👑</span>
+      </div>
+      <span class="char-name" data-i18n="char-harp-name">ハープ女王</span>
+      <span class="char-role" data-i18n="char-harp-role">女王 / 姫の母</span>
+    </div>
+    <div class="char-icon" data-char="viola">
+      <div class="char-avatar char-avatar-has-img" style="border-color:#ffb7c5;box-shadow:0 0 12px rgba(255,183,197,0.35);">
+        <img src="images/characters/icon/viola-prince-icon.png" alt="ヴィオラ王子" class="char-avatar-image"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="char-avatar-fallback">🎻</span>
+      </div>
+      <span class="char-name" data-i18n="char-viola-name">ヴィオラ王子</span>
+      <span class="char-role" data-i18n="char-viola-role">王子 / 姫の兄</span>
+    </div>
+    <div class="char-icon" data-char="cello">
+      <div class="char-avatar char-avatar-has-img" style="border-color:#ffb7c5;box-shadow:0 0 12px rgba(255,183,197,0.35);">
+        <img src="images/characters/icon/cello-butler-icon.png" alt="チェロ執事" class="char-avatar-image"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="char-avatar-fallback">🎻</span>
+      </div>
+      <span class="char-name" data-i18n="char-cello-name">チェロ執事</span>
+      <span class="char-role" data-i18n="char-cello-role">ゲンガク国 執事</span>
+    </div>
+    <div class="char-icon" data-char="contrabass">
+      <div class="char-avatar char-avatar-has-img" style="border-color:#ffb7c5;box-shadow:0 0 12px rgba(255,183,197,0.35);">
+        <img src="images/characters/icon/contrabass-count-icon.png" alt="コントラバス伯爵" class="char-avatar-image"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="char-avatar-fallback">🎻</span>
+      </div>
+      <span class="char-name" data-i18n="char-contrabass-name">コントラバス伯爵</span>
+      <span class="char-role" data-i18n="char-contrabass-role">ゲンガク国 伯爵</span>
+    </div>
+    <div class="char-icon" data-char="daspalla">
+      <div class="char-avatar char-avatar-has-img" style="border-color:#ffb7c5;box-shadow:0 0 12px rgba(255,183,197,0.35);">
+        <img src="images/characters/icon/violoncello-da-spalla-soldier-icon.png" alt="ダ・スパッラ兵士" class="char-avatar-image"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="char-avatar-fallback">🎻</span>
+      </div>
+      <span class="char-name" data-i18n="char-daspalla-name">ダ・スパッラ兵士</span>
+      <span class="char-role" data-i18n="char-daspalla-role">王族護衛兵</span>
+    </div>
+  </div>
+
+  <!-- カンガク国 -->
+  <div class="gold-divider fade-in" style="margin-top:2.5rem;margin-bottom:1.2rem;"><span class="icon" style="color:#ffd700;">♦</span></div>
+  <p style="text-align:center;font-family:var(--font-heading);font-size:0.7rem;letter-spacing:0.3em;color:#ffd700;margin-bottom:1.2rem;text-transform:uppercase;"
+     data-i18n="chars-kangaku-label">カンガク国 — 管楽器の国</p>
+
+  <div class="characters-grid" style="grid-template-columns:repeat(auto-fill,minmax(130px,1fr));">
+    <div class="char-icon" data-char="sax">
+      <div class="char-avatar char-avatar-has-img" style="border-color:#ffd700;box-shadow:0 0 12px rgba(255,215,0,0.35);">
+        <img src="images/characters/icon/sax-knight-icon.png" alt="サックス" class="char-avatar-image"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="char-avatar-fallback">🎷</span>
+      </div>
+      <span class="char-name" data-i18n="char-sax-name">サックス</span>
+      <span class="char-role" data-i18n="char-sax-role">騎士団大将</span>
+    </div>
+    <div class="char-icon" data-char="clarinet">
+      <div class="char-avatar char-avatar-has-img" style="border-color:#ffd700;box-shadow:0 0 12px rgba(255,215,0,0.35);">
+        <img src="images/characters/icon/clarinet-princess-icon.png" alt="クラリネット姫" class="char-avatar-image"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="char-avatar-fallback">🎵</span>
+      </div>
+      <span class="char-name" data-i18n="char-clarinet-name">クラリネット姫</span>
+      <span class="char-role" data-i18n="char-clarinet-role">カンガク国 姫</span>
+    </div>
+    <div class="char-icon" data-char="tuba">
+      <div class="char-avatar char-avatar-has-img" style="border-color:#ffd700;box-shadow:0 0 12px rgba(255,215,0,0.35);">
+        <img src="images/characters/icon/tuba-vice-general-icon.png" alt="チューバ副大将" class="char-avatar-image"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="char-avatar-fallback">🎺</span>
+      </div>
+      <span class="char-name" data-i18n="char-tuba-name">チューバ副大将</span>
+      <span class="char-role" data-i18n="char-tuba-role">騎士団副大将</span>
+    </div>
+    <div class="char-icon" data-char="trombone">
+      <div class="char-avatar char-avatar-has-img" style="border-color:#ffd700;box-shadow:0 0 12px rgba(255,215,0,0.35);">
+        <img src="images/characters/icon/trombone-soldier-icon.png" alt="トロンボーン兵士" class="char-avatar-image"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="char-avatar-fallback">🎺</span>
+      </div>
+      <span class="char-name" data-i18n="char-trombone-name">トロンボーン兵士</span>
+      <span class="char-role" data-i18n="char-trombone-role">門番兵士</span>
+    </div>
+  </div>
+
+  <!-- ダガク国 -->
+  <div class="gold-divider fade-in" style="margin-top:2.5rem;margin-bottom:1.2rem;"><span class="icon" style="color:#87ceeb;">♦</span></div>
+  <p style="text-align:center;font-family:var(--font-heading);font-size:0.7rem;letter-spacing:0.3em;color:#87ceeb;margin-bottom:1.2rem;text-transform:uppercase;"
+     data-i18n="chars-dagaku-label">ダガク国 — 打楽器の国</p>
+
+  <div class="characters-grid" style="grid-template-columns:repeat(auto-fill,minmax(130px,1fr));">
+    <div class="char-icon" data-char="castanet">
+      <div class="char-avatar char-avatar-has-img" style="border-color:#87ceeb;box-shadow:0 0 12px rgba(135,206,235,0.35);">
+        <img src="images/characters/icon/castanet-icon.png" alt="カスタネット" class="char-avatar-image"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="char-avatar-fallback">🪘</span>
+      </div>
+      <span class="char-name" data-i18n="char-castanet-name">カスタネット</span>
+      <span class="char-role" data-i18n="char-castanet-role">ダガク国の子供</span>
+    </div>
+    <div class="char-icon" data-char="marimba">
+      <div class="char-avatar char-avatar-has-img" style="border-color:#87ceeb;box-shadow:0 0 12px rgba(135,206,235,0.35);">
+        <img src="images/characters/icon/marimba-icon.png" alt="マリンバ" class="char-avatar-image"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="char-avatar-fallback">🪘</span>
+      </div>
+      <span class="char-name" data-i18n="char-marimba-name">マリンバ</span>
+      <span class="char-role" data-i18n="char-marimba-role">木琴兄妹の兄</span>
+    </div>
+    <div class="char-icon" data-char="xylophone">
+      <div class="char-avatar char-avatar-has-img" style="border-color:#87ceeb;box-shadow:0 0 12px rgba(135,206,235,0.35);">
+        <img src="images/characters/icon/xylophone-icon.png" alt="シロフォン" class="char-avatar-image"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="char-avatar-fallback">🎵</span>
+      </div>
+      <span class="char-name" data-i18n="char-xylophone-name">シロフォン</span>
+      <span class="char-role" data-i18n="char-xylophone-role">木琴兄妹の妹</span>
+    </div>
+    <div class="char-icon" data-char="glocken">
+      <div class="char-avatar char-avatar-has-img" style="border-color:#87ceeb;box-shadow:0 0 12px rgba(135,206,235,0.35);">
+        <img src="images/characters/icon/glockenspiel-icon.png" alt="グロッケン" class="char-avatar-image"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="char-avatar-fallback">🔔</span>
+      </div>
+      <span class="char-name" data-i18n="char-glocken-name">グロッケン</span>
+      <span class="char-role" data-i18n="char-glocken-role">神殿の門番</span>
+    </div>
+    <div class="char-icon" data-char="timpani">
+      <div class="char-avatar char-avatar-has-img" style="border-color:#87ceeb;box-shadow:0 0 12px rgba(135,206,235,0.35);">
+        <img src="images/characters/icon/timpani-king-icon.png" alt="ティンパニー大王" class="char-avatar-image"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="char-avatar-fallback">🥁</span>
+      </div>
+      <span class="char-name" data-i18n="char-timpani-name">ティンパニー大王</span>
+      <span class="char-role" data-i18n="char-timpani-role">ダガク国 大王</span>
+    </div>
+  </div>
+
+  <!-- ケンバンガク国 -->
+  <div class="gold-divider fade-in" style="margin-top:2.5rem;margin-bottom:1.2rem;"><span class="icon" style="color:#c890ff;">♦</span></div>
+  <p style="text-align:center;font-family:var(--font-heading);font-size:0.7rem;letter-spacing:0.3em;color:#c890ff;margin-bottom:1.2rem;text-transform:uppercase;"
+     data-i18n="chars-kenban-label">ケンバンガク国 — 鍵盤楽器の国</p>
+
+  <div class="characters-grid" style="grid-template-columns:repeat(auto-fill,minmax(130px,1fr));">
+    <div class="char-icon" data-char="piano">
+      <div class="char-avatar char-avatar-has-img" style="border-color:#c890ff;box-shadow:0 0 12px rgba(200,144,255,0.35);">
+        <img src="images/characters/icon/piano-prince-icon.png" alt="ピアノ王子" class="char-avatar-image"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="char-avatar-fallback">🎹</span>
+      </div>
+      <span class="char-name" data-i18n="char-piano-name">ピアノ王子</span>
+      <span class="char-role" data-i18n="char-piano-role">ケンバンガク国 王子</span>
+    </div>
+    <div class="char-icon" data-char="pipeorgan">
+      <div class="char-avatar char-avatar-has-img" style="border-color:#6a0080;box-shadow:0 0 12px rgba(106,0,128,0.35);">
+        <img src="images/characters/icon/pipe-organ-witch-icon.png" alt="パイプオルガン魔女" class="char-avatar-image"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="char-avatar-fallback">🧙</span>
+      </div>
+      <span class="char-name" data-i18n="char-pipeorgan-name">パイプオルガン魔女</span>
+      <span class="char-role" data-i18n="char-pipeorgan-role">黒幕</span>
+    </div>
+    <div class="char-icon" data-char="cembalo">
+      <div class="char-avatar" style="border-color:#c890ff;">🎹</div>
+      <span class="char-name" data-i18n="char-cembalo-name">チェンバロ皇帝</span>
+      <span class="char-role" data-i18n="char-cembalo-role">ケンバンガク国 皇帝</span>
+    </div>
+    <div class="char-icon" data-char="organ">
+      <div class="char-avatar char-avatar-has-img" style="border-color:#c890ff;box-shadow:0 0 12px rgba(200,144,255,0.35);">
+        <img src="images/characters/icon/organ-soldier-icon.png" alt="オルガン兵士" class="char-avatar-image"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="char-avatar-fallback">🎹</span>
+      </div>
+      <span class="char-name" data-i18n="char-organ-name">オルガン兵士</span>
+      <span class="char-role" data-i18n="char-organ-role">ケンバンガク国 兵士</span>
+    </div>
+    <div class="char-icon" data-char="accordion">
+      <div class="char-avatar char-avatar-has-img" style="border-color:#c890ff;box-shadow:0 0 12px rgba(200,144,255,0.35);">
+        <img src="images/characters/icon/accordion-knights-icon.png" alt="アコーディオン騎士団" class="char-avatar-image"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="char-avatar-fallback">🪗</span>
+      </div>
+      <span class="char-name" data-i18n="char-accordion-name">アコーディオン騎士団</span>
+      <span class="char-role" data-i18n="char-accordion-role">巡回騎士団</span>
+    </div>
+    <div class="char-icon" data-char="dragon">
+      <div class="char-avatar char-avatar-has-img" style="border-color:#6a0080;box-shadow:0 0 12px rgba(106,0,128,0.35);">
+        <img src="images/characters/icon/pipe-organ-dragon-icon.png" alt="謎ドラゴン" class="char-avatar-image"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="char-avatar-fallback">🐉</span>
+      </div>
+      <span class="char-name" data-i18n="char-dragon-name">謎ドラゴン</span>
+      <span class="char-role" data-i18n="char-dragon-role">正体不明の魔竜</span>
+    </div>
+  </div>
+
+  <!-- その他 -->
+  <div class="gold-divider fade-in" style="margin-top:2.5rem;margin-bottom:1.2rem;"><span class="icon">♦</span></div>
+  <p style="text-align:center;font-family:var(--font-heading);font-size:0.7rem;letter-spacing:0.3em;color:var(--gold);margin-bottom:1.2rem;text-transform:uppercase;"
+     data-i18n="chars-other-label">その他の重要キャラクター</p>
+
+  <div class="characters-grid" style="grid-template-columns:repeat(auto-fill,minmax(130px,1fr));">
+    <div class="char-icon" data-char="maestro">
+      <div class="char-avatar char-avatar-has-img" style="border-color:#f0d060;box-shadow:0 0 12px rgba(240,208,96,0.35);">
+        <img src="images/characters/icon/master-tact-icon.png" alt="マスタータクト" class="char-avatar-image"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="char-avatar-fallback">🎼</span>
+      </div>
+      <span class="char-name" data-i18n="char-maestro-name">マスタータクト</span>
+      <span class="char-role" data-i18n="char-maestro-role">伝説の音楽家</span>
+    </div>
+  </div>
+
+  <!-- ── CTA ── -->
+  <div class="gold-divider fade-in" style="margin-top:4rem;"><span class="icon">♦</span></div>
+  <div style="text-align:center;margin-top:3rem;" class="fade-in">
+    <div style="display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;">
+      <a href="story.html" class="btn"><span data-i18n="btn-to-story">ストーリーへ</span></a>
+      <a href="world.html" class="btn"><span data-i18n="btn-to-worldmap">ワールドマップへ</span></a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo" data-i18n="footer-logo">ミュージックワールド</div>
+  <div class="footer-logo-sub" data-i18n="footer-sub">バイオリン姫と魔法のシンフォニー</div>
+  <div class="footer-links">
+    <a href="index.html"      data-i18n="footer-link-top">トップ</a>
+    <a href="story.html"      data-i18n="footer-link-story">ストーリー</a>
+    <a href="characters.html" data-i18n="footer-link-characters">キャラクター</a>
+    <a href="world.html"      data-i18n="footer-link-world">ワールド</a>
+    <a href="gallery.html"    data-i18n="footer-link-gallery">ギャラリー</a>
+    <a href="lyrics.html"     data-i18n="footer-link-lyrics">歌詞</a>
+    <a href="book.html"       data-i18n="footer-link-book">絵本</a>
+  </div>
+  <p>© 2025 Violin Princess Production Committee. All Rights Reserved.</p>
+  <p style="margin-top:0.5rem;" data-i18n="footer-copy2">このサイトはフィクション作品の公式サイトです。</p>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/effects.js"></script>
+</body>
+</html>

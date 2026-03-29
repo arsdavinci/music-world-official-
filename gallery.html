@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="gallery-title">ギャラリー | ミュージックワールド ～バイオリン姫と魔法のシンフォニー～</title>
+  <link rel="icon" href="images/logos/favicon.png" type="image/png">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/effects.css">
+</head>
+<body>
+
+<div class="stars-bg"></div>
+
+<header>
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <span data-i18n="nav-logo-title">ミュージックワールド</span>
+      <span data-i18n="nav-logo-sub">バイオリン姫と魔法のシンフォニー</span>
+    </div>
+    <button class="hamburger" aria-label="メニュー">
+      <span></span><span></span><span></span>
+    </button>
+    <nav>
+      <ul>
+        <li><a href="index.html"      data-i18n="nav-top">トップ</a></li>
+        <li><a href="story.html"      data-i18n="nav-story">ストーリー</a></li>
+        <li><a href="characters.html" data-i18n="nav-characters">キャラクター</a></li>
+        <li><a href="world.html"      data-i18n="nav-world">ワールド</a></li>
+        <li><a href="gallery.html"    data-i18n="nav-gallery">ギャラリー</a></li>
+        <li><a href="lyrics.html"     data-i18n="nav-lyrics">歌詞</a></li>
+        <li><a href="book.html"       data-i18n="nav-book">絵本</a></li>
+      </ul>
+    </nav>
+    <div class="lang-switcher">
+      <button class="lang-btn" data-lang="ja">日本語</button>
+      <button class="lang-btn" data-lang="en">English</button>
+      <button class="lang-btn" data-lang="zh">中文</button>
+    </div>
+  </div>
+</header>
+
+<div class="page-hero">
+  <p class="subtitle">Gallery</p>
+  <h1 data-i18n="gallery-hero-h1">ギャラリー</h1>
+</div>
+
+<div class="section">
+
+  <p style="text-align:center;color:var(--purple-pale);margin-bottom:2.5rem;font-size:0.9rem;"
+     data-i18n="gallery-instruction">画像をクリックすると詳細が表示されます</p>
+
+  <!-- Filter Buttons -->
+  <div class="gallery-filter fade-in">
+    <button class="filter-btn active" data-filter="all"     data-i18n="gallery-filter-all">すべて</button>
+    <button class="filter-btn" data-filter="video"          data-i18n="gallery-filter-video">動画</button>
+    <button class="filter-btn" data-filter="scene"          data-i18n="gallery-filter-scene">場面スチール</button>
+    <button class="filter-btn" data-filter="artwork"        data-i18n="gallery-filter-artwork">アートワーク</button>
+    <button class="filter-btn" data-filter="design"         data-i18n="gallery-filter-design">設定資料</button>
+    <button class="filter-btn" data-filter="other"          data-i18n="gallery-filter-other">その他</button>
+  </div>
+
+  <!-- Gallery Grid -->
+  <div class="gallery-grid">
+
+    <div class="gallery-item gallery-item--video fade-in" data-category="video"
+      data-video-src="videos/opening.mp4"
+      data-video-poster="images/gallery/opening_movie.png">
+      <div class="gallery-item-inner" style="background:radial-gradient(ellipse at center,rgba(74,44,138,0.5),rgba(19,13,48,0.95));padding:0;overflow:hidden;">
+        <img src="images/gallery/opening_movie.png" alt="オープニング映像" class="gallery-item-video-thumb">
+        <div class="gallery-item-video-play">▶</div>
+        <div class="gallery-item-video-info">
+          <div class="art-title" data-i18n="gal-video1-title">オープニングムービー</div>
+          <div class="art-category" data-i18n="gal-video1-cat">動画</div>
+        </div>
+      </div>
+      <div class="gallery-overlay"><span class="gallery-overlay-text" data-i18n="gallery-overlay-video">▶ 再生する</span></div>
+    </div>
+
+    <!-- ── Scene ── -->
+    <div class="gallery-item gallery-item--img fade-in" data-category="scene" data-img="images/gallery/orchestra_hall_interior.png">
+      <div class="gallery-item-inner"><img src="images/gallery/orchestra_hall_interior.png" alt="ケンバン族の襲来" class="gallery-thumb" loading="lazy">
+        <div class="art-title">ケンバン族の襲来</div><div class="art-category">場面スチール</div></div>
+      <div class="gallery-overlay"><span class="gallery-overlay-text" data-i18n="gallery-overlay">詳細を見る</span></div>
+    </div>
+
+    <div class="gallery-item gallery-item--img fade-in" data-category="scene" data-img="images/gallery/pipe_organ_witch_castle.png">
+      <div class="gallery-item-inner"><img src="images/gallery/pipe_organ_witch_castle.png" alt="パイプオルガン魔女の城" class="gallery-thumb" loading="lazy">
+        <div class="art-title">パイプオルガン魔女の城</div><div class="art-category">場面スチール</div></div>
+      <div class="gallery-overlay"><span class="gallery-overlay-text" data-i18n="gallery-overlay">詳細を見る</span></div>
+    </div>
+
+    <div class="gallery-item gallery-item--img fade-in" data-category="scene" data-img="images/gallery/conductor_character_interaction.png">
+      <div class="gallery-item-inner"><img src="images/gallery/conductor_character_interaction.png" alt="絶えない喧嘩" class="gallery-thumb" loading="lazy">
+        <div class="art-title">絶えない喧嘩</div><div class="art-category">場面スチール</div></div>
+      <div class="gallery-overlay"><span class="gallery-overlay-text" data-i18n="gallery-overlay">詳細を見る</span></div>
+    </div>
+
+    <div class="gallery-item gallery-item--img fade-in" data-category="scene" data-img="images/gallery/castanets_boy_meeting.png">
+      <div class="gallery-item-inner"><img src="images/gallery/castanets_boy_meeting.png" alt="カスタネット坊やとの出会い" class="gallery-thumb" loading="lazy">
+        <div class="art-title">カスタネット坊やとの出会い</div><div class="art-category">場面スチール</div></div>
+      <div class="gallery-overlay"><span class="gallery-overlay-text" data-i18n="gallery-overlay">詳細を見る</span></div>
+    </div>
+
+    <div class="gallery-item gallery-item--img fade-in" data-category="scene" data-img="images/gallery/da_tribe_settlement.png">
+      <div class="gallery-item-inner"><img src="images/gallery/da_tribe_settlement.png" alt="ダ族の村" class="gallery-thumb" loading="lazy">
+        <div class="art-title">ダ族の村</div><div class="art-category">場面スチール</div></div>
+      <div class="gallery-overlay"><span class="gallery-overlay-text" data-i18n="gallery-overlay">詳細を見る</span></div>
+    </div>
+
+    <div class="gallery-item gallery-item--img fade-in" data-category="scene" data-img="images/gallery/pipe_organ_witch_throne.png">
+      <div class="gallery-item-inner"><img src="images/gallery/pipe_organ_witch_throne.png" alt="パイプオルガン魔女の玉座" class="gallery-thumb" loading="lazy">
+        <div class="art-title">パイプオルガン魔女の玉座</div><div class="art-category">場面スチール</div></div>
+      <div class="gallery-overlay"><span class="gallery-overlay-text" data-i18n="gallery-overlay">詳細を見る</span></div>
+    </div>
+
+    <div class="gallery-item gallery-item--img fade-in" data-category="scene" data-img="images/gallery/piano_prince_forest_meeting.png">
+      <div class="gallery-item-inner"><img src="images/gallery/piano_prince_forest_meeting.png" alt="ピアノ王子との出会い" class="gallery-thumb" loading="lazy">
+        <div class="art-title">ピアノ王子との出会い</div><div class="art-category">場面スチール</div></div>
+      <div class="gallery-overlay"><span class="gallery-overlay-text" data-i18n="gallery-overlay">詳細を見る</span></div>
+    </div>
+
+    <div class="gallery-item gallery-item--img fade-in" data-category="scene" data-img="images/gallery/piano_prince_magical_encounter.png">
+      <div class="gallery-item-inner"><img src="images/gallery/piano_prince_magical_encounter.png" alt="一目惚れ" class="gallery-thumb" loading="lazy">
+        <div class="art-title">一目惚れ</div><div class="art-category">場面スチール</div></div>
+      <div class="gallery-overlay"><span class="gallery-overlay-text" data-i18n="gallery-overlay">詳細を見る</span></div>
+    </div>
+
+    <div class="gallery-item gallery-item--img fade-in" data-category="scene" data-img="images/gallery/piano_prince_duel.png">
+      <div class="gallery-item-inner"><img src="images/gallery/piano_prince_duel.png" alt="ケンバンガク国の王子" class="gallery-thumb" loading="lazy">
+        <div class="art-title">ケンバンガク国の王子</div><div class="art-category">場面スチール</div></div>
+      <div class="gallery-overlay"><span class="gallery-overlay-text" data-i18n="gallery-overlay">詳細を見る</span></div>
+    </div>
+
+    <div class="gallery-item gallery-item--img fade-in" data-category="scene" data-img="images/gallery/master_tact_residence.png">
+      <div class="gallery-item-inner"><img src="images/gallery/master_tact_residence.png" alt="マスタータクトの家" class="gallery-thumb" loading="lazy">
+        <div class="art-title">マスタータクトの家</div><div class="art-category">場面スチール</div></div>
+      <div class="gallery-overlay"><span class="gallery-overlay-text" data-i18n="gallery-overlay">詳細を見る</span></div>
+    </div>
+
+    <div class="gallery-item gallery-item--img fade-in" data-category="scene" data-img="images/gallery/first_harmony_campfire.png">
+      <div class="gallery-item-inner"><img src="images/gallery/first_harmony_campfire.png" alt="初めての調和" class="gallery-thumb" loading="lazy">
+        <div class="art-title">初めての調和</div><div class="art-category">場面スチール</div></div>
+      <div class="gallery-overlay"><span class="gallery-overlay-text" data-i18n="gallery-overlay">詳細を見る</span></div>
+    </div>
+
+    <div class="gallery-item gallery-item--img fade-in" data-category="scene" data-img="images/gallery/queens_chamber_gathering.png">
+      <div class="gallery-item-inner"><img src="images/gallery/queens_chamber_gathering.png" alt="カンガク族の訪問" class="gallery-thumb" loading="lazy">
+        <div class="art-title">カンガク族の訪問</div><div class="art-category">場面スチール</div></div>
+      <div class="gallery-overlay"><span class="gallery-overlay-text" data-i18n="gallery-overlay">詳細を見る</span></div>
+    </div>
+
+    <div class="gallery-item gallery-item--img fade-in" data-category="scene" data-img="images/gallery/queens_hall_characters.png">
+      <div class="gallery-item-inner"><img src="images/gallery/queens_hall_characters.png" alt="女王の間（謁見）" class="gallery-thumb" loading="lazy">
+        <div class="art-title">女王の間（謁見）</div><div class="art-category">場面スチール</div></div>
+      <div class="gallery-overlay"><span class="gallery-overlay-text" data-i18n="gallery-overlay">詳細を見る</span></div>
+    </div>
+
+    <div class="gallery-item gallery-item--img fade-in" data-category="scene" data-img="images/gallery/imprisoned_princess_dungeon.png">
+      <div class="gallery-item-inner"><img src="images/gallery/imprisoned_princess_dungeon.png" alt="拘束された姫" class="gallery-thumb" loading="lazy">
+        <div class="art-title">拘束された姫</div><div class="art-category">場面スチール</div></div>
+      <div class="gallery-overlay"><span class="gallery-overlay-text" data-i18n="gallery-overlay">詳細を見る</span></div>
+    </div>
+
+    <div class="gallery-item gallery-item--img fade-in" data-category="scene" data-img="images/gallery/princess_knight_encounter.png">
+      <div class="gallery-item-inner"><img src="images/gallery/princess_knight_encounter.png" alt="姫と騎士" class="gallery-thumb" loading="lazy">
+        <div class="art-title">姫と騎士</div><div class="art-category">場面スチール</div></div>
+      <div class="gallery-overlay"><span class="gallery-overlay-text" data-i18n="gallery-overlay">詳細を見る</span></div>
+    </div>
+
+    <div class="gallery-item gallery-item--img fade-in" data-category="scene" data-img="images/gallery/adventure_begins_tunnel.png">
+      <div class="gallery-item-inner"><img src="images/gallery/adventure_begins_tunnel.png" alt="旅立ち" class="gallery-thumb" loading="lazy">
+        <div class="art-title">旅立ち</div><div class="art-category">場面スチール</div></div>
+      <div class="gallery-overlay"><span class="gallery-overlay-text" data-i18n="gallery-overlay">詳細を見る</span></div>
+    </div>
+
+    <div class="gallery-item gallery-item--img fade-in" data-category="scene" data-img="images/gallery/xylophone_siblings_meeting.png">
+      <div class="gallery-item-inner"><img src="images/gallery/xylophone_siblings_meeting.png" alt="木琴兄妹との出会い" class="gallery-thumb" loading="lazy">
+        <div class="art-title">木琴兄妹との出会い</div><div class="art-category">場面スチール</div></div>
+      <div class="gallery-overlay"><span class="gallery-overlay-text" data-i18n="gallery-overlay">詳細を見る</span></div>
+    </div>
+
+    <div class="gallery-item gallery-item--img fade-in" data-category="scene" data-img="images/gallery/bond_handshake.png">
+      <div class="gallery-item-inner"><img src="images/gallery/bond_handshake.png" alt="結束の握手" class="gallery-thumb" loading="lazy">
+        <div class="art-title">結束の握手</div><div class="art-category">場面スチール</div></div>
+      <div class="gallery-overlay"><span class="gallery-overlay-text" data-i18n="gallery-overlay">詳細を見る</span></div>
+    </div>
+
+    <div class="gallery-item gallery-item--img fade-in" data-category="scene" data-img="images/gallery/pulse_temple_ruins.png">
+      <div class="gallery-item-inner"><img src="images/gallery/pulse_temple_ruins.png" alt="鼓動神殿" class="gallery-thumb" loading="lazy">
+        <div class="art-title">鼓動神殿</div><div class="art-category">場面スチール</div></div>
+      <div class="gallery-overlay"><span class="gallery-overlay-text" data-i18n="gallery-overlay">詳細を見る</span></div>
+    </div>
+
+    <!-- ── Artwork ── -->
+    <div class="gallery-item gallery-item--img fade-in" data-category="artwork" data-img="images/gallery/symphony_spell_book.png">
+      <div class="gallery-item-inner"><img src="images/gallery/symphony_spell_book.png" alt="高難度試練" class="gallery-thumb" loading="lazy">
+        <div class="art-title">高難度試練</div><div class="art-category">アートワーク</div></div>
+      <div class="gallery-overlay"><span class="gallery-overlay-text" data-i18n="gallery-overlay">詳細を見る</span></div>
+    </div>
+
+    <div class="gallery-item gallery-item--img fade-in" data-category="artwork" data-img="images/gallery/magic_musical_score.png">
+      <div class="gallery-item-inner"><img src="images/gallery/magic_musical_score.png" alt="魔法の楽譜" class="gallery-thumb" loading="lazy">
+        <div class="art-title">魔法の楽譜</div><div class="art-category">アートワーク</div></div>
+      <div class="gallery-overlay"><span class="gallery-overlay-text" data-i18n="gallery-overlay">詳細を見る</span></div>
+    </div>
+
+    <!-- ── Design ── -->
+    <div class="gallery-item gallery-item--img fade-in" data-category="design" data-img="images/gallery/music_world_map.png">
+      <div class="gallery-item-inner"><img src="images/gallery/music_world_map.png" alt="ミュージックワールドマップ" class="gallery-thumb" loading="lazy">
+        <div class="art-title">ミュージックワールドマップ</div><div class="art-category">設定資料</div></div>
+      <div class="gallery-overlay"><span class="gallery-overlay-text" data-i18n="gallery-overlay">詳細を見る</span></div>
+    </div>
+
+    <div class="gallery-item gallery-item--img fade-in" data-category="design" data-img="images/gallery/music_world_title_logo.png">
+      <div class="gallery-item-inner"><img src="images/gallery/music_world_title_logo.png" alt="タイトルロゴ" class="gallery-thumb" loading="lazy">
+        <div class="art-title">タイトルロゴ</div><div class="art-category">設定資料</div></div>
+      <div class="gallery-overlay"><span class="gallery-overlay-text" data-i18n="gallery-overlay">詳細を見る</span></div>
+    </div>
+
+    <div class="gallery-item gallery-item--img fade-in" data-category="design" data-img="images/gallery/orchestra_kingdom_emblem.png">
+      <div class="gallery-item-inner"><img src="images/gallery/orchestra_kingdom_emblem.png" alt="オーケストラ国のロゴ" class="gallery-thumb" loading="lazy">
+        <div class="art-title">オーケストラ国のロゴ</div><div class="art-category">設定資料</div></div>
+      <div class="gallery-overlay"><span class="gallery-overlay-text" data-i18n="gallery-overlay">詳細を見る</span></div>
+    </div>
+
+  </div>
+
+  <!-- Gallery Video Modal -->
+  <div id="gallery-video-modal" class="gallery-video-modal" aria-hidden="true">
+    <div class="gallery-video-content" role="dialog" aria-modal="true">
+      <video id="gallery-video" class="gallery-video__player" playsinline preload="metadata"></video>
+      <div class="gvm-spinner" id="gvm-spinner" aria-hidden="true"></div>
+      <div id="gvm-subtitle-telop" class="opening-subtitle-telop" aria-live="polite"></div>
+      <div id="gvm-subtitle" class="opening-subtitle" aria-live="polite"></div>
+      <div class="gallery-video-controls" id="gvm-controls">
+        <div class="ovc-timeline-wrap">
+          <span class="ovc-time" id="gvm-current">0:00</span>
+          <input type="range" id="gvm-seek" class="ovc-seek" min="0" max="100" step="0.1" value="0" aria-label="再生位置">
+          <span class="ovc-time" id="gvm-duration">--:--</span>
+        </div>
+        <div class="gvm-btn-row">
+          <button id="gvm-playpause-btn" class="gvm-ctrl-btn gvm-playpause-btn" aria-label="再生/一時停止">▶ 再生</button>
+          <button id="gvm-mute-btn" class="gvm-ctrl-btn" aria-label="ミュート切替">🔊</button>
+          <input type="range" id="gvm-vol" class="ovc-vol" min="0" max="1" step="0.05" value="1" aria-label="音量">
+          <span class="gvm-btn-spacer"></span>
+          <div class="cc-menu-wrap" id="gvm-cc-wrap">
+            <button id="gvm-cc-btn" class="ovc-cc-btn" aria-label="字幕切替" aria-haspopup="true">CC</button>
+            <div id="gvm-cc-menu" class="cc-menu" hidden>
+              <button class="cc-menu__item" data-lang="ja">JP</button>
+              <button class="cc-menu__item" data-lang="en">EN</button>
+              <button class="cc-menu__item" data-lang="zh">中</button>
+              <button class="cc-menu__item" data-lang="off">OFF</button>
+            </div>
+          </div>
+          <button id="gvm-pip-btn" class="gvm-ctrl-btn" title="ピクチャーインピクチャー" aria-label="PiP">PiP</button>
+          <button id="gvm-fullscreen-btn" class="gvm-ctrl-btn" title="全画面" aria-label="全画面">全画面</button>
+          <button id="gvm-close" class="gvm-ctrl-btn gvm-close-btn" aria-label="閉じる">✕ CLOSE</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-content">
+      <button class="lightbox-close" aria-label="閉じる">✕</button>
+      <span class="lightbox-icon"></span>
+      <div class="lightbox-title"></div>
+      <div class="gold-divider" style="max-width:200px;margin:1rem auto;"><span class="icon">♦</span></div>
+      <p class="lightbox-desc"></p>
+    </div>
+  </div>
+
+  <!-- More info -->
+  <div class="fade-in" style="margin-top:4rem;text-align:center;">
+    <div class="card" style="max-width:600px;margin:0 auto;text-align:center;">
+      <div style="font-size:2.5rem;margin-bottom:1rem;">🎬</div>
+      <h3 style="font-family:var(--font-heading);color:var(--gold);letter-spacing:0.15em;margin-bottom:1rem;"
+          data-i18n="gallery-info-h">画像素材について</h3>
+      <p style="color:rgba(248,244,255,0.8);font-size:0.9rem;margin-bottom:1.5rem;"
+         data-i18n="gallery-info-p" data-i18n-html>
+        各ギャラリー枠は画像差し替え用プレースホルダーです。<br>
+        実際の画像ファイルを用意したら、各 <code style="color:var(--gold);font-size:0.85em;">.img-placeholder</code> 要素を
+        <code style="color:var(--gold);font-size:0.85em;">&lt;img src="..."&gt;</code> タグに置き換えてください。
+      </p>
+      <span class="btn"><span data-i18n="btn-press-kit">プレスキットを請求する</span></span>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-logo" data-i18n="footer-logo">ミュージックワールド</div>
+  <div class="footer-logo-sub" data-i18n="footer-sub">バイオリン姫と魔法のシンフォニー</div>
+  <div class="footer-links">
+    <a href="index.html"      data-i18n="footer-link-top">トップ</a>
+    <a href="story.html"      data-i18n="footer-link-story">ストーリー</a>
+    <a href="characters.html" data-i18n="footer-link-characters">キャラクター</a>
+    <a href="world.html"      data-i18n="footer-link-world">ワールド</a>
+    <a href="gallery.html"    data-i18n="footer-link-gallery">ギャラリー</a>
+    <a href="lyrics.html"     data-i18n="footer-link-lyrics">歌詞</a>
+    <a href="book.html"       data-i18n="footer-link-book">絵本</a>
+  </div>
+  <p>© 2025 Violin Princess Production Committee. All Rights Reserved.</p>
+  <p style="margin-top:0.5rem;" data-i18n="footer-copy2">このサイトはフィクション作品の公式サイトです。</p>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/effects.js"></script>
+</body>
+</html>

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="world-title">ワールドマップ | ミュージックワールド ～バイオリン姫と魔法のシンフォニー～</title>
+  <link rel="icon" href="images/logos/favicon.png" type="image/png">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/effects.css">
+</head>
+<body>
+
+<div class="stars-bg"></div>
+
+<header>
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <span data-i18n="nav-logo-title">ミュージックワールド</span>
+      <span data-i18n="nav-logo-sub">バイオリン姫と魔法のシンフォニー</span>
+    </div>
+    <button class="hamburger" aria-label="メニュー">
+      <span></span><span></span><span></span>
+    </button>
+    <nav>
+      <ul>
+        <li><a href="index.html"      data-i18n="nav-top">トップ</a></li>
+        <li><a href="story.html"      data-i18n="nav-story">ストーリー</a></li>
+        <li><a href="characters.html" data-i18n="nav-characters">キャラクター</a></li>
+        <li><a href="world.html"      data-i18n="nav-world">ワールド</a></li>
+        <li><a href="gallery.html"    data-i18n="nav-gallery">ギャラリー</a></li>
+        <li><a href="lyrics.html"     data-i18n="nav-lyrics">歌詞</a></li>
+        <li><a href="book.html"       data-i18n="nav-book">絵本</a></li>
+      </ul>
+    </nav>
+    <div class="lang-switcher">
+      <button class="lang-btn" data-lang="ja">日本語</button>
+      <button class="lang-btn" data-lang="en">English</button>
+      <button class="lang-btn" data-lang="zh">中文</button>
+    </div>
+  </div>
+</header>
+
+<div class="page-hero">
+  <p class="subtitle">World Map</p>
+  <h1 data-i18n="world-hero-h1">音楽の世界</h1>
+</div>
+
+<div class="section">
+
+  <div class="world-intro fade-in">
+    <p data-i18n="world-intro" data-i18n-html>
+      四つの音楽の国が広がる「ミュージックワールド」。<br>
+      弦・管・打・鍵盤——<br>
+      それぞれ異なる音楽の力を持ち、独自の文化と歴史を築いてきた。<br>
+      長いあいだ、四つの国はそれぞれの地で平和な時を重ねていた。<br>
+      しかしある日、黒幕の企みによってその均衡は崩れ、<br>
+      世界を巻き込む大きな争いへと発展していく。
+    </p>
+  </div>
+
+  <!-- ══ World Map Image ══ -->
+  <div class="world-map-container fade-in">
+    <div class="world-map-img-wrap">
+      <img src="images/world/main/music-world-map.png"
+           alt="ムジカ大陸 ワールドマップ"
+           class="world-map-img"
+           onerror="this.closest('.world-map-img-wrap').classList.add('world-map-fallback')">
+    </div>
+    <p class="world-map-caption">ムジカ大陸 ／ Musica Continent</p>
+  </div>
+
+  <!-- ══ Kingdom Cards ══ -->
+  <div class="fade-in">
+    <h2 class="section-title" data-i18n="world-kingdoms-title">四つの音楽の国</h2>
+    <p class="section-subtitle">The Four Musical Kingdoms</p>
+    <div class="gold-divider" style="max-width:320px;"><span class="icon">♦</span></div>
+  </div>
+
+  <div class="kingdoms-grid" style="margin-top:2.5rem;">
+
+    <!-- ゲンガク国 -->
+    <div class="kingdom-card fade-in kingdom-gengaku">
+      <div class="kingdom-header">
+        <div class="kingdom-emblem">🎻</div>
+        <div>
+          <div class="kingdom-name" data-i18n="world-gengaku-name">ゲンガク国</div>
+          <div class="kingdom-subtitle" data-i18n="world-gengaku-sub">弦楽器の国 / Gengaku Kingdom</div>
+        </div>
+      </div>
+      <div class="kingdom-card-img-wrap">
+        <img src="images/world/main/gengaku-kingdom.png" alt="ゲンガク国" class="kingdom-card-img"
+             onerror="this.closest('.kingdom-card-img-wrap').style.display='none'">
+      </div>
+      <p data-i18n="world-gengaku-desc">
+        弦楽器が奏でる美しい音色に満ちた国。淡い桜色の城が水路の走る美しい街並みに聳え立ち、
+        伝統と格式を重んじる国民が静かに暮らす。春になると城の周囲に桜が咲き乱れ、
+        バイオリンやチェロの旋律が水路の反響とともに街中に広がる。
+        バイオリン姫の故郷であり、物語の出発点となる場所。
+      </p>
+      <div style="margin-top:0.8rem;">
+        <span class="kingdom-tag" style="color:#ffb7c5;border-color:rgba(255,183,197,0.35);" data-i18n="world-gengaku-tag1">テーマカラー：桃色</span>
+        <span class="kingdom-tag" data-i18n="world-gengaku-tag2">伝統と格式</span>
+        <span class="kingdom-tag" data-i18n="world-gengaku-tag3">水路の街並み</span>
+      </div>
+    </div>
+
+    <!-- カンガク国 -->
+    <div class="kingdom-card fade-in kingdom-kangaku">
+      <div class="kingdom-header">
+        <div class="kingdom-emblem">🎷</div>
+        <div>
+          <div class="kingdom-name" data-i18n="world-kangaku-name">カンガク国</div>
+          <div class="kingdom-subtitle" data-i18n="world-kangaku-sub">管楽器の国 / Kangaku Kingdom</div>
+        </div>
+      </div>
+      <div class="kingdom-card-img-wrap">
+        <img src="images/world/main/kangaku-kingdom.png" alt="カンガク国" class="kingdom-card-img"
+             onerror="this.closest('.kingdom-card-img-wrap').style.display='none'">
+      </div>
+      <p data-i18n="world-kangaku-desc">
+        金管楽器のような輝くブラスの建造物と、蒸気機関・鉄鋼技術が発展した活気ある国。
+        即興を楽しむ国民性で、街角でジャズのような演奏が聞こえてくる。
+        吹奏楽騎士団が拠点を置く堅牢な要塞都市でもあり、
+        歯車と熱気が生み出す独特の世界を築き上げている。
+      </p>
+      <div style="margin-top:0.8rem;">
+        <span class="kingdom-tag" style="color:#ffd700;border-color:rgba(255,215,0,0.35);" data-i18n="world-kangaku-tag1">テーマカラー：黄色</span>
+        <span class="kingdom-tag" data-i18n="world-kangaku-tag2">蒸気と鉄鋼</span>
+        <span class="kingdom-tag" data-i18n="world-kangaku-tag3">即興の精神</span>
+      </div>
+    </div>
+
+    <!-- ダガク国 -->
+    <div class="kingdom-card fade-in kingdom-dagaku">
+      <div class="kingdom-header">
+        <div class="kingdom-emblem">🥁</div>
+        <div>
+          <div class="kingdom-name" data-i18n="world-dagaku-name">ダガク国</div>
+          <div class="kingdom-subtitle" data-i18n="world-dagaku-sub">打楽器の国 / Dagaku Kingdom</div>
+        </div>
+      </div>
+      <div class="kingdom-card-img-wrap">
+        <img src="images/world/main/dagaku-kingdom.png" alt="ダガク国" class="kingdom-card-img"
+             onerror="this.closest('.kingdom-card-img-wrap').style.display='none'">
+      </div>
+      <p data-i18n="world-dagaku-desc">
+        広大な森の奥地に広がり、村々には打楽器を思わせる円形の住居が並ぶ。
+        そこには複数の部族が共存しており、
+        狂いのない拍子を刻みながらリズミカルに踊る暮らしが根付いている。
+        いくつもの集落を抜けた先には、
+        巨大な石をくり抜いて築かれた太古の神殿がそびえ、重厚な姿をどっしりと構えている。
+      </p>
+      <div style="margin-top:0.8rem;">
+        <span class="kingdom-tag" style="color:#87ceeb;border-color:rgba(135,206,235,0.35);" data-i18n="world-dagaku-tag1">テーマカラー：水色</span>
+        <span class="kingdom-tag" data-i18n="world-dagaku-tag2">多部族共存</span>
+        <span class="kingdom-tag" data-i18n="world-dagaku-tag3">巨石神殿</span>
+      </div>
+    </div>
+
+    <!-- ケンバンガク国 -->
+    <div class="kingdom-card fade-in kingdom-kenban">
+      <div class="kingdom-header">
+        <div class="kingdom-emblem">🎹</div>
+        <div>
+          <div class="kingdom-name" data-i18n="world-kenban-name">ケンバンガク国</div>
+          <div class="kingdom-subtitle" data-i18n="world-kenban-sub">鍵盤楽器の国 / Kenban Kingdom</div>
+        </div>
+      </div>
+      <div class="kingdom-card-img-wrap">
+        <img src="images/world/main/kenbangaku-kingdom.png" alt="ケンバンガク国" class="kingdom-card-img"
+             onerror="this.closest('.kingdom-card-img-wrap').style.display='none'">
+      </div>
+      <p data-i18n="world-kenban-desc">
+        巨大なパイプオルガンを思わせるような尖塔が空を貫く格式の高い国。
+        白と黒の建物が整然と並ぶ街並みは、まるで闇に浮かぶピアノの鍵盤のようだ。
+        皇帝が治める城がそびえ立ち、時折ドラゴンの影が舞うという噂も絶えない。
+        陰鬱さと妖艶さを兼ね備えたその城は、見る者を圧倒するほど神秘的で、
+        その威厳に誰もがおそれかしこまる。
+      </p>
+      <div style="margin-top:0.8rem;">
+        <span class="kingdom-tag" style="color:#c890ff;border-color:rgba(200,144,255,0.35);" data-i18n="world-kenban-tag1">テーマカラー：紫</span>
+        <span class="kingdom-tag" data-i18n="world-kenban-tag2">崖上の城塞</span>
+        <span class="kingdom-tag" data-i18n="world-kenban-tag3">白と黒の秩序</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══ Atmosphere Section ══ -->
+  <div style="margin-top:4rem;" class="fade-in">
+    <h2 class="section-title" data-i18n="world-bg-title">世界の背景</h2>
+    <p class="section-subtitle">World Background</p>
+    <div class="gold-divider"><span class="icon">♦</span></div>
+
+    <div class="info-grid" style="margin-top:2.5rem;">
+      <div class="info-card card fade-in">
+        <div class="icon-wrap">🎵</div>
+        <h3 data-i18n="world-bg-card1-h">音楽は魔法</h3>
+        <p data-i18n="world-bg-card1-p">このムジカ大陸では音楽そのものが魔法の力を持つ。各国固有の楽器から生まれる音色は、それぞれ異なる魔法的な効果を発揮する。</p>
+      </div>
+      <div class="info-card card fade-in">
+        <div class="icon-wrap">⚔️</div>
+        <h3 data-i18n="world-bg-card2-h">四国の対立</h3>
+        <p data-i18n="world-bg-card2-p">かつては四国が調和していたが、黒幕の企みにより対立が激化。ケンバンガク国を中心とした侵略戦争が起き、世界の均衡が崩れていく。</p>
+      </div>
+      <div class="info-card card fade-in">
+        <div class="icon-wrap">🌟</div>
+        <h3 data-i18n="world-bg-card3-h">グランドシンフォニー</h3>
+        <p data-i18n="world-bg-card3-p">四つの国の音楽が合わさったとき生まれる伝説の力。これを取り戻すことが、世界に平和をもたらす唯一の方法とされている。</p>
+      </div>
+      <div class="info-card card fade-in">
+        <div class="icon-wrap">📷</div>
+        <h3 data-i18n="world-bg-card4-h">世界観イメージ</h3>
+        <div class="img-placeholder" style="aspect-ratio:4/3;margin-top:0.8rem;">
+          <span class="img-ph-label">📷 IMAGE<br><strong>ムジカ大陸の全景</strong><br>ワールドイメージビジュアル</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center;margin-top:3rem;" class="fade-in">
+    <div style="display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;">
+      <a href="characters.html" class="btn"><span data-i18n="btn-view-characters">キャラクターを見る</span></a>
+      <a href="gallery.html" class="btn"><span data-i18n="btn-to-gallery">ギャラリーへ</span></a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo" data-i18n="footer-logo">ミュージックワールド</div>
+  <div class="footer-logo-sub" data-i18n="footer-sub">バイオリン姫と魔法のシンフォニー</div>
+  <div class="footer-links">
+    <a href="index.html"      data-i18n="footer-link-top">トップ</a>
+    <a href="story.html"      data-i18n="footer-link-story">ストーリー</a>
+    <a href="characters.html" data-i18n="footer-link-characters">キャラクター</a>
+    <a href="world.html"      data-i18n="footer-link-world">ワールド</a>
+    <a href="gallery.html"    data-i18n="footer-link-gallery">ギャラリー</a>
+    <a href="lyrics.html"     data-i18n="footer-link-lyrics">歌詞</a>
+    <a href="book.html"       data-i18n="footer-link-book">絵本</a>
+  </div>
+  <p>© 2025 Violin Princess Production Committee. All Rights Reserved.</p>
+  <p style="margin-top:0.5rem;" data-i18n="footer-copy2">このサイトはフィクション作品の公式サイトです。</p>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/effects.js"></script>
+</body>
+</html>

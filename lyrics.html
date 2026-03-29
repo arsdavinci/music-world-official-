@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="lyrics-title">歌詞 — Symphony of One World | ミュージックワールド</title>
+  <link rel="icon" href="images/logos/favicon.png" type="image/png">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/effects.css">
+  <style>
+    /* ── Lyrics Hero ── */
+    .lyrics-hero {
+      text-align: center;
+      padding: 5rem 1.5rem 3rem;
+      background: linear-gradient(180deg, rgba(13,7,30,1) 0%, rgba(13,7,30,0.95) 80%, rgba(13,7,30,0) 100%);
+    }
+    .lyrics-hero__eyebrow {
+      font-family: var(--font-heading);
+      font-size: 0.78rem;
+      letter-spacing: 0.25em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .lyrics-hero__title {
+      font-family: var(--font-title);
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      background: var(--gradient-gold);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.6rem;
+      line-height: 1.25;
+    }
+    .lyrics-hero__sub {
+      font-size: 0.9rem;
+      color: var(--text-pale);
+      letter-spacing: 0.1em;
+    }
+
+    /* ── Lyrics Player (sticky) ── */
+    .lyrics-player {
+      position: sticky;
+      top: 64px;
+      z-index: 100;
+      background: rgba(255, 253, 247, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201,162,39,0.25);
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      box-shadow: 0 2px 16px rgba(201,162,39,0.10);
+    }
+    .lp-label {
+      font-family: var(--font-heading);
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      color: var(--gold-dark);
+      white-space: nowrap;
+    }
+    .lp-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .lp-btn {
+      width: 38px;
+      height: 38px;
+      border: 1.5px solid rgba(201,162,39,0.5);
+      border-radius: 50%;
+      background: var(--cream);
+      color: var(--gold-dark);
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
+    .lp-btn:hover {
+      background: var(--gradient-gold);
+      color: var(--cream);
+      border-color: transparent;
+      box-shadow: var(--shadow-gold);
+    }
+    .lp-progress-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex: 1;
+      min-width: 180px;
+      max-width: 420px;
+    }
+    .lp-time {
+      font-family: var(--font-heading);
+      font-size: 0.72rem;
+      color: var(--text-pale);
+      white-space: nowrap;
+      min-width: 82px;
+      text-align: center;
+    }
+    .lp-seek {
+      flex: 1;
+      -webkit-appearance: none;
+      appearance: none;
+      height: 4px;
+      border-radius: 2px;
+      background: linear-gradient(to right, var(--gold) 0%, var(--pink-light) 0%);
+      outline: none;
+      cursor: pointer;
+    }
+    .lp-seek::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 6px rgba(201,162,39,0.5);
+      cursor: pointer;
+    }
+    .lp-vol-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .lp-vol-icon { font-size: 0.9rem; cursor: pointer; }
+    .lp-vol {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 70px;
+      height: 4px;
+      border-radius: 2px;
+      background: linear-gradient(to right, var(--gold) 40%, var(--pink-light) 40%);
+      outline: none;
+      cursor: pointer;
+    }
+    .lp-vol::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--gold);
+      cursor: pointer;
+    }
+
+    /* ── Credits ── */
+    .lyrics-credits {
+      font-size: 0.82rem;
+      color: var(--text-pale);
+      letter-spacing: 0.08em;
+      margin-top: 0.8rem;
+    }
+
+    /* ── Lyrics Body ── */
+    .lyrics-wrap {
+      max-width: 620px;
+      margin: 2rem auto 5rem;
+      padding: 2.5rem 2rem;
+      background: var(--gradient-card);
+      border: var(--border-gold);
+      border-radius: 16px;
+      box-shadow: var(--shadow-card);
+      text-align: center;
+    }
+    .lyrics-section {
+      margin-bottom: 2.2rem;
+    }
+    .lyrics-section-label {
+      font-family: var(--font-heading);
+      font-size: 0.68rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.8rem;
+    }
+    .lyrics-lines p {
+      font-family: var(--font-body);
+      font-size: 1.05rem;
+      line-height: 2.2;
+      color: var(--text-dark);
+      letter-spacing: 0.04em;
+    }
+    .lyrics-lines p.blank {
+      height: 0.5rem;
+    }
+    .lyrics-divider {
+      color: rgba(201,162,39,0.3);
+      font-size: 0.85rem;
+      letter-spacing: 0.5em;
+      margin: 0.2rem 0 2rem;
+      user-select: none;
+    }
+
+    /* ── Page Background ── */
+    body {
+      background-image: url('images/background/The Magic Score.png');
+      background-attachment: fixed;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: rgba(13, 7, 30, 0.72);
+      z-index: 0;
+      pointer-events: none;
+    }
+    .stars-bg, header, .lyrics-hero, .lyrics-player, main, footer {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── Note: BGM consent banner consideration ── */
+    @media (max-width: 600px) {
+      .lyrics-player { top: 56px; gap: 0.6rem; padding: 0.6rem 1rem; }
+      .lp-progress-wrap { min-width: 140px; }
+      .lp-vol-wrap { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="stars-bg"></div>
+
+<!-- ── Header ── -->
+<header>
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <span data-i18n="nav-logo-title">ミュージックワールド</span>
+      <span data-i18n="nav-logo-sub">バイオリン姫と魔法のシンフォニー</span>
+    </div>
+    <button class="hamburger" aria-label="メニュー">
+      <span></span><span></span><span></span>
+    </button>
+    <nav>
+      <ul>
+        <li><a href="index.html"      data-i18n="nav-top">トップ</a></li>
+        <li><a href="story.html"      data-i18n="nav-story">ストーリー</a></li>
+        <li><a href="characters.html" data-i18n="nav-characters">キャラクター</a></li>
+        <li><a href="world.html"      data-i18n="nav-world">ワールド</a></li>
+        <li><a href="gallery.html"    data-i18n="nav-gallery">ギャラリー</a></li>
+        <li><a href="lyrics.html"     data-i18n="nav-lyrics" class="nav-active">歌詞</a></li>
+        <li><a href="book.html"       data-i18n="nav-book">絵本</a></li>
+      </ul>
+    </nav>
+    <div class="lang-switcher">
+      <button class="lang-btn" data-lang="ja">日本語</button>
+      <button class="lang-btn" data-lang="en">English</button>
+      <button class="lang-btn" data-lang="zh">中文</button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- ── Hero ── -->
+  <div class="lyrics-hero">
+    <p class="lyrics-hero__eyebrow" data-i18n="lyrics-eyebrow">Theme Song · Lyrics</p>
+    <h1 class="lyrics-hero__title">Symphony of One World</h1>
+    <p class="lyrics-hero__sub" data-i18n="lyrics-sub">ミュージックワールド メインテーマ</p>
+    <p class="lyrics-credits" data-i18n="lyrics-credits">作詞作曲：ぴょんぴー　／　歌：DJ らむね</p>
+  </div>
+
+  <!-- ── Lyrics Player ── -->
+  <div class="lyrics-player" id="lyrics-player">
+    <span class="lp-label" data-i18n="lyrics-player-label">♪ Now Playing</span>
+    <div class="lp-controls">
+      <button class="lp-btn" id="lp-stop-btn" title="最初から" aria-label="最初から">⏮</button>
+      <button class="lp-btn" id="lp-play-btn" title="再生 / 停止" aria-label="再生 / 停止">▶</button>
+    </div>
+    <div class="lp-progress-wrap">
+      <input type="range" class="lp-seek" id="lp-seek" min="0" step="0.1" value="0" aria-label="シークバー">
+      <span class="lp-time" id="lp-time">0:00 / --:--</span>
+    </div>
+    <div class="lp-vol-wrap">
+      <span class="lp-vol-icon" id="lp-vol-icon">🔊</span>
+      <input type="range" class="lp-vol" id="lp-vol" min="0" max="1" step="0.05" value="0.4" aria-label="音量">
+    </div>
+  </div>
+
+  <!-- ── Lyrics Content ── -->
+  <article class="lyrics-wrap">
+
+    <!-- Verse 1 -->
+    <section class="lyrics-section" data-section="verse1">
+      <div class="lyrics-section-label" data-i18n="lyrics-sec-verse1">Verse 1</div>
+      <div class="lyrics-lines">
+        <p data-i18n="lyrics-v1-1">弦に触れれば　風が踊る</p>
+        <p data-i18n="lyrics-v1-2">リードを揺らせば　壁を越えて</p>
+        <p data-i18n="lyrics-v1-3">太鼓を叩いて　大地を揺らし</p>
+        <p data-i18n="lyrics-v1-4">鍵盤をはじけば　未来がかわる</p>
+      </div>
+    </section>
+
+    <!-- Verse 2 -->
+    <section class="lyrics-section" data-section="verse2">
+      <div class="lyrics-section-label" data-i18n="lyrics-sec-verse2">Verse 2</div>
+      <div class="lyrics-lines">
+        <p data-i18n="lyrics-v2-1">遠く離れた　国の音も</p>
+        <p data-i18n="lyrics-v2-2">重なりあえば　ひとつになる</p>
+        <p class="blank"></p>
+        <p data-i18n="lyrics-v2-3">初めは理解し合えなくても</p>
+        <p data-i18n="lyrics-v2-4">きっと分かり合える日が来る</p>
+        <p data-i18n="lyrics-v2-5">違う旋律　違うリズムも</p>
+        <p data-i18n="lyrics-v2-6">重なれば　ハーモニーになる</p>
+      </div>
+    </section>
+
+    <!-- Pre-Chorus -->
+    <section class="lyrics-section" data-section="prechorus">
+      <div class="lyrics-section-label" data-i18n="lyrics-sec-pre">Pre-Chorus</div>
+      <div class="lyrics-lines">
+        <p data-i18n="lyrics-pre-1">争いの音を　静めて</p>
+        <p data-i18n="lyrics-pre-2">今　心を合わせよう</p>
+      </div>
+    </section>
+
+    <div class="lyrics-divider">✦ ✦ ✦</div>
+
+    <!-- Chorus -->
+    <section class="lyrics-section" data-section="chorus">
+      <div class="lyrics-section-label" data-i18n="lyrics-sec-chorus">Chorus</div>
+      <div class="lyrics-lines">
+        <p>Symphony of One World</p>
+        <p data-i18n="lyrics-cho-2">響け　この世界に</p>
+        <p data-i18n="lyrics-cho-3">違う音が　重なって</p>
+        <p data-i18n="lyrics-cho-4">ひとつの光になる</p>
+        <p class="blank"></p>
+        <p>Symphony of One World</p>
+        <p data-i18n="lyrics-cho-6">空へ　奏でよう</p>
+        <p data-i18n="lyrics-cho-7">すべての国　すべての人が</p>
+        <p data-i18n="lyrics-cho-8">調和の歌を歌う</p>
+      </div>
+    </section>
+
+    <div class="lyrics-divider">✦ ✦ ✦</div>
+
+    <!-- Bridge -->
+    <section class="lyrics-section" data-section="bridge">
+      <div class="lyrics-section-label" data-i18n="lyrics-sec-bridge">Bridge</div>
+      <div class="lyrics-lines">
+        <p data-i18n="lyrics-br-1">違う音色が　出会うとき</p>
+        <p data-i18n="lyrics-br-2">世界は新しい歌になる</p>
+        <p class="blank"></p>
+        <p data-i18n="lyrics-br-3">遠い国の　メロディも</p>
+        <p data-i18n="lyrics-br-4">ここでひとつに響く</p>
+        <p class="blank"></p>
+        <p data-i18n="lyrics-br-5">君のリズム　僕の旋律</p>
+        <p data-i18n="lyrics-br-6">重なりあうその瞬間</p>
+        <p class="blank"></p>
+        <p data-i18n="lyrics-br-7">空の彼方まで広がる</p>
+        <p data-i18n="lyrics-br-8">平和のシンフォニー</p>
+      </div>
+    </section>
+
+    <div class="lyrics-divider">✦ ✦ ✦</div>
+
+    <!-- Final Chorus -->
+    <section class="lyrics-section" data-section="finalchorus">
+      <div class="lyrics-section-label" data-i18n="lyrics-sec-final">Final Chorus</div>
+      <div class="lyrics-lines">
+        <p>Symphony of One World</p>
+        <p data-i18n="lyrics-fc-2">響け　永遠に</p>
+        <p data-i18n="lyrics-fc-3">違う夢が　重なって</p>
+        <p data-i18n="lyrics-fc-4">未来の歌になる</p>
+        <p class="blank"></p>
+        <p>Symphony of One World</p>
+        <p data-i18n="lyrics-fc-6">空へ　広がれ</p>
+        <p data-i18n="lyrics-fc-7">すべての国　すべての人が</p>
+        <p data-i18n="lyrics-fc-8">ひとつのハーモニー</p>
+      </div>
+    </section>
+
+  </article>
+
+</main>
+
+<!-- ── Footer ── -->
+<footer>
+  <div class="footer-logo" data-i18n="footer-logo">ミュージックワールド</div>
+  <div class="footer-logo-sub" data-i18n="footer-sub">バイオリン姫と魔法のシンフォニー</div>
+  <div class="footer-links">
+    <a href="index.html"      data-i18n="footer-link-top">トップ</a>
+    <a href="story.html"      data-i18n="footer-link-story">ストーリー</a>
+    <a href="characters.html" data-i18n="footer-link-characters">キャラクター</a>
+    <a href="world.html"      data-i18n="footer-link-world">ワールド</a>
+    <a href="gallery.html"    data-i18n="footer-link-gallery">ギャラリー</a>
+    <a href="lyrics.html"     data-i18n="footer-link-lyrics">歌詞</a>
+    <a href="book.html"       data-i18n="footer-link-book">絵本</a>
+  </div>
+  <p>© 2025 Violin Princess Production Committee. All Rights Reserved.</p>
+  <p style="margin-top:0.5rem;" data-i18n="footer-copy2">このサイトはフィクション作品の公式サイトです。</p>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/effects.js"></script>
+<script>
+/* ── Lyrics Page Player ────────────────────────────────────
+   #bgm-audio は initBGMPlayer() が DOMContentLoaded で
+   挿入するため、このスクリプトの時点では既に存在している。
+   ──────────────────────────────────────────────────────── */
+(function () {
+  function fmt(s) {
+    if (!isFinite(s)) return '--:--';
+    const m = Math.floor(s / 60);
+    const sec = Math.floor(s % 60);
+    return m + ':' + String(sec).padStart(2, '0');
+  }
+
+  function initLyricsPlayer() {
+    const audio    = document.getElementById('bgm-audio');
+    const playBtn  = document.getElementById('lp-play-btn');
+    const stopBtn  = document.getElementById('lp-stop-btn');
+    const seekBar  = document.getElementById('lp-seek');
+    const timeDisp = document.getElementById('lp-time');
+    const volSlider= document.getElementById('lp-vol');
+    const volIcon  = document.getElementById('lp-vol-icon');
+
+    if (!audio) return;
+
+    /* ── 音量を既存プレーヤーに合わせる ── */
+    volSlider.value = audio.volume;
+    updateVolIcon(audio.volume);
+
+    /* ── シークバー最大値を設定 ── */
+    function onMetadata() {
+      seekBar.max = audio.duration;
+      timeDisp.textContent = fmt(audio.currentTime) + ' / ' + fmt(audio.duration);
+    }
+    if (audio.readyState >= 1) onMetadata();
+    else audio.addEventListener('loadedmetadata', onMetadata);
+
+    /* ── 再生状態を反映 ── */
+    function syncPlayBtn() {
+      playBtn.textContent = audio.paused ? '▶' : '⏸';
+    }
+    audio.addEventListener('play',  syncPlayBtn);
+    audio.addEventListener('pause', syncPlayBtn);
+    syncPlayBtn();
+
+    /* ── 再生中：シークバー・時間を更新 ── */
+    let isSeeking = false;
+    audio.addEventListener('timeupdate', () => {
+      if (!isSeeking) {
+        seekBar.value = audio.currentTime;
+        const pct = audio.duration ? (audio.currentTime / audio.duration * 100) : 0;
+        seekBar.style.background =
+          `linear-gradient(to right, var(--gold) ${pct}%, var(--pink-light) ${pct}%)`;
+      }
+      timeDisp.textContent = fmt(audio.currentTime) + ' / ' + fmt(audio.duration);
+    });
+
+    /* ── 再生 / 停止 ── */
+    playBtn.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play().catch(() => {});
+      } else {
+        audio.pause();
+      }
+    });
+
+    /* ── 先頭に戻す ── */
+    stopBtn.addEventListener('click', () => {
+      window._bgmUserPaused = true;
+      audio.pause();
+      audio.currentTime = 0;
+      seekBar.value = 0;
+      seekBar.style.background = `linear-gradient(to right, var(--gold) 0%, var(--pink-light) 0%)`;
+      timeDisp.textContent = '0:00 / ' + fmt(audio.duration);
+      syncPlayBtn();
+    });
+
+    /* ── シークバー操作 ── */
+    seekBar.addEventListener('mousedown',  () => { isSeeking = true; });
+    seekBar.addEventListener('touchstart', () => { isSeeking = true; }, { passive: true });
+    seekBar.addEventListener('input', () => {
+      const pct = seekBar.max ? (seekBar.value / seekBar.max * 100) : 0;
+      seekBar.style.background =
+        `linear-gradient(to right, var(--gold) ${pct}%, var(--pink-light) ${pct}%)`;
+      timeDisp.textContent = fmt(parseFloat(seekBar.value)) + ' / ' + fmt(audio.duration);
+    });
+    seekBar.addEventListener('change', () => {
+      audio.currentTime = parseFloat(seekBar.value);
+      isSeeking = false;
+    });
+    seekBar.addEventListener('mouseup',  () => { isSeeking = false; });
+    seekBar.addEventListener('touchend', () => { isSeeking = false; });
+
+    /* ── 音量 ── */
+    function updateVolIcon(v) {
+      volIcon.textContent = v <= 0 ? '🔇' : v < 0.5 ? '🔉' : '🔊';
+    }
+    volSlider.addEventListener('input', () => {
+      const v = parseFloat(volSlider.value);
+      audio.volume = v;
+      updateVolIcon(v);
+      const pct = v * 100;
+      volSlider.style.background =
+        `linear-gradient(to right, var(--gold) ${pct}%, var(--pink-light) ${pct}%)`;
+      /* 既存プレーヤーのスライダーにも反映 */
+      const mainVol = document.getElementById('bgm-vol');
+      if (mainVol) mainVol.value = v;
+    });
+    volIcon.addEventListener('click', () => {
+      const muted = audio.volume > 0;
+      audio.volume = muted ? 0 : 0.4;
+      volSlider.value = audio.volume;
+      updateVolIcon(audio.volume);
+    });
+
+    /* ── 既存プレーヤーの音量変更をこちらにも反映 ── */
+    audio.addEventListener('volumechange', () => {
+      volSlider.value = audio.volume;
+      const pct = audio.volume * 100;
+      volSlider.style.background =
+        `linear-gradient(to right, var(--gold) ${pct}%, var(--pink-light) ${pct}%)`;
+      updateVolIcon(audio.volume);
+    });
+  }
+
+  /* initBGMPlayer() と同じ DOMContentLoaded タイミングで動くが、
+     main.js の initBGMPlayer() が先に実行されるため bgm-audio は既に存在する */
+  document.addEventListener('DOMContentLoaded', initLyricsPlayer);
+})();
+</script>
+</body>
+</html>
