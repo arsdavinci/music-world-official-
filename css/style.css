@@ -1488,22 +1488,16 @@ footer .footer-logo-sub {
 /* 縦画面（スマホ縦持ち）― 16:9動画の黒帯に収める・1行固定 */
 @media (orientation: portrait) and (max-width: 768px) {
   .opening-subtitle {
-    font-size: 2.2vw;
-    bottom: 10%;
-    white-space: nowrap;
-    overflow: hidden;
-    max-width: 96vw;
+    font-size: 5vw;
+    bottom: 36%;
   }
   .opening-subtitle-telop {
-    font-size: 1.8vw;
-    white-space: nowrap;
-    overflow: hidden;
-    max-width: 96vw;
+    font-size: 3.5vw;
   }
-  .opening-subtitle-telop.pos-bl { bottom: 11%; }
-  .opening-subtitle-telop.pos-br { bottom: 11%; }
-  .opening-subtitle-telop.pos-tl { top: 11%; }
-  .opening-subtitle-telop.pos-tr { top: 11%; }
+  .opening-subtitle-telop.pos-bl { bottom: 38%; }
+  .opening-subtitle-telop.pos-br { bottom: 38%; }
+  .opening-subtitle-telop.pos-tl { top: 28%; }
+  .opening-subtitle-telop.pos-tr { top: 28%; }
 }
 
 .opening-video__flash {
