@@ -1494,10 +1494,18 @@ footer .footer-logo-sub {
   .opening-subtitle-telop {
     font-size: 3.5vw;
   }
-  .opening-subtitle-telop.pos-bl { bottom: 28%; }
-  .opening-subtitle-telop.pos-br { bottom: 28%; }
-  .opening-subtitle-telop.pos-tl { top: 28%; }
-  .opening-subtitle-telop.pos-tr { top: 28%; }
+  /* 縦持ち：テロップは位置に関わらず上の黒帯へ（セリフ字幕との重なり防止） */
+  .opening-subtitle-telop.pos-bl,
+  .opening-subtitle-telop.pos-br,
+  .opening-subtitle-telop.pos-tl,
+  .opening-subtitle-telop.pos-tr {
+    top: 20%;
+    bottom: auto;
+    left: 4%;
+    right: auto;
+    transform: none;
+    text-align: left;
+  }
 }
 
 .opening-video__flash {
