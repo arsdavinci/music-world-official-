@@ -1489,13 +1489,13 @@ footer .footer-logo-sub {
 @media (orientation: portrait) and (max-width: 768px) {
   .opening-subtitle {
     font-size: 5vw;
-    bottom: 36%;
+    bottom: 26%;
   }
   .opening-subtitle-telop {
     font-size: 3.5vw;
   }
-  .opening-subtitle-telop.pos-bl { bottom: 38%; }
-  .opening-subtitle-telop.pos-br { bottom: 38%; }
+  .opening-subtitle-telop.pos-bl { bottom: 28%; }
+  .opening-subtitle-telop.pos-br { bottom: 28%; }
   .opening-subtitle-telop.pos-tl { top: 28%; }
   .opening-subtitle-telop.pos-tr { top: 28%; }
 }
