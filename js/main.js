@@ -1622,6 +1622,8 @@ const charDataZh = {
 function setLanguage(lang) {
   localStorage.setItem(LANG_KEY, lang);
   document.documentElement.lang = lang;
+  // 字幕言語をサイト言語に同期（CCボタンも更新）
+  _applySubLang(lang);
 
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key    = el.dataset.i18n;
