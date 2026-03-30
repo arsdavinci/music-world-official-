@@ -641,7 +641,9 @@ function _openCharPopup(icon, d) {
   popup.setAttribute('role', 'dialog');
   popup.setAttribute('aria-label', d.name + ' 詳細');
   popup.innerHTML = `
-    <button class="char-popup-close" aria-label="閉じる">✕</button>
+    <div class="char-popup-topbar">
+      <button class="char-popup-close" aria-label="閉じる">✕</button>
+    </div>
     ${topAreaHtml}
     <div class="char-popup-body">
       <div class="char-popup-name">${d.name}</div>
@@ -756,19 +758,11 @@ function _positionPopup(popup, icon) {
 
   popup.style.width = popW + 'px';
 
-  /* ── モバイル（640px未満）: 上下に配置 ── */
+  /* ── モバイル（640px未満）: 画面中央・高さ90vh固定 ── */
   if (vw < 640) {
-    popup.style.left = Math.max(16, Math.round((vw - popW) / 2)) + 'px';
-    const spaceBelow = vh - r.bottom - gap;
-    const spaceAbove = r.top - 80;
-    if (spaceBelow >= 200 || spaceBelow >= spaceAbove) {
-      popup.style.top = (r.bottom + gap) + 'px';
-      popup.style.maxHeight = Math.max(200, spaceBelow - 10) + 'px';
-    } else {
-      const mh = Math.max(200, spaceAbove - 10);
-      popup.style.top = Math.max(80, r.top - mh - gap) + 'px';
-      popup.style.maxHeight = mh + 'px';
-    }
+    popup.style.left      = Math.max(16, Math.round((vw - popW) / 2)) + 'px';
+    popup.style.top       = Math.round(vh * 0.05) + 'px';
+    popup.style.maxHeight = Math.round(vh * 0.90) + 'px';
     return;
   }
 
