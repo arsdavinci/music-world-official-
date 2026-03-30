@@ -1337,7 +1337,7 @@ footer .footer-logo-sub {
 }
 .cc-menu {
   position: absolute;
-  top: calc(100% + 8px);
+  bottom: calc(100% + 8px);
   right: 0;
   background: rgba(10,5,20,0.92);
   border: 1px solid rgba(255,255,255,0.25);

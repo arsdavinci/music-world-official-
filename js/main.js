@@ -432,6 +432,10 @@ function initPageScripts() {
     /* PiP非対応ブラウザではボタン非表示 */
     if (!document.pictureInPictureEnabled) gvPipBtn.style.display = 'none';
 
+    /* iOS Safariは video.volume の変更を許可しない → 音量スライダーを非表示 */
+    const _isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    if (_isIOS && gvVol) gvVol.style.display = 'none';
+
     function _bgmPause() {
       /* 「最初のクリックで自動再生」リスナーが残っていたらキャンセル */
       if (window._bgmCancelAutoStart) window._bgmCancelAutoStart();
@@ -544,10 +548,13 @@ function initPageScripts() {
     /* 全画面 */
     gvFsBtn.addEventListener('click', () => {
       const el = gvideo;
-      if (!document.fullscreenElement) {
-        (el.requestFullscreen || el.webkitRequestFullscreen || el.mozRequestFullScreen).call(el).catch(() => {});
+      if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+        // iOS Safariは webkitEnterFullscreen()（video専用API）
+        const reqFs = el.requestFullscreen || el.webkitEnterFullscreen || el.webkitRequestFullscreen || el.mozRequestFullScreen;
+        if (reqFs) reqFs.call(el).catch(() => {});
       } else {
-        (document.exitFullscreen || document.webkitExitFullscreen || document.mozCancelFullScreen).call(document).catch(() => {});
+        const exitFs = document.exitFullscreen || document.webkitExitFullscreen || document.mozCancelFullScreen;
+        if (exitFs) exitFs.call(document).catch(() => {});
       }
     });
     function _onFsChange() {
