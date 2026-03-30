@@ -400,17 +400,11 @@ footer .footer-logo-sub {
     padding: 6.5rem 1.5rem 4rem;
   }
 }
-/* 縦持ち：画像を横幅いっぱいに・ヘッダーの下から表示（見切れ防止） */
+/* 縦持ち：coverのまま横位置58%でキャラ2人が中央に・空がタイトル背景に */
 @media (orientation: portrait) and (max-width: 768px) {
   .hero {
-    background-size: 100% auto;
-    background-position: center 60px;
-  }
-}
-/* 横持ちスマホ：上基準にすることで空/虹をタイトル背景に、キャラを下側へ */
-@media (orientation: landscape) and (max-width: 900px) {
-  .hero {
-    background-position: center top;
+    background-size: cover;
+    background-position: 58% center;
   }
 }
 @media (max-width: 600px) {
