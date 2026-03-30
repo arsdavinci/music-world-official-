@@ -1337,7 +1337,7 @@ footer .footer-logo-sub {
 }
 .cc-menu {
   position: absolute;
-  bottom: calc(100% + 8px);
+  top: calc(100% + 8px);
   right: 0;
   background: rgba(10,5,20,0.92);
   border: 1px solid rgba(255,255,255,0.25);
@@ -1617,6 +1617,7 @@ footer .footer-logo-sub {
 .gallery-video-controls {
   background: linear-gradient(to top, rgba(10,3,8,0.97) 0%, rgba(10,3,8,0.75) 100%);
   padding: 0.7rem 1rem 0.8rem;
+  overflow: visible;
 }
 .gvm-btn-row {
   display: flex; align-items: center; gap: 0.45rem; margin-top: 0.55rem;
