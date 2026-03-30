@@ -454,7 +454,9 @@ function initPageScripts() {
       gvm.classList.remove('is-open');
       gvm.setAttribute('aria-hidden', 'true');
       gvideo.pause();
-      gvideo.src = '';
+      gvideo.innerHTML = '';          // <source>要素をクリア
+      gvideo.removeAttribute('src');
+      gvideo.load();                  // リセット
       gvSpinner.classList.remove('is-active');
       if (gvSubEl) gvSubEl.classList.remove('visible');
       _gvLastKey = null;
@@ -568,7 +570,13 @@ function initPageScripts() {
         const poster = item.dataset.videoPoster || '';
         if (!src) return;
         gvideo.poster = poster;
-        gvideo.src    = src;
+        // iOS Safari対応: <source>要素方式（video.src直接代入より動作が安定）
+        gvideo.innerHTML = '';
+        const _srcEl = document.createElement('source');
+        _srcEl.src  = src;
+        _srcEl.type = 'video/mp4';
+        gvideo.appendChild(_srcEl);
+        gvideo.load();
         gvSeek.value  = 0;
         gvSeek.max    = 100;
         gvCur.textContent = '0:00';
