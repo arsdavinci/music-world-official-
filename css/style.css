@@ -400,11 +400,21 @@ footer .footer-logo-sub {
     padding: 6.5rem 1.5rem 4rem;
   }
 }
-/* 縦持ち：coverのまま横位置58%でキャラ2人が中央に・空がタイトル背景に */
+/* 縦持ち：220%スケールでキャラ2人が両端に収まる（64%でキャラ中央に） */
 @media (orientation: portrait) and (max-width: 768px) {
   .hero {
-    background-size: cover;
-    background-position: 58% center;
+    background-size: 220% auto;
+    background-position: 64% top;
+  }
+  /* 画像が画面上半分で終わるため、下半分を暗くしてページに自然につなぐ */
+  .hero::before {
+    background:
+      linear-gradient(to bottom,
+        rgba(20,5,15,0.40) 0%,
+        transparent 18%,
+        transparent 48%,
+        rgba(20,5,15,0.88) 58%,
+        rgba(20,5,15,0.99) 100%);
   }
 }
 @media (max-width: 600px) {

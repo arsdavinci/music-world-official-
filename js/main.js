@@ -569,7 +569,6 @@ function initPageScripts() {
         if (!src) return;
         gvideo.poster = poster;
         gvideo.src    = src;
-        gvideo.load();          // iOS Safari: srcを動的に変更した後にload()が必要
         gvSeek.value  = 0;
         gvSeek.max    = 100;
         gvCur.textContent = '0:00';
