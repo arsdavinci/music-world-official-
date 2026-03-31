@@ -138,9 +138,9 @@ nav ul li a:hover, nav ul li a.active {
 }
 /* Project nav — subtle gold accent */
 nav ul li a.nav-project {
-  color: var(--gold);
-  border-color: rgba(201,162,39,0.30);
-  text-shadow: 0 0 12px rgba(201,162,39,0.25);
+  color: var(--gold-light);
+  border-color: rgba(201,162,39,0.60);
+  text-shadow: 0 0 12px rgba(201,162,39,0.45);
 }
 nav ul li a.nav-project:hover {
   color: var(--gold-light);
