@@ -136,6 +136,18 @@ nav ul li a:hover, nav ul li a.active {
   border-color: rgba(201,162,39,0.45);
   background: rgba(201,162,39,0.07);
 }
+/* Project nav — subtle gold accent */
+nav ul li a.nav-project {
+  color: var(--gold);
+  border-color: rgba(201,162,39,0.30);
+  text-shadow: 0 0 12px rgba(201,162,39,0.25);
+}
+nav ul li a.nav-project:hover {
+  color: var(--gold-light);
+  border-color: rgba(201,162,39,0.65);
+  background: rgba(201,162,39,0.10);
+  text-shadow: 0 0 16px rgba(201,162,39,0.45);
+}
 
 /* Hamburger */
 .hamburger { display: none; cursor: pointer; background: none; border: none; padding: 0.5rem; }
@@ -1669,4 +1681,187 @@ footer .footer-logo-sub {
   .gallery-video-modal { padding: 0.8rem; }
   .gallery-video-controls { padding: 0.5rem 0.7rem 0.6rem; }
   .gvm-ctrl-btn { font-size: 0.58rem; padding: 0.24rem 0.5rem; }
+}
+
+/* ── Project / Support pages ── */
+.project-lead {
+  max-width: 720px; margin: 0 auto;
+  text-align: center; line-height: 2.0;
+}
+.project-lead p {
+  color: var(--purple-pale); font-size: 1.05rem;
+  margin-bottom: 1.4rem;
+}
+.project-lead .reveal {
+  font-family: var(--font-heading);
+  color: var(--gold); font-size: 1.15rem;
+  letter-spacing: 0.08em; margin: 2rem 0 1rem;
+}
+.project-lead .highlight {
+  color: var(--gold-light); font-weight: bold;
+}
+.project-cta {
+  margin-top: 3rem; display: flex;
+  flex-direction: column; align-items: center; gap: 1.2rem;
+}
+.project-cta .btn-primary {
+  display: inline-block;
+  font-family: var(--font-heading); letter-spacing: 0.15em;
+  font-size: 1rem; padding: 1rem 2.8rem;
+  background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold) 100%);
+  color: #1a0a12; border-radius: 4px;
+  box-shadow: 0 0 28px rgba(201,162,39,0.35);
+  transition: all 0.3s ease; text-decoration: none;
+}
+.project-cta .btn-primary:hover {
+  box-shadow: 0 0 42px rgba(201,162,39,0.6);
+  transform: translateY(-2px);
+}
+.project-cta-links {
+  display: flex; gap: 2rem; flex-wrap: wrap;
+  justify-content: center; margin-top: 0.5rem;
+}
+.project-cta-links a {
+  font-size: 0.8rem; color: var(--purple-pale);
+  border-bottom: 1px solid rgba(201,162,39,0.2);
+  padding-bottom: 1px; letter-spacing: 0.05em;
+  transition: color 0.2s;
+}
+.project-cta-links a:hover { color: var(--gold); }
+
+/* Support plans */
+.support-plans {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.8rem; margin-top: 2.5rem;
+}
+.plan-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(201,162,39,0.18);
+  border-radius: 10px; padding: 2rem 1.6rem;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: border-color 0.3s;
+  display: flex; flex-direction: column; gap: 0.8rem;
+}
+.plan-card:hover { border-color: rgba(201,162,39,0.40); }
+.plan-card--featured {
+  border-color: rgba(201,162,39,0.55);
+  background: rgba(201,162,39,0.06);
+  box-shadow: 0 0 40px rgba(201,162,39,0.12), inset 0 0 30px rgba(201,162,39,0.04);
+  position: relative;
+}
+.plan-badge {
+  position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+  background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+  color: #1a0a12; font-family: var(--font-heading);
+  font-size: 0.7rem; letter-spacing: 0.12em;
+  padding: 0.25rem 1.2rem; border-radius: 20px;
+  white-space: nowrap;
+}
+.plan-price {
+  font-family: var(--font-heading); color: var(--gold);
+  font-size: 1.6rem; letter-spacing: 0.05em;
+}
+.plan-price span { font-size: 0.85rem; color: var(--purple-pale); margin-left: 0.3rem; }
+.plan-name {
+  font-family: var(--font-heading); color: var(--gold-light);
+  font-size: 0.95rem; letter-spacing: 0.15em;
+}
+.plan-tagline {
+  font-size: 0.82rem; color: var(--purple-pale);
+  font-style: italic; border-bottom: 1px solid rgba(201,162,39,0.12);
+  padding-bottom: 0.8rem; margin-bottom: 0.4rem;
+}
+.plan-benefits {
+  list-style: none; display: flex; flex-direction: column; gap: 0.5rem;
+}
+.plan-benefits li {
+  font-size: 0.82rem; color: var(--text-pale);
+  padding-left: 1.2em; position: relative;
+}
+.plan-benefits li::before {
+  content: "♦"; position: absolute; left: 0;
+  color: var(--gold); font-size: 0.55rem; top: 0.2em;
+}
+.plan-benefits li.plan-benefit--highlight {
+  color: var(--purple-pale);
+}
+.support-agreement {
+  max-width: 680px; margin: 3rem auto 0;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(201,162,39,0.15);
+  border-radius: 8px; padding: 1.6rem 2rem;
+}
+.support-notice {
+  font-size: 0.8rem; color: var(--text-pale);
+  line-height: 1.9; margin-bottom: 1.2rem;
+}
+.support-notice p { margin-bottom: 0.4rem; }
+.agree-row {
+  display: flex; align-items: center; gap: 0.8rem;
+  margin-bottom: 1.4rem; cursor: pointer;
+}
+.agree-row input[type="checkbox"] {
+  width: 18px; height: 18px; accent-color: var(--gold);
+  cursor: pointer; flex-shrink: 0;
+}
+.agree-row label {
+  font-size: 0.85rem; color: var(--purple-pale);
+  cursor: pointer; letter-spacing: 0.04em;
+}
+.btn-support {
+  display: inline-block; width: 100%;
+  font-family: var(--font-heading); letter-spacing: 0.15em;
+  font-size: 0.9rem; padding: 0.9rem 2rem;
+  background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold) 100%);
+  color: #1a0a12; border-radius: 4px; border: none;
+  box-shadow: 0 0 24px rgba(201,162,39,0.3);
+  transition: all 0.3s ease; cursor: pointer;
+  text-align: center; text-decoration: none;
+}
+.btn-support:disabled {
+  opacity: 0.35; cursor: not-allowed;
+  box-shadow: none;
+}
+.btn-support:not(:disabled):hover {
+  box-shadow: 0 0 38px rgba(201,162,39,0.55);
+  transform: translateY(-1px);
+}
+
+/* guide / legal page */
+.prose {
+  max-width: 700px; margin: 0 auto;
+  line-height: 2.0;
+}
+.prose h2 {
+  font-family: var(--font-heading); color: var(--gold);
+  font-size: 1rem; letter-spacing: 0.12em;
+  margin: 2rem 0 0.6rem;
+  border-bottom: 1px solid rgba(201,162,39,0.2);
+  padding-bottom: 0.4rem;
+}
+.prose p, .prose li {
+  font-size: 0.88rem; color: var(--purple-pale);
+  margin-bottom: 0.6rem;
+}
+.prose ul { padding-left: 1.4rem; list-style: disc; }
+.prose table {
+  width: 100%; border-collapse: collapse;
+  font-size: 0.85rem; margin: 1rem 0;
+}
+.prose table th, .prose table td {
+  padding: 0.6rem 0.8rem; text-align: left;
+  border-bottom: 1px solid rgba(201,162,39,0.12);
+  color: var(--purple-pale);
+}
+.prose table th {
+  color: var(--gold); font-family: var(--font-heading);
+  font-size: 0.78rem; letter-spacing: 0.08em;
+  white-space: nowrap; width: 35%;
+}
+@media (max-width: 600px) {
+  .support-plans { grid-template-columns: 1fr; }
+  .prose table th { width: 40%; }
+  .project-cta-links { gap: 1.2rem; }
 }
