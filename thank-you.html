@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ありがとうございます | Music World Official</title>
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="icon" href="images/logos/favicon.png" type="image/png">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/effects.css">
+  <style>
+    .thankyou-hero {
+      text-align: center; padding: 8rem 2rem 4rem;
+    }
+    .thankyou-hero h1 {
+      font-family: var(--font-title);
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      color: var(--gold-light);
+      text-shadow: 0 0 30px rgba(201,162,39,0.4);
+      margin-bottom: 1rem;
+    }
+    .thankyou-hero p {
+      color: var(--purple-pale); font-size: 1rem; line-height: 2;
+    }
+    .reward-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(201,162,39,0.25);
+      border-radius: 10px; padding: 2rem;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      margin-bottom: 1.2rem;
+    }
+    .reward-card h2 {
+      font-family: var(--font-heading); color: var(--gold);
+      font-size: 0.85rem; letter-spacing: 0.15em;
+      margin-bottom: 1rem;
+    }
+    .download-btn {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      padding: 0.75rem 1.6rem; margin: 0.4rem 0.3rem;
+      background: linear-gradient(135deg, rgba(201,162,39,0.15), rgba(201,162,39,0.08));
+      border: 1px solid rgba(201,162,39,0.45);
+      border-radius: 6px; color: var(--gold-light);
+      font-family: var(--font-heading); font-size: 0.8rem;
+      letter-spacing: 0.1em; text-decoration: none;
+      transition: all 0.2s;
+    }
+    .download-btn:hover {
+      background: rgba(201,162,39,0.22);
+      border-color: var(--gold);
+      color: var(--gold);
+      box-shadow: 0 0 18px rgba(201,162,39,0.25);
+    }
+    .download-btn .icon { font-size: 1.1rem; }
+    .next-steps {
+      font-size: 0.82rem; color: var(--text-pale);
+      line-height: 2; padding: 1.2rem 1.4rem;
+      background: rgba(255,255,255,0.02);
+      border-left: 3px solid rgba(201,162,39,0.3);
+      border-radius: 0 6px 6px 0;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+<div class="stars-bg"></div>
+
+<header>
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <span>ミュージックワールド</span>
+      <span>バイオリン姫と魔法のシンフォニー</span>
+    </div>
+    <button class="hamburger" aria-label="メニュー">
+      <span></span><span></span><span></span>
+    </button>
+    <nav>
+      <ul>
+        <li><a href="index.html">トップ</a></li>
+        <li><a href="story.html">ストーリー</a></li>
+        <li><a href="characters.html">キャラクター</a></li>
+        <li><a href="world.html">ワールド</a></li>
+        <li><a href="gallery.html">ギャラリー</a></li>
+        <li><a href="lyrics.html">歌詞</a></li>
+        <li><a href="book.html">絵本</a></li>
+        <li><a href="project.html" class="nav-project">Project</a></li>
+      </ul>
+    </nav>
+    <div class="lang-switcher">
+      <button class="lang-btn" data-lang="ja">日本語</button>
+      <button class="lang-btn" data-lang="en">English</button>
+      <button class="lang-btn" data-lang="zh">中文</button>
+    </div>
+  </div>
+</header>
+
+<div class="thankyou-hero">
+  <div style="font-size:3rem; margin-bottom:1.5rem;">🎻</div>
+  <h1>ありがとうございます</h1>
+  <p>あなたの応援が、この物語の次の章を動かします。<br>
+  心より感謝いたします。</p>
+</div>
+
+<div class="section" style="max-width:680px;">
+
+  <div class="gold-divider"><span class="icon">♦</span></div>
+
+  <!-- デジタル特典ダウンロード -->
+  <div class="reward-card" style="margin-top:2rem;">
+    <h2>DIGITAL REWARDS — デジタル特典</h2>
+    <p style="font-size:0.82rem; color:var(--purple-pale); margin-bottom:1.2rem; line-height:1.8;">
+      以下のボタンからダウンロードしてください。<br>
+      同内容を登録メールアドレスにもお送りしています。
+    </p>
+    <div>
+      <!-- ▼ ここにStripeまたは外部ストレージのダウンロードURLを設定 -->
+      <a href="#" class="download-btn">
+        <span class="icon">🎵</span> Symphony of One World（WAV）
+      </a>
+      <a href="#" class="download-btn">
+        <span class="icon">📄</span> 未公開設定資料 PDF
+      </a>
+      <a href="#" class="download-btn">
+        <span class="icon">🎨</span> お礼メッセージ画像
+      </a>
+    </div>
+    <p style="font-size:0.73rem; color:var(--text-pale); margin-top:1rem;">
+      ※ リンクの有効期限は発行より7日間です。<br>
+      ※ ダウンロードが完了しない場合は <a href="mailto:info@arsdavinci.com" style="color:var(--gold);">info@arsdavinci.com</a> までご連絡ください。
+    </p>
+  </div>
+
+  <!-- 物理特典がある場合の案内 -->
+  <div class="reward-card">
+    <h2>PHYSICAL REWARDS — 物理特典について</h2>
+    <p style="font-size:0.82rem; color:var(--purple-pale); line-height:1.8;">
+      ぬいぐるみ・メッセージカードなどの物理特典は、<br>
+      ご入金確認後 <strong style="color:var(--gold-light);">1週間〜3ヶ月程度</strong>を目安に発送いたします。<br>
+      発送の際は改めてメールでご連絡します。<br>
+      ご不明な点はメールにてお気軽にお問い合わせください。
+    </p>
+    <p class="next-steps">
+      お問い合わせ：<a href="mailto:info@arsdavinci.com" style="color:var(--gold);">info@arsdavinci.com</a><br>
+      通常 2〜3日以内にご返信いたします。
+    </p>
+  </div>
+
+  <!-- サイトへ戻る -->
+  <div style="text-align:center; margin-top:2.5rem; margin-bottom:1rem;">
+    <a href="index.html" class="btn"><span>← 作品サイトへ戻る</span></a>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-logo">ミュージックワールド</div>
+  <div class="footer-logo-sub">バイオリン姫と魔法のシンフォニー</div>
+  <div class="footer-links">
+    <a href="index.html">トップ</a>
+    <a href="project.html">Project</a>
+  </div>
+  <p>© 2025 Violin Princess Production Committee. All Rights Reserved.</p>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

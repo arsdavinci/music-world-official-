@@ -55,6 +55,10 @@
   <h1>Support the Project</h1>
 </div>
 
+<div class="announcement-band" style="font-size:0.82rem; letter-spacing:0.08em;">
+  ✦ &nbsp; 受付期間：2026年4月1日 〜 2026年6月30日（予定）&nbsp;&nbsp;|&nbsp;&nbsp; Producer Classは限定10セット &nbsp; ✦
+</div>
+
 <div class="section">
 
   <h2 class="section-title fade-in">応援プラン</h2>
@@ -104,7 +108,8 @@
     </div>
 
     <!-- Producer Class -->
-    <div class="plan-card fade-in">
+    <div class="plan-card fade-in" style="border-color:rgba(201,162,39,0.35); position:relative;">
+      <div class="plan-badge" style="background:linear-gradient(135deg,#7a3a10,#c96a10);">LIMITED 10</div>
       <div class="plan-price">¥500,000 <span>〜</span></div>
       <div class="plan-name">Producer Class Supporter</div>
       <div class="plan-tagline">「この世界を共に創る」</div>
@@ -128,6 +133,49 @@
 
   </div><!-- /.support-plans -->
 
+  <!-- ぬいぐるみセクション -->
+  <div class="section" style="padding-top:3rem; padding-bottom:0;">
+    <div class="gold-divider fade-in"><span class="icon">♦</span></div>
+    <h2 class="section-title fade-in" style="margin-top:2rem;">ぬいぐるみについて</h2>
+    <p class="section-subtitle fade-in">Handcrafted with Love</p>
+    <p class="fade-in" style="text-align:center; color:var(--purple-pale); font-size:0.88rem; max-width:600px; margin:0 auto 2rem; line-height:2;">
+      本プロジェクトで提供するぬいぐるみは、既に制作済みの実物をもとにご用意しております。<br>
+      実際のイメージは掲載画像をご確認ください。
+    </p>
+    <div class="plush-gallery fade-in">
+      <div class="plush-item">
+        <img src="images/project/rewards/violin-princess-plush.jpg"
+             alt="バイオリン姫ぬいぐるみ"
+             onerror="this.closest('.plush-item').style.display='none'">
+        <p class="plush-label">バイオリン姫</p>
+      </div>
+      <div class="plush-item">
+        <img src="images/project/rewards/sax-knight-plush.jpg"
+             alt="サクソフォーン騎士ぬいぐるみ"
+             onerror="this.closest('.plush-item').style.display='none'">
+        <p class="plush-label">サクソフォーン騎士</p>
+      </div>
+      <div class="plush-item plush-item--set">
+        <img src="images/project/rewards/plush-set.jpg"
+             alt="ぬいぐるみセット（限定）"
+             onerror="this.closest('.plush-item').style.display='none'">
+        <p class="plush-label">セット <span style="font-size:0.7rem; color:var(--gold);">LIMITED</span></p>
+      </div>
+    </div>
+    <p class="fade-in" style="text-align:center; font-size:0.78rem; color:var(--text-pale); margin-top:1rem;">
+      ※ 物理特典の発送目安：ご入金確認後 1週間〜3ヶ月程度（制作・在庫状況により変動する場合があります）
+    </p>
+  </div>
+
+  <!-- デジタル特典説明 -->
+  <div class="card fade-in" style="max-width:680px; margin:2.5rem auto 0; padding:1.8rem 2rem;">
+    <p style="font-family:var(--font-heading); color:var(--gold); font-size:0.78rem; letter-spacing:0.15em; margin-bottom:0.8rem;">DIGITAL REWARDS</p>
+    <p style="font-size:0.85rem; color:var(--purple-pale); line-height:2.0;">
+      デジタル特典は、ご支援完了後に自動でダウンロードいただけます。<br>
+      また、ご登録のメールアドレスにも案内をお送りします。
+    </p>
+  </div>
+
   <!-- 資金用途の説明 -->
   <div class="card fade-in" style="max-width:680px; margin:2.5rem auto 0; padding:1.8rem 2rem;">
     <p style="font-family:var(--font-heading); color:var(--gold); font-size:0.78rem; letter-spacing:0.15em; margin-bottom:0.8rem;">ABOUT YOUR SUPPORT</p>
@@ -146,16 +194,17 @@
       <p>・本支援は任意の応援として行われるものです。</p>
       <p>・内容は制作状況により変更される場合があります。</p>
       <p>・将来の作品展開（映画化等）は実現を保証するものではありません。</p>
+      <p>・お問い合わせには、通常 2〜3日以内を目安にご返信いたします。</p>
     </div>
     <label class="agree-row">
       <input type="checkbox" id="agree-check">
       <span>上記内容およびご案内に同意する</span>
     </label>
-    <a href="mailto:info@arsdavinci.com?subject=ミュージックワールド プロジェクト応援について" id="btn-contact" class="btn-support" style="pointer-events:none;" disabled>
-      応援について問い合わせる
+    <a href="checkout.html" id="btn-proceed" class="btn-support" style="pointer-events:none; text-align:center; display:block;" aria-disabled="true">
+      応援プランを選ぶ → 次へ進む
     </a>
     <p style="font-size:0.75rem; color:var(--text-pale); margin-top:1rem; text-align:center;">
-      ご支援の方法・お振込先などはメールにてご案内します。
+      ご入金確認後、受付完了のご連絡をメールにてお送りします。
     </p>
   </div>
 
@@ -190,14 +239,16 @@
 <script src="js/effects.js"></script>
 <script>
   const check = document.getElementById('agree-check');
-  const btn   = document.getElementById('btn-contact');
+  const btn   = document.getElementById('btn-proceed');
   check.addEventListener('change', () => {
     if (check.checked) {
-      btn.removeAttribute('disabled');
+      btn.removeAttribute('aria-disabled');
       btn.style.pointerEvents = '';
+      btn.style.opacity = '';
     } else {
-      btn.setAttribute('disabled', '');
+      btn.setAttribute('aria-disabled', 'true');
       btn.style.pointerEvents = 'none';
+      btn.style.opacity = '0.35';
     }
   });
 </script>

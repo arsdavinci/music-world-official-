@@ -1860,8 +1860,29 @@ footer .footer-logo-sub {
   font-size: 0.78rem; letter-spacing: 0.08em;
   white-space: nowrap; width: 35%;
 }
+/* Plush image gallery */
+.plush-gallery {
+  display: flex; gap: 1.5rem; justify-content: center;
+  flex-wrap: wrap; margin: 0 auto;
+}
+.plush-item {
+  text-align: center; max-width: 260px; width: 100%;
+}
+.plush-item img {
+  width: 100%; aspect-ratio: 1/1; object-fit: cover;
+  border-radius: 10px; border: 1px solid rgba(201,162,39,0.22);
+  display: block;
+}
+.plush-item--set img { aspect-ratio: 4/3; }
+.plush-label {
+  font-family: var(--font-heading); color: var(--gold-light);
+  font-size: 0.78rem; letter-spacing: 0.1em; margin-top: 0.6rem;
+}
+
 @media (max-width: 600px) {
   .support-plans { grid-template-columns: 1fr; }
   .prose table th { width: 40%; }
   .project-cta-links { gap: 1.2rem; }
+  .plush-gallery { gap: 1rem; }
+  .plush-item { max-width: 160px; }
 }

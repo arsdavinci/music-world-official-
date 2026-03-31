@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>応援プランのお申し込み | Music World Official</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="images/logos/favicon.png" type="image/png">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/effects.css">
+  <style>
+    .checkout-form { max-width: 600px; margin: 0 auto; }
+    .form-section {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(201,162,39,0.18);
+      border-radius: 10px; padding: 2rem 2rem 1.6rem;
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      margin-bottom: 1.6rem;
+    }
+    .form-section h2 {
+      font-family: var(--font-heading); color: var(--gold);
+      font-size: 0.8rem; letter-spacing: 0.15em;
+      margin-bottom: 1.2rem;
+    }
+    .plan-radio-group { display: flex; flex-direction: column; gap: 0.7rem; }
+    .plan-radio {
+      display: flex; align-items: center; gap: 0.8rem;
+      padding: 0.7rem 1rem;
+      border: 1px solid rgba(201,162,39,0.18); border-radius: 6px;
+      cursor: pointer; transition: border-color 0.2s;
+    }
+    .plan-radio:has(input:checked) {
+      border-color: rgba(201,162,39,0.55);
+      background: rgba(201,162,39,0.06);
+    }
+    .plan-radio input[type="radio"] { accent-color: var(--gold); flex-shrink:0; }
+    .plan-radio-name {
+      font-family: var(--font-heading); color: var(--gold-light);
+      font-size: 0.82rem; letter-spacing: 0.1em;
+    }
+    .plan-radio-price { color: var(--gold); font-size: 0.9rem; margin-left: auto; white-space: nowrap; }
+    .form-field { margin-bottom: 1.2rem; }
+    .form-field label {
+      display: block; font-size: 0.78rem; color: var(--purple-pale);
+      font-family: var(--font-heading); letter-spacing: 0.08em;
+      margin-bottom: 0.4rem;
+    }
+    .form-field label .req {
+      color: var(--gold); font-size: 0.7rem; margin-left: 0.3rem;
+    }
+    .form-field input, .form-field select {
+      width: 100%; padding: 0.6rem 0.9rem; box-sizing: border-box;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(201,162,39,0.25); border-radius: 4px;
+      color: var(--purple-pale); font-size: 0.88rem;
+      transition: border-color 0.2s;
+    }
+    .form-field input:focus, .form-field select:focus {
+      outline: none; border-color: rgba(201,162,39,0.6);
+    }
+    .form-field input::placeholder { color: rgba(168,120,152,0.45); }
+    .form-field select option { background: #1a0a12; }
+    .address-section { display: none; }
+    .address-section.visible { display: block; }
+    .address-section .form-section {
+      border-color: rgba(201,162,39,0.28);
+      background: rgba(201,162,39,0.04);
+    }
+    .char-select-group {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 0.5rem;
+    }
+    .char-option {
+      padding: 0.5rem 0.6rem; text-align: center;
+      border: 1px solid rgba(201,162,39,0.18); border-radius: 6px;
+      cursor: pointer; font-size: 0.78rem; color: var(--text-pale);
+      transition: all 0.2s;
+    }
+    .char-option:has(input:checked) {
+      border-color: rgba(201,162,39,0.55);
+      background: rgba(201,162,39,0.08);
+      color: var(--gold-light);
+    }
+    .char-option input { display: none; }
+    .stripe-notice {
+      font-size: 0.78rem; color: var(--text-pale); line-height:1.8;
+      border-top: 1px solid rgba(201,162,39,0.1); padding-top: 1rem;
+      margin-top: 1rem;
+    }
+    @media (max-width: 600px) {
+      .form-section { padding: 1.4rem 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="stars-bg"></div>
+
+<header>
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <span>ミュージックワールド</span>
+      <span>バイオリン姫と魔法のシンフォニー</span>
+    </div>
+    <button class="hamburger" aria-label="メニュー">
+      <span></span><span></span><span></span>
+    </button>
+    <nav>
+      <ul>
+        <li><a href="index.html">トップ</a></li>
+        <li><a href="story.html">ストーリー</a></li>
+        <li><a href="characters.html">キャラクター</a></li>
+        <li><a href="world.html">ワールド</a></li>
+        <li><a href="gallery.html">ギャラリー</a></li>
+        <li><a href="lyrics.html">歌詞</a></li>
+        <li><a href="book.html">絵本</a></li>
+        <li><a href="project.html" class="nav-project">Project</a></li>
+      </ul>
+    </nav>
+    <div class="lang-switcher">
+      <button class="lang-btn" data-lang="ja">日本語</button>
+      <button class="lang-btn" data-lang="en">English</button>
+      <button class="lang-btn" data-lang="zh">中文</button>
+    </div>
+  </div>
+</header>
+
+<div class="page-hero">
+  <p class="subtitle">Step 1 of 2 — お申し込み情報</p>
+  <h1>応援プランのお申し込み</h1>
+</div>
+
+<div class="section">
+<form class="checkout-form" id="checkout-form" novalidate>
+
+  <!-- プラン選択 -->
+  <div class="form-section">
+    <h2>STEP 1 — 応援プランを選ぶ</h2>
+    <div class="plan-radio-group">
+      <label class="plan-radio">
+        <input type="radio" name="plan" value="supporter" data-price="1000" required>
+        <span>
+          <div class="plan-radio-name">Supporter</div>
+          <div style="font-size:0.72rem; color:var(--text-pale);">お礼メッセージ画像</div>
+        </span>
+        <span class="plan-radio-price">¥1,000〜¥10,000</span>
+      </label>
+      <label class="plan-radio">
+        <input type="radio" name="plan" value="story_supporter" data-price="30000">
+        <span>
+          <div class="plan-radio-name">Story Supporter</div>
+          <div style="font-size:0.72rem; color:var(--text-pale);">設定資料・音源データ・掲載特典など</div>
+        </span>
+        <span class="plan-radio-price">¥30,000</span>
+      </label>
+      <label class="plan-radio">
+        <input type="radio" name="plan" value="executive" data-price="100000">
+        <span>
+          <div class="plan-radio-name">Executive Supporter</div>
+          <div style="font-size:0.72rem; color:var(--text-pale);">ぬいぐるみ＋サイン入りカード（郵送）</div>
+        </span>
+        <span class="plan-radio-price">¥100,000</span>
+      </label>
+      <label class="plan-radio">
+        <input type="radio" name="plan" value="producer" data-price="500000">
+        <span>
+          <div class="plan-radio-name">Producer Class Supporter <span style="font-size:0.68rem; color:var(--gold);">LIMITED 10</span></div>
+          <div style="font-size:0.72rem; color:var(--text-pale);">絵本掲載・特設ページ最上位掲載など</div>
+        </span>
+        <span class="plan-radio-price">¥500,000〜</span>
+      </label>
+    </div>
+  </div>
+
+  <!-- 基本情報 -->
+  <div class="form-section">
+    <h2>STEP 2 — お申し込み情報</h2>
+    <div class="form-field">
+      <label>メールアドレス <span class="req">必須</span></label>
+      <input type="email" id="email" name="email" placeholder="your@email.com" required autocomplete="email">
+    </div>
+    <div class="form-field">
+      <label>お名前 / ニックネーム</label>
+      <input type="text" id="name" name="name" placeholder="表示名（任意）" autocomplete="name">
+    </div>
+    <div class="form-field" id="display-name-field">
+      <label>サイト掲載名 <span style="font-size:0.7rem; color:var(--text-pale);">（Supportersページに掲載 / 希望者のみ）</span></label>
+      <input type="text" id="display_name" name="display_name" placeholder="掲載を希望しない場合は空欄">
+    </div>
+    <div class="form-field" id="char-select-field" style="display:none;">
+      <label>希望キャラクター <span style="font-size:0.7rem; color:var(--text-pale);">（お礼メッセージ画像）</span></label>
+      <div class="char-select-group">
+        <label class="char-option"><input type="radio" name="character" value="violin_princess">バイオリン姫</label>
+        <label class="char-option"><input type="radio" name="character" value="sax_knight">サックス</label>
+        <label class="char-option"><input type="radio" name="character" value="piano_prince">ピアノ王子</label>
+        <label class="char-option"><input type="radio" name="character" value="harp_queen">ハープ女王</label>
+        <label class="char-option"><input type="radio" name="character" value="master_tact">マスタータクト</label>
+        <label class="char-option"><input type="radio" name="character" value="random">おまかせ</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- 住所（¥10万以上のプランのみ表示） -->
+  <div class="address-section" id="address-section">
+    <div class="form-section">
+      <h2>STEP 3 — 配送先住所（物理特典のご送付先）</h2>
+      <div class="form-field">
+        <label>郵便番号 <span class="req">必須</span></label>
+        <input type="text" id="postal" name="postal" placeholder="123-4567" pattern="\d{3}-?\d{4}" autocomplete="postal-code">
+      </div>
+      <div class="form-field">
+        <label>都道府県 <span class="req">必須</span></label>
+        <select id="prefecture" name="prefecture" autocomplete="address-level1">
+          <option value="">選択してください</option>
+          <option>北海道</option><option>青森県</option><option>岩手県</option><option>宮城県</option>
+          <option>秋田県</option><option>山形県</option><option>福島県</option><option>茨城県</option>
+          <option>栃木県</option><option>群馬県</option><option>埼玉県</option><option>千葉県</option>
+          <option>東京都</option><option>神奈川県</option><option>新潟県</option><option>富山県</option>
+          <option>石川県</option><option>福井県</option><option>山梨県</option><option>長野県</option>
+          <option>岐阜県</option><option>静岡県</option><option>愛知県</option><option>三重県</option>
+          <option>滋賀県</option><option>京都府</option><option>大阪府</option><option>兵庫県</option>
+          <option>奈良県</option><option>和歌山県</option><option>鳥取県</option><option>島根県</option>
+          <option>岡山県</option><option>広島県</option><option>山口県</option><option>徳島県</option>
+          <option>香川県</option><option>愛媛県</option><option>高知県</option><option>福岡県</option>
+          <option>佐賀県</option><option>長崎県</option><option>熊本県</option><option>大分県</option>
+          <option>宮崎県</option><option>鹿児島県</option><option>沖縄県</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <label>住所（市区町村・番地） <span class="req">必須</span></label>
+        <input type="text" id="address" name="address" placeholder="例：渋谷区○○1-2-3" autocomplete="street-address">
+      </div>
+      <div class="form-field">
+        <label>建物名・部屋番号</label>
+        <input type="text" id="address2" name="address2" placeholder="マンション名・部屋番号（任意）">
+      </div>
+      <div class="form-field">
+        <label>氏名 <span class="req">必須</span></label>
+        <input type="text" id="full_name" name="full_name" placeholder="山田 太郎" autocomplete="name">
+      </div>
+    </div>
+  </div>
+
+  <!-- 決済へ進む -->
+  <div class="form-section">
+    <h2>STEP 4 — 決済</h2>
+    <p style="font-size:0.82rem; color:var(--purple-pale); line-height:1.9; margin-bottom:1.2rem;">
+      「決済ページへ進む」を押すと、Stripeの安全な決済ページに遷移します。<br>
+      カード情報はStripeが管理し、当サイトには保存されません。
+    </p>
+    <button type="submit" class="btn-support" id="btn-submit">
+      決済ページへ進む →
+    </button>
+    <p class="stripe-notice">
+      ※ 決済完了後、デジタル特典のダウンロードページが表示されます。<br>
+      ※ 登録メールアドレスにも案内をお送りします。<br>
+      ※ 物理特典の発送は、ご入金確認後 1週間〜3ヶ月程度を目安としております。
+    </p>
+  </div>
+
+</form>
+</div>
+
+<footer>
+  <div class="footer-logo">ミュージックワールド</div>
+  <div class="footer-logo-sub">バイオリン姫と魔法のシンフォニー</div>
+  <div class="footer-links">
+    <a href="index.html">トップ</a>
+    <a href="project.html">Project</a>
+    <a href="support.html">応援プラン</a>
+    <a href="guide.html">ご案内</a>
+    <a href="legal.html">特商法表記</a>
+  </div>
+  <p>© 2025 Violin Princess Production Committee. All Rights Reserved.</p>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+  // Stripe Payment Links — プランごとに設定（Stripeダッシュボードで取得したURLを貼る）
+  const STRIPE_LINKS = {
+    supporter:       'https://buy.stripe.com/XXXXXXXXXX',  // ← ここにStripeのURLを貼る
+    story_supporter: 'https://buy.stripe.com/XXXXXXXXXX',
+    executive:       'https://buy.stripe.com/XXXXXXXXXX',
+    producer:        'https://buy.stripe.com/XXXXXXXXXX',
+  };
+
+  const planRadios    = document.querySelectorAll('input[name="plan"]');
+  const addrSection   = document.getElementById('address-section');
+  const charField     = document.getElementById('char-select-field');
+
+  // プラン変更 → 住所欄・キャラ選択の表示切替
+  planRadios.forEach(r => {
+    r.addEventListener('change', () => {
+      const price = parseInt(r.dataset.price, 10);
+      addrSection.classList.toggle('visible', price >= 100000);
+      // キャラ選択は¥3万以上（ランダムでない選択が可能なプラン）
+      charField.style.display = price >= 30000 ? 'block' : 'none';
+    });
+  });
+
+  // フォーム送信 → Stripeへ
+  document.getElementById('checkout-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const selected = document.querySelector('input[name="plan"]:checked');
+    if (!selected) { alert('応援プランを選択してください。'); return; }
+    const email = document.getElementById('email').value.trim();
+    if (!email) { alert('メールアドレスを入力してください。'); return; }
+
+    const url = STRIPE_LINKS[selected.value];
+    if (!url || url.includes('XXXXXXXXXX')) {
+      // Stripe未設定時はメール問い合わせへ
+      const subject = encodeURIComponent('ミュージックワールド プロジェクト応援 - ' + selected.value);
+      const body    = encodeURIComponent('プラン: ' + selected.value + '\nメール: ' + email);
+      window.location.href = 'mailto:info@arsdavinci.com?subject=' + subject + '&body=' + body;
+      return;
+    }
+    // Stripe Payment Link にメールをプリフィル（Stripeが対応している場合）
+    window.location.href = url + '?prefilled_email=' + encodeURIComponent(email);
+  });
+</script>
+</body>
+</html>
