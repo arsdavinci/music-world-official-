@@ -545,13 +545,18 @@ function initPageScripts() {
     gvideo.addEventListener('enterpictureinpicture', () => { gvPipBtn.textContent = 'PiP ✓'; });
     gvideo.addEventListener('leavepictureinpicture', () => { gvPipBtn.textContent = 'PiP'; });
 
-    /* 全画面 */
+    /* 全画面 — コンテナごと全画面にして字幕・CCボタンを維持 */
     gvFsBtn.addEventListener('click', () => {
-      const el = gvideo;
+      const container = document.querySelector('.gallery-video-content');
       if (!document.fullscreenElement && !document.webkitFullscreenElement) {
-        // iOS Safariは webkitEnterFullscreen()（video専用API）
-        const reqFs = el.requestFullscreen || el.webkitEnterFullscreen || el.webkitRequestFullscreen || el.mozRequestFullScreen;
-        if (reqFs) reqFs.call(el).catch(() => {});
+        if (container.requestFullscreen) {
+          container.requestFullscreen().catch(() => {});
+        } else if (container.webkitRequestFullscreen) {
+          container.webkitRequestFullscreen();
+        } else if (gvideo.webkitEnterFullscreen) {
+          // iOS Safari fallback: video要素専用API（字幕は非表示になる）
+          gvideo.webkitEnterFullscreen();
+        }
       } else {
         const exitFs = document.exitFullscreen || document.webkitExitFullscreen || document.mozCancelFullScreen;
         if (exitFs) exitFs.call(document).catch(() => {});
