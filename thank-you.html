@@ -194,8 +194,27 @@
   const params = new URLSearchParams(window.location.search);
   const plan   = params.get('plan') || 'supporter';
 
-  // ランダム画像を選んで表示
-  const picked = MESSAGE_IMAGES[Math.floor(Math.random() * MESSAGE_IMAGES.length)];
+  // 決済セッションIDを取得（Stripeが ?sid=cs_xxx の形で付けてくれる）
+  const sessionId     = params.get('sid') || null;
+  const storedSession = localStorage.getItem('mw_session_id');
+  const storedIdx     = localStorage.getItem('mw_reward_idx');
+
+  let pickedIdx;
+  if (sessionId && sessionId !== storedSession) {
+    // 新しい決済 → ランダムに選んで保存
+    pickedIdx = Math.floor(Math.random() * MESSAGE_IMAGES.length);
+    localStorage.setItem('mw_reward_idx',  pickedIdx);
+    localStorage.setItem('mw_session_id',  sessionId);
+  } else if (storedIdx !== null) {
+    // 同じURLを再訪問 → 前回と同じ画像
+    pickedIdx = parseInt(storedIdx, 10);
+  } else {
+    // sessionIdなしの初訪問（テスト用など）→ ランダム
+    pickedIdx = Math.floor(Math.random() * MESSAGE_IMAGES.length);
+    localStorage.setItem('mw_reward_idx', pickedIdx);
+  }
+
+  const picked = MESSAGE_IMAGES[pickedIdx];
   const img    = document.getElementById('message-image');
   const dlBtn  = document.getElementById('message-dl-btn');
 
