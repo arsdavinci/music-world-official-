@@ -137,7 +137,6 @@ nav ul li a:hover, nav ul li a.active {
   background: rgba(201,162,39,0.07);
 }
 /* Project nav — subtle gold accent */
-nav ul li:has(a.nav-project) { display: none; } /* PROJECT HIDDEN — 公開時に削除 */
 nav ul li a.nav-project {
   color: var(--gold);
   border-color: rgba(201,162,39,0.30);

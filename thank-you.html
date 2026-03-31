@@ -153,12 +153,13 @@
     </div>
 
     <p style="font-size:0.73rem; color:var(--text-pale); margin-top:1.2rem;">
-      ※ ダウンロードが完了しない場合は <a href="mailto:info@arsdavinci.com" style="color:var(--gold);">info@arsdavinci.com</a> までご連絡ください。
+      ※ ダウンロードが完了しない場合は <a href="mailto:info@arsdavinci.com" style="color:var(--gold);">info@arsdavinci.com</a> までご連絡ください。<br>
+      ※ 前回と同じ画像が表示される場合がありますが、システムのエラーではありません。
     </p>
   </div>
 
   <!-- 物理特典がある場合の案内 -->
-  <div class="reward-card">
+  <div class="reward-card" id="physical-reward-card">
     <h2>PHYSICAL REWARDS — 物理特典について</h2>
     <p style="font-size:0.82rem; color:var(--purple-pale); line-height:1.8;">
       ぬいぐるみ・メッセージカードなどの物理特典は、<br>
@@ -241,6 +242,11 @@
   // Story Supporter以上は追加特典セクションも表示
   if (['story_supporter', 'executive', 'producer'].includes(plan)) {
     document.getElementById('reward-story').style.display = 'block';
+  }
+
+  // Supporter（物理特典なし）は物理特典カードを非表示
+  if (plan === 'supporter') {
+    document.getElementById('physical-reward-card').style.display = 'none';
   }
 </script>
 </body>
