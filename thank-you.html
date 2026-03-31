@@ -155,8 +155,9 @@
     <p style="font-size:0.73rem; color:var(--text-pale); margin-top:1.2rem;">
       ※ ダウンロードが完了しない場合は <a href="mailto:info@arsdavinci.com" style="color:var(--gold);">info@arsdavinci.com</a> までご連絡ください。
     </p>
-    <p id="same-image-notice" style="display:none; font-size:0.73rem; color:var(--text-pale); margin-top:0.4rem;">
-      ※ 前回と同じ画像が表示されていますが、システムのエラーではありません。ランダム抽選の結果です。
+    <p id="same-image-notice" style="display:none; font-size:0.8rem; color:var(--purple-pale); margin-top:0.8rem; line-height:1.9;">
+      また応援してくださって、ありがとうございます。<br>
+      今回のカードはどうでしたか？ 前回と違うカードだといいな。
     </p>
   </div>
 
@@ -212,12 +213,11 @@
   const storedIdx     = localStorage.getItem('mw_reward_idx');
 
   let pickedIdx;
-  let isRepeatSameImage = false; // 2回目以降購入で前回と同じ画像が出た場合
+  let isRepeatBuyer = false; // 2回目以降の購入かどうか
   if (sessionId && sessionId !== storedSession) {
     // 新しい決済 → ランダムに選んで保存
-    const prevIdx = storedIdx !== null ? parseInt(storedIdx, 10) : -1;
+    if (storedSession !== null) isRepeatBuyer = true;
     pickedIdx = Math.floor(Math.random() * MESSAGE_IMAGES.length);
-    if (prevIdx !== -1 && pickedIdx === prevIdx) isRepeatSameImage = true;
     localStorage.setItem('mw_reward_idx',  pickedIdx);
     localStorage.setItem('mw_session_id',  sessionId);
   } else if (storedIdx !== null) {
@@ -244,8 +244,8 @@
       '<p style="color:var(--purple-pale);font-size:0.85rem;">特典画像を準備中です。しばらくお待ちください。<br>ご不明な点は <a href="mailto:info@arsdavinci.com" style="color:var(--gold);">info@arsdavinci.com</a> までご連絡ください。</p>';
   };
 
-  // 2回目以降購入で前回と同じ画像が出た場合のみ注意書きを表示
-  if (isRepeatSameImage) {
+  // 2回目以降の購入者にメッセージを表示
+  if (isRepeatBuyer) {
     document.getElementById('same-image-notice').style.display = 'block';
   }
 
