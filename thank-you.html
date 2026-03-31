@@ -153,8 +153,10 @@
     </div>
 
     <p style="font-size:0.73rem; color:var(--text-pale); margin-top:1.2rem;">
-      ※ ダウンロードが完了しない場合は <a href="mailto:info@arsdavinci.com" style="color:var(--gold);">info@arsdavinci.com</a> までご連絡ください。<br>
-      ※ 前回と同じ画像が表示される場合がありますが、システムのエラーではありません。
+      ※ ダウンロードが完了しない場合は <a href="mailto:info@arsdavinci.com" style="color:var(--gold);">info@arsdavinci.com</a> までご連絡ください。
+    </p>
+    <p id="same-image-notice" style="display:none; font-size:0.73rem; color:var(--text-pale); margin-top:0.4rem;">
+      ※ 前回と同じ画像が表示されていますが、システムのエラーではありません。ランダム抽選の結果です。
     </p>
   </div>
 
@@ -210,9 +212,12 @@
   const storedIdx     = localStorage.getItem('mw_reward_idx');
 
   let pickedIdx;
+  let isRepeatSameImage = false; // 2回目以降購入で前回と同じ画像が出た場合
   if (sessionId && sessionId !== storedSession) {
     // 新しい決済 → ランダムに選んで保存
+    const prevIdx = storedIdx !== null ? parseInt(storedIdx, 10) : -1;
     pickedIdx = Math.floor(Math.random() * MESSAGE_IMAGES.length);
+    if (prevIdx !== -1 && pickedIdx === prevIdx) isRepeatSameImage = true;
     localStorage.setItem('mw_reward_idx',  pickedIdx);
     localStorage.setItem('mw_session_id',  sessionId);
   } else if (storedIdx !== null) {
@@ -238,6 +243,11 @@
     img.closest('#reward-supporter').innerHTML =
       '<p style="color:var(--purple-pale);font-size:0.85rem;">特典画像を準備中です。しばらくお待ちください。<br>ご不明な点は <a href="mailto:info@arsdavinci.com" style="color:var(--gold);">info@arsdavinci.com</a> までご連絡ください。</p>';
   };
+
+  // 2回目以降購入で前回と同じ画像が出た場合のみ注意書きを表示
+  if (isRepeatSameImage) {
+    document.getElementById('same-image-notice').style.display = 'block';
+  }
 
   // Story Supporter以上は追加特典セクションも表示
   if (['story_supporter', 'executive', 'producer'].includes(plan)) {
