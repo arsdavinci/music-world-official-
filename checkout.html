@@ -153,13 +153,13 @@
         </span>
         <span class="plan-radio-price">¥1,000〜¥10,000</span>
       </label>
-      <label class="plan-radio plan-radio--soon" style="opacity:0.45; cursor:not-allowed;">
-        <input type="radio" name="plan" value="story_supporter" data-price="30000" disabled>
+      <label class="plan-radio">
+        <input type="radio" name="plan" value="story_supporter" data-price="30000">
         <span>
-          <div class="plan-radio-name">Story Supporter <span style="font-size:0.68rem; color:var(--purple-pale); font-family:sans-serif; font-weight:normal; letter-spacing:0;">準備中</span></div>
+          <div class="plan-radio-name">Story Supporter</div>
           <div style="font-size:0.72rem; color:var(--text-pale);">設定資料・音源データ・掲載特典など</div>
         </span>
-        <span class="plan-radio-price" style="color:var(--text-pale);">¥30,000</span>
+        <span class="plan-radio-price">¥30,000</span>
       </label>
       <label class="plan-radio plan-radio--soon" style="opacity:0.45; cursor:not-allowed;">
         <input type="radio" name="plan" value="executive" data-price="100000" disabled>
@@ -287,7 +287,7 @@
   // Stripe Payment Links — プランごとに設定（Stripeダッシュボードで取得したURLを貼る）
   const STRIPE_LINKS = {
     supporter:       'https://buy.stripe.com/aFa3cv5Lb0HD8LefsldEs00',
-    story_supporter: 'https://buy.stripe.com/XXXXXXXXXX',  // ← 作成後に貼る
+    story_supporter: 'https://buy.stripe.com/9B6eVd1uV2PL0eI0xrdEs01',
     executive:       'https://buy.stripe.com/XXXXXXXXXX',
     producer:        'https://buy.stripe.com/XXXXXXXXXX',
   };
