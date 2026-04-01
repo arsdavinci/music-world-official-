@@ -138,8 +138,9 @@ nav ul li a:hover, nav ul li a.active {
 }
 /* Project nav — subtle gold accent */
 nav ul li a.nav-project {
-  color: var(--gold-light);
+  color: #fff;
   border-color: rgba(201,162,39,0.60);
+  font-weight: 600;
   text-shadow: 0 0 12px rgba(201,162,39,0.45);
 }
 nav ul li a.nav-project:hover {
@@ -521,13 +522,16 @@ footer .footer-logo-sub {
 }
 @media (max-width: 900px) {
   .story-content {
-    background: rgba(15, 4, 20, 0.72);
+    background: rgba(15, 4, 20, 0.88);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-radius: 10px;
     padding: 1.8rem 1.4rem;
     border: 1px solid rgba(201,162,39,0.18);
   }
+  .story-content p { color: rgba(248, 244, 255, 0.88); }
+  .story-content h2 { color: var(--gold-light); }
+  .story-content .highlight { color: rgba(248, 244, 255, 0.80); }
 }
 
 .acts-timeline { margin: 3rem 0; }
@@ -791,6 +795,10 @@ footer .footer-logo-sub {
   opacity: 0; transition: opacity 0.3s ease;
 }
 .gallery-item:hover .gallery-overlay { opacity: 1; }
+/* モバイル（タッチ端末）は常にオーバーレイを表示 */
+@media (hover: none) {
+  .gallery-overlay { opacity: 1; }
+}
 .gallery-overlay-text { font-family: var(--font-heading); color: var(--gold-light); font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; }
 
 /* Gallery items with real images */
@@ -1349,16 +1357,16 @@ footer .footer-logo-sub {
 }
 .cc-menu {
   position: absolute;
-  top: calc(100% + 8px);
-  right: 0;
+  bottom: 50%;
+  transform: translateY(50%);
+  right: calc(100% + 8px);
   background: rgba(10,5,20,0.92);
   border: 1px solid rgba(255,255,255,0.25);
   border-radius: 8px;
   padding: 5px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 2px;
-  min-width: 68px;
   z-index: 200;
   box-shadow: 0 4px 16px rgba(0,0,0,0.7);
 }
