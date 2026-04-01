@@ -136,18 +136,18 @@ nav ul li a:hover, nav ul li a.active {
   border-color: rgba(201,162,39,0.45);
   background: rgba(201,162,39,0.07);
 }
-/* Project nav — subtle gold accent */
+/* Project nav */
 nav ul li a.nav-project {
-  color: #fff;
-  border-color: rgba(201,162,39,0.60);
-  font-weight: 600;
-  text-shadow: 0 0 12px rgba(201,162,39,0.45);
+  color: inherit;
+  border-color: transparent;
+  font-weight: inherit;
+  text-shadow: none;
 }
 nav ul li a.nav-project:hover {
   color: var(--gold-light);
-  border-color: rgba(201,162,39,0.65);
-  background: rgba(201,162,39,0.10);
-  text-shadow: 0 0 16px rgba(201,162,39,0.45);
+  border-color: transparent;
+  background: none;
+  text-shadow: none;
 }
 
 /* Hamburger */
