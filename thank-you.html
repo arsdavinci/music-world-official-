@@ -118,7 +118,13 @@
   <div class="reward-card" style="margin-top:2rem;" id="reward-section">
     <h2>DIGITAL REWARDS — デジタル特典</h2>
 
-    <!-- Supporter: お礼メッセージ画像（ランダム） -->
+    <!-- Supporter: お礼メッセージ画像（ランダム） / 3万以上: メール案内 -->
+    <div id="reward-higher" style="display:none;">
+      <p style="font-size:0.82rem; color:var(--purple-pale); line-height:1.8;">
+        お選びいただいたキャラクターのお礼メッセージ画像は、<br>
+        ご注文確認後メールにてお送りします。
+      </p>
+    </div>
     <div id="reward-supporter">
       <p style="font-size:0.82rem; color:var(--purple-pale); margin-bottom:1.4rem; line-height:1.8;">
         あなただけの一枚が選ばれました。今すぐ保存できます。
@@ -251,8 +257,10 @@
     document.getElementById('same-image-notice').style.display = 'block';
   }
 
-  // Story Supporter以上は追加特典セクションも表示
+  // Story Supporter以上: ランダムカードを非表示、メール案内を表示
   if (['story_supporter', 'executive', 'producer'].includes(plan)) {
+    document.getElementById('reward-supporter').style.display = 'none';
+    document.getElementById('reward-higher').style.display = 'block';
     document.getElementById('reward-story').style.display = 'block';
   }
 
