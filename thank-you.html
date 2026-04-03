@@ -154,7 +154,7 @@
     </div>
     <div id="reward-supporter">
       <p style="font-size:0.82rem; color:var(--purple-pale); margin-bottom:1.4rem; line-height:1.8;">
-        あなただけの一枚が選ばれました。今すぐ保存できます。
+        <span id="supporter-greeting"></span>の一枚が選ばれました。
       </p>
       <div id="message-image-wrap" style="text-align:center; margin-bottom:1.4rem;">
         <img id="message-image" src="" alt="お礼メッセージ画像"
@@ -263,6 +263,12 @@
     pickedIdx = Math.floor(Math.random() * MESSAGE_IMAGES.length);
     localStorage.setItem('mw_reward_idx', pickedIdx);
   }
+
+  // ニックネームで呼びかけ（未入力なら「あなた」）
+  const nickname = localStorage.getItem('mw_nickname') || '';
+  const callName = nickname ? nickname + 'さん' : 'あなた';
+  const greetingEl = document.getElementById('supporter-greeting');
+  if (greetingEl) greetingEl.textContent = '今日の' + callName;
 
   const picked = MESSAGE_IMAGES[pickedIdx];
   const img    = document.getElementById('message-image');
