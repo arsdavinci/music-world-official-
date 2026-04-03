@@ -192,8 +192,17 @@
       <input type="text" id="name" name="name" placeholder="表示名（任意）" autocomplete="name">
     </div>
     <div class="form-field" id="display-name-field">
-      <label>サイト掲載名 <span style="font-size:0.7rem; color:var(--text-pale);">（Supportersページに掲載 / 希望者のみ）</span></label>
-      <input type="text" id="display_name" name="display_name" placeholder="掲載を希望しない場合は空欄">
+      <label>Supportersページ掲載名 <span style="font-size:0.7rem; color:var(--text-pale);">（希望者のみ）</span></label>
+      <input type="text" id="display_name" name="display_name" placeholder="例：ミクさん / 空欄なら掲載しません">
+    </div>
+    <div class="form-field">
+      <label style="display:flex; align-items:flex-start; gap:0.6rem; cursor:pointer; font-size:0.82rem; color:var(--purple-pale);">
+        <input type="checkbox" id="anonymous" name="anonymous"
+          style="accent-color:var(--gold); margin-top:0.15rem; flex-shrink:0; width:1rem; height:1rem;">
+        <span>匿名希望（Supportersページへの掲載を希望しない）<br>
+          <span style="font-size:0.72rem; color:var(--text-pale);">チェックを入れると、掲載名の入力有無にかかわらず掲載されません。</span>
+        </span>
+      </label>
     </div>
     <div class="form-field" id="char-select-field" style="display:none;">
       <label>希望キャラクター <span style="font-size:0.7rem; color:var(--text-pale);">（お礼メッセージ画像）</span></label>
@@ -327,6 +336,7 @@
     const charValue    = charSelected ? charSelected.value : '';
     const nickname     = document.getElementById('name').value.trim();
     const displayName  = document.getElementById('display_name').value.trim();
+    const anonymous    = document.getElementById('anonymous').checked ? '1' : '0';
 
     // ¥3万以上プランはキャラクター選択が必須
     const price = parseInt(selected.dataset.price, 10);
@@ -340,16 +350,19 @@
     if (charValue)   localStorage.setItem('mw_selected_character', charValue);
     if (nickname)    localStorage.setItem('mw_nickname', nickname);
     if (displayName) localStorage.setItem('mw_display_name', displayName);
+    localStorage.setItem('mw_anonymous', anonymous);
 
     // client_reference_id: Zapierが受け取る全データ
-    // フォーマット（パイプ区切り4フィールド固定）:
-    //   plan|character|nickname|display_name
-    // 例: story_supporter|violin_princess|ミクさん|田中太郎
+    // フォーマット（パイプ区切り5フィールド固定）:
+    //   plan|character|nickname|display_name|anonymous
+    // anonymous: '0'=掲載OK, '1'=匿名希望（掲載しない）
+    // 例: story_supporter|violin_princess|ミクさん|田中太郎|0
     const refId = [
       selected.value,
       charValue,
       nickname,
-      displayName
+      displayName,
+      anonymous
     ].join('|');
 
     let stripeUrl = url + '?prefilled_email=' + encodeURIComponent(email);
