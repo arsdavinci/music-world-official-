@@ -322,21 +322,25 @@
       window.location.href = 'mailto:info@arsdavinci.com?subject=' + subject + '&body=' + body;
       return;
     }
-    // キャラクター選択をlocalStorageに保存（thank-you.htmlで表示するため）
+    // フォームデータを取得
     const charSelected = document.querySelector('input[name="character"]:checked');
-    const charValue = charSelected ? charSelected.value : '';
-    if (charValue) {
-      localStorage.setItem('mw_selected_character', charValue);
-    }
-    // プランをlocalStorageに保存（thank-you.htmlのプラン判定に使用）
+    const charValue    = charSelected ? charSelected.value : '';
+    const displayName  = document.getElementById('display_name').value.trim();
+
+    // localStorageに保存（thank-you.htmlで使用）
+    if (charValue)    localStorage.setItem('mw_selected_character', charValue);
+    if (displayName)  localStorage.setItem('mw_display_name', displayName);
     localStorage.setItem('mw_plan', selected.value);
 
-    // Stripe Payment Link にメール・キャラクターをプリフィル
-    // client_reference_id でキャラクター値を渡す（Zapierがメール送信に使用）
+    // client_reference_id にキャラ＋掲載名をまとめて乗せる（Zapierで受け取る）
+    // フォーマット: "violin_princess::田中太郎" （::区切り）
+    const refParts = [];
+    if (charValue)   refParts.push(charValue);
+    if (displayName) refParts.push(displayName);
+    const refId = refParts.join('::');
+
     let stripeUrl = url + '?prefilled_email=' + encodeURIComponent(email);
-    if (charValue) {
-      stripeUrl += '&client_reference_id=' + encodeURIComponent(charValue);
-    }
+    if (refId) stripeUrl += '&client_reference_id=' + encodeURIComponent(refId);
     window.location.href = stripeUrl;
   });
 </script>
