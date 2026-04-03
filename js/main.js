@@ -1361,6 +1361,17 @@ const i18n_en = {
   'gallery-overlay-video':'▶ Play',
   'gallery-info-h':'About the Images',
   'gallery-info-p':'Each gallery frame is a placeholder for image replacement.<br>When your image files are ready, replace each <code style="color:var(--gold);font-size:0.85em;">.img-placeholder</code> element with an <code style="color:var(--gold);font-size:0.85em;">&lt;img src="..."&gt;</code> tag.',
+  /* ─ supporters.html ─ */
+  'supporters-title':'Supporters | Music World Official',
+  'supporters-subtitle':'With Gratitude',
+  'supporters-h1':'Supporters',
+  'supporters-intro':'These are the people supporting the journey of Music World.<br>We express our heartfelt gratitude.',
+  'supporters-producer-label':'— Producer Class Supporter —',
+  'supporters-producer-title':'Those who create this world together',
+  'supporters-story-label':'— Story Supporters —',
+  'supporters-story-sublabel':'Those who became part of the story',
+  'supporters-footnote':'※ Only supporters who provided a display name at the time of their contribution are listed.<br>※ Listed in no particular order. Titles omitted.',
+  'supporters-back':'← Back to Project page',
 };
 
 /* ── 英語キャラクターデータ（ポップアップ用） ── */
@@ -1604,6 +1615,17 @@ const i18n_zh = {
   'gallery-overlay-video':'▶ 播放',
   'gallery-info-h':'关于图像素材',
   'gallery-info-p':'各图册框为图像替换占位符。<br>当图像文件准备好后，请将各 <code style="color:var(--gold);font-size:0.85em;">.img-placeholder</code> 元素替换为 <code style="color:var(--gold);font-size:0.85em;">&lt;img src="..."&gt;</code> 标签。',
+  /* ─ supporters.html ─ */
+  'supporters-title':'Supporters | 音乐世界 官方网站',
+  'supporters-subtitle':'感恩所有人',
+  'supporters-h1':'Supporters',
+  'supporters-intro':'感谢各位对音乐世界之旅的支持。<br>致以衷心的感谢。',
+  'supporters-producer-label':'— Producer Class Supporter —',
+  'supporters-producer-title':'与我们共同创造这个世界的人们',
+  'supporters-story-label':'— Story Supporters —',
+  'supporters-story-sublabel':'成为故事一部分的各位',
+  'supporters-footnote':'※ 仅列出在支持时填写了展示名称的支持者。<br>※ 排名不分先后，省略称谓。',
+  'supporters-back':'← 返回Project页面',
 };
 
 /* ── 中国語キャラクターデータ（ポップアップ用） ── */
