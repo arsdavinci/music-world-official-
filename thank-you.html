@@ -285,20 +285,24 @@
     };
     const selectedChar = localStorage.getItem('mw_selected_character');
     const charSrc = CHARACTER_IMAGES[selectedChar];
+    const higherImg = document.getElementById('higher-message-image');
+    const higherBtn = document.getElementById('higher-message-dl-btn');
     if (charSrc) {
-      const higherImg = document.getElementById('higher-message-image');
-      const higherBtn = document.getElementById('higher-message-dl-btn');
       higherImg.src = charSrc;
       higherImg.onload = () => {
         higherImg.style.display = 'block';
         higherBtn.href = charSrc;
         higherBtn.style.display = 'inline-flex';
       };
+    } else {
+      // checkout.htmlを経由しなかった場合（直接URLアクセスなど）
+      higherImg.closest('#reward-higher').querySelector('p').textContent =
+        'お礼メッセージ画像は、メールにてお送りします。しばらくお待ちください。';
     }
   }
 
-  // Supporter（物理特典なし）は物理特典カードを非表示
-  if (plan === 'supporter') {
+  // Supporter・Story Supporter（物理特典なし）は物理特典カードを非表示
+  if (['supporter', 'story_supporter'].includes(plan)) {
     document.getElementById('physical-reward-card').style.display = 'none';
   }
 </script>
