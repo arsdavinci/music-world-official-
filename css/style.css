@@ -106,10 +106,10 @@ header {
   box-shadow: 0 2px 16px rgba(180,90,140,0.08);
 }
 .nav-inner {
-  max-width: 1200px; margin: 0 auto;
-  padding: 0.8rem 2rem;
+  max-width: 1440px; margin: 0 auto;
+  padding: 0.7rem 1.5rem;
   display: flex; align-items: center; justify-content: space-between;
-  flex-wrap: wrap; gap: 1rem;
+  flex-wrap: nowrap; gap: 0.8rem;
 }
 .nav-logo {
   font-family: var(--font-title);
@@ -122,14 +122,15 @@ header {
   display: block; font-size: 0.78em;
   color: var(--text-pale); font-family: var(--font-heading); letter-spacing: 0.12em;
 }
-nav ul { list-style: none; display: flex; gap: 0.3rem; flex-wrap: wrap; }
+nav ul { list-style: none; display: flex; gap: 0; flex-wrap: nowrap; }
 nav ul li a {
   font-family: var(--font-heading);
-  font-size: 0.76rem; letter-spacing: 0.12em;
+  font-size: 0.7rem; letter-spacing: 0.08em;
   color: var(--text-mid);
-  padding: 0.4rem 0.8rem;
+  padding: 0.4rem 0.55rem;
   border: 1px solid transparent; border-radius: 2px;
   transition: all 0.3s ease; display: block; text-transform: uppercase;
+  white-space: nowrap;
 }
 nav ul li a:hover, nav ul li a.active {
   color: var(--gold-dark);
