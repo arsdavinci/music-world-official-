@@ -1359,8 +1359,9 @@ const i18n_en = {
   'gal-video1-title':'Opening Movie','gal-video1-cat':'Video',
   'gallery-overlay':'View Details',
   'gallery-overlay-video':'▶ Play',
-  'gallery-info-h':'About the Images',
-  'gallery-info-p':'Each gallery frame is a placeholder for image replacement.<br>When your image files are ready, replace each <code style="color:var(--gold);font-size:0.85em;">.img-placeholder</code> element with an <code style="color:var(--gold);font-size:0.85em;">&lt;img src="..."&gt;</code> tag.',
+  'gallery-info-h':'Media & Press Use',
+  'gallery-info-p':'Images and videos in this gallery are free to share and repost on social media, blogs, and fan sites. We\'d appreciate a credit to "Music World Official" where possible.<br><br>For press coverage, media features, or commercial use, please contact us in advance. High-resolution assets and a press kit are available on request.<br><br>Press inquiries and interview requests are always welcome.',
+  'btn-press-kit':'Contact & Press Inquiries',
   /* ─ supporters.html ─ */
   'supporters-title':'Supporters | Music World Official',
   'supporters-subtitle':'With Gratitude',
@@ -1613,8 +1614,9 @@ const i18n_zh = {
   'gal-video1-title':'开场动画','gal-video1-cat':'视频',
   'gallery-overlay':'查看详情',
   'gallery-overlay-video':'▶ 播放',
-  'gallery-info-h':'关于图像素材',
-  'gallery-info-p':'各图册框为图像替换占位符。<br>当图像文件准备好后，请将各 <code style="color:var(--gold);font-size:0.85em;">.img-placeholder</code> 元素替换为 <code style="color:var(--gold);font-size:0.85em;">&lt;img src="..."&gt;</code> 标签。',
+  'gallery-info-h':'素材使用说明',
+  'gallery-info-p':'欢迎在社交媒体、博客及粉丝网站上转发和分享本画廊的图片与视频。如能注明出处「Music World Official」，将不胜感激。<br><br>如需媒体报道、刊载或商业用途，请事先与我们联系。高清素材及新闻资料包可按需提供。<br><br>随时欢迎媒体采访及相关咨询。',
+  'btn-press-kit':'联系我们・媒体咨询',
   /* ─ supporters.html ─ */
   'supporters-title':'Supporters | 音乐世界 官方网站',
   'supporters-subtitle':'感恩所有人',
