@@ -194,7 +194,7 @@
     </div>
     <div class="form-field" id="display-name-field">
       <label>Supportersページ掲載名 <span style="font-size:0.7rem; color:var(--text-pale);">（希望者のみ）</span></label>
-      <input type="text" id="display_name" name="display_name" placeholder="例：ミクさん / 空欄なら掲載しません">
+      <input type="text" id="display_name" name="display_name" placeholder="例：らむねさん / 空欄なら掲載しません">
     </div>
     <div class="form-field">
       <label style="display:flex; align-items:flex-start; gap:0.6rem; cursor:pointer; font-size:0.82rem; color:var(--purple-pale);">
@@ -384,7 +384,7 @@
     // client_reference_id: Zapierが受け取る全データ
     // フォーマット（パイプ区切り6フィールド固定）:
     //   plan|character|nickname|display_name|anonymous|message
-    // 例: story_supporter|violin_princess|ミクさん|田中太郎|0|応援してます！
+    // 例: story_supporter|violin_princess|らむねさん|田中太郎|0|応援してます！
     const refId = [
       selected.value,   // 1: プラン
       charValue,        // 2: キャラクター
