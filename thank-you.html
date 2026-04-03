@@ -223,9 +223,9 @@
     'images/project/rewards/messages/message-card-master-tact.png?v=20260403',
   ];
 
-  // URLパラメータからプラン判定（Stripeのリダイレクト先に ?plan=supporter 等を付けておく）
+  // URLパラメータからプラン判定（なければlocalStorageから取得）
   const params = new URLSearchParams(window.location.search);
-  const plan   = params.get('plan') || 'supporter';
+  const plan   = params.get('plan') || localStorage.getItem('mw_plan') || 'supporter';
 
   // 決済セッションIDを取得（Stripeが ?sid=cs_xxx の形で付けてくれる）
   const sessionId     = params.get('sid') || null;

@@ -324,11 +324,20 @@
     }
     // キャラクター選択をlocalStorageに保存（thank-you.htmlで表示するため）
     const charSelected = document.querySelector('input[name="character"]:checked');
-    if (charSelected) {
-      localStorage.setItem('mw_selected_character', charSelected.value);
+    const charValue = charSelected ? charSelected.value : '';
+    if (charValue) {
+      localStorage.setItem('mw_selected_character', charValue);
     }
-    // Stripe Payment Link にメールをプリフィル（Stripeが対応している場合）
-    window.location.href = url + '?prefilled_email=' + encodeURIComponent(email);
+    // プランをlocalStorageに保存（thank-you.htmlのプラン判定に使用）
+    localStorage.setItem('mw_plan', selected.value);
+
+    // Stripe Payment Link にメール・キャラクターをプリフィル
+    // client_reference_id でキャラクター値を渡す（Zapierがメール送信に使用）
+    let stripeUrl = url + '?prefilled_email=' + encodeURIComponent(email);
+    if (charValue) {
+      stripeUrl += '&client_reference_id=' + encodeURIComponent(charValue);
+    }
+    window.location.href = stripeUrl;
   });
 </script>
 </body>
