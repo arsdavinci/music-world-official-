@@ -120,9 +120,23 @@
 
     <!-- Supporter: お礼メッセージ画像（ランダム） / 3万以上: 選択キャラ表示 -->
     <div id="reward-higher" style="display:none;">
+      <!-- メール送信済み案内 -->
+      <div style="
+        background: rgba(201,162,39,0.08);
+        border: 1px solid rgba(201,162,39,0.35);
+        border-radius: 8px;
+        padding: 0.9rem 1.1rem;
+        margin-bottom: 1.4rem;
+        font-size: 0.82rem;
+        color: var(--gold-light);
+        line-height: 1.8;
+      ">
+        ✉ このページの内容（画像・ダウンロードURL）は、<strong>ご登録のメールアドレスにも送信しています。</strong><br>
+        <span style="color: var(--purple-pale); font-size: 0.78rem;">ブラウザを閉じたあとでも、メールからいつでも確認できます。</span>
+      </div>
+
       <p style="font-size:0.82rem; color:var(--purple-pale); margin-bottom:1.4rem; line-height:1.8;">
-        お選びいただいたキャラクターのお礼メッセージ画像です。今すぐ保存できます。<br>
-        <span style="font-size:0.75rem;">念のため、メールにてもお送りしました。</span>
+        お選びいただいたキャラクターのお礼メッセージ画像です。
       </p>
       <div style="text-align:center; margin-bottom:1.4rem;">
         <img id="higher-message-image" src="" alt="お礼メッセージ画像"
@@ -133,9 +147,8 @@
           <span class="icon">🎨</span> 画像をダウンロード
         </a>
       </div>
-      <p style="font-size:0.75rem; color:var(--gold); margin-top:1rem; text-align:center; line-height:1.8;">
-        ⚠ この画像は今すぐ保存してください。<br>
-        <span style="color:var(--text-pale);">別の端末やブラウザからは表示できません。</span>
+      <p style="font-size:0.75rem; color:var(--text-pale); margin-top:1rem; text-align:center; line-height:1.8;">
+        今すぐ保存することもできます。メールからも確認できます。
       </p>
     </div>
     <div id="reward-supporter">
@@ -160,7 +173,8 @@
     <!-- Story Supporter以上: 追加特典（プランに応じて表示） -->
     <div id="reward-story" style="display:none; margin-top:1.4rem; border-top:1px solid rgba(201,162,39,0.12); padding-top:1.4rem;">
       <p style="font-size:0.82rem; color:var(--purple-pale); margin-bottom:1rem; line-height:1.8;">
-        追加のデジタル特典です。以下からダウンロードしてください。
+        追加のデジタル特典です。以下からダウンロードしてください。<br>
+        <span style="font-size:0.75rem;">ダウンロードURLはメールにも記載しています。</span>
       </p>
       <a href="images/project/rewards/未公開設定資料.pdf" download class="download-btn">
         <span class="icon">📄</span> 未公開設定資料 PDF

@@ -325,22 +325,35 @@
     // フォームデータを取得
     const charSelected = document.querySelector('input[name="character"]:checked');
     const charValue    = charSelected ? charSelected.value : '';
+    const nickname     = document.getElementById('name').value.trim();
     const displayName  = document.getElementById('display_name').value.trim();
 
-    // localStorageに保存（thank-you.htmlで使用）
-    if (charValue)    localStorage.setItem('mw_selected_character', charValue);
-    if (displayName)  localStorage.setItem('mw_display_name', displayName);
-    localStorage.setItem('mw_plan', selected.value);
+    // ¥3万以上プランはキャラクター選択が必須
+    const price = parseInt(selected.dataset.price, 10);
+    if (price >= 30000 && !charValue) {
+      alert('希望キャラクターを選択してください。');
+      return;
+    }
 
-    // client_reference_id にキャラ＋掲載名をまとめて乗せる（Zapierで受け取る）
-    // フォーマット: "violin_princess::田中太郎" （::区切り）
-    const refParts = [];
-    if (charValue)   refParts.push(charValue);
-    if (displayName) refParts.push(displayName);
-    const refId = refParts.join('::');
+    // localStorageに保存（thank-you.htmlで使用）
+    localStorage.setItem('mw_plan', selected.value);
+    if (charValue)   localStorage.setItem('mw_selected_character', charValue);
+    if (nickname)    localStorage.setItem('mw_nickname', nickname);
+    if (displayName) localStorage.setItem('mw_display_name', displayName);
+
+    // client_reference_id: Zapierが受け取る全データ
+    // フォーマット（パイプ区切り4フィールド固定）:
+    //   plan|character|nickname|display_name
+    // 例: story_supporter|violin_princess|ミクさん|田中太郎
+    const refId = [
+      selected.value,
+      charValue,
+      nickname,
+      displayName
+    ].join('|');
 
     let stripeUrl = url + '?prefilled_email=' + encodeURIComponent(email);
-    if (refId) stripeUrl += '&client_reference_id=' + encodeURIComponent(refId);
+    stripeUrl += '&client_reference_id=' + encodeURIComponent(refId);
     window.location.href = stripeUrl;
   });
 </script>
