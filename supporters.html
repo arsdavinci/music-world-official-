@@ -16,6 +16,190 @@
   <link rel="icon" href="images/logos/favicon.png" type="image/png">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/effects.css">
+  <style>
+    /* ============================================================
+       Producer Class — 最上位特設ボックス
+    ============================================================ */
+    .producer-section {
+      margin: 3rem auto 0;
+      max-width: 760px;
+    }
+    .producer-label {
+      text-align: center;
+      font-family: var(--font-heading);
+      font-size: 0.7rem;
+      letter-spacing: 0.35em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+      opacity: 0.85;
+    }
+    .producer-card {
+      position: relative;
+      background: linear-gradient(
+        135deg,
+        rgba(201,162,39,0.12) 0%,
+        rgba(40,20,50,0.6) 50%,
+        rgba(201,162,39,0.08) 100%
+      );
+      border: 1px solid rgba(201,162,39,0.55);
+      border-radius: 14px;
+      padding: 2.8rem 2.4rem 2.4rem;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow:
+        0 0 40px rgba(201,162,39,0.12),
+        inset 0 0 60px rgba(201,162,39,0.04);
+      overflow: hidden;
+    }
+    .producer-card::before {
+      content: '';
+      position: absolute;
+      top: -1px; left: 10%; right: 10%;
+      height: 1px;
+      background: linear-gradient(90deg,
+        transparent,
+        rgba(201,162,39,0.8) 30%,
+        rgba(255,220,100,0.95) 50%,
+        rgba(201,162,39,0.8) 70%,
+        transparent
+      );
+    }
+    .producer-crown {
+      text-align: center;
+      font-size: 1.6rem;
+      margin-bottom: 0.8rem;
+      filter: drop-shadow(0 0 8px rgba(201,162,39,0.6));
+    }
+    .producer-title {
+      text-align: center;
+      font-family: var(--font-heading);
+      font-size: 0.68rem;
+      letter-spacing: 0.3em;
+      color: rgba(201,162,39,0.7);
+      margin-bottom: 1.8rem;
+      text-transform: uppercase;
+    }
+    .producer-names-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+    .producer-name-item {
+      text-align: center;
+    }
+    .producer-name {
+      font-family: var(--font-title);
+      font-size: clamp(1.3rem, 3vw, 1.9rem);
+      color: var(--gold-light);
+      text-shadow:
+        0 0 20px rgba(201,162,39,0.5),
+        0 0 60px rgba(201,162,39,0.2);
+      letter-spacing: 0.05em;
+      line-height: 1.4;
+    }
+    .producer-badge {
+      display: inline-block;
+      margin-top: 0.5rem;
+      font-family: var(--font-heading);
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      border: 1px solid rgba(201,162,39,0.4);
+      border-radius: 20px;
+      padding: 0.15rem 0.8rem;
+      opacity: 0.8;
+    }
+    .producer-divider {
+      width: 40px;
+      height: 1px;
+      background: rgba(201,162,39,0.3);
+      margin: 1rem auto 0;
+    }
+    .producer-empty {
+      text-align: center;
+      font-size: 0.82rem;
+      color: var(--text-pale);
+      line-height: 2;
+      opacity: 0.7;
+    }
+
+    /* ============================================================
+       Story Supporter — 名前リスト
+    ============================================================ */
+    .story-section {
+      margin: 3.5rem auto 0;
+      max-width: 760px;
+    }
+    .story-section-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .story-label {
+      font-family: var(--font-heading);
+      font-size: 0.68rem;
+      letter-spacing: 0.3em;
+      color: rgba(201,162,39,0.65);
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    .story-sublabel {
+      font-size: 0.78rem;
+      color: var(--text-pale);
+      letter-spacing: 0.05em;
+    }
+    .supporters-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem 1.2rem;
+    }
+    .supporter-chip {
+      font-family: var(--font-heading);
+      font-size: 0.92rem;
+      color: var(--gold-light);
+      letter-spacing: 0.08em;
+      padding: 0.35rem 0.9rem;
+      border: 1px solid rgba(201,162,39,0.2);
+      border-radius: 30px;
+      background: rgba(201,162,39,0.04);
+      transition: all 0.25s;
+      white-space: nowrap;
+    }
+    .supporter-chip:hover {
+      border-color: rgba(201,162,39,0.45);
+      background: rgba(201,162,39,0.09);
+      box-shadow: 0 0 12px rgba(201,162,39,0.15);
+    }
+
+    /* ============================================================
+       共通
+    ============================================================ */
+    .loading-msg {
+      text-align: center;
+      color: var(--text-pale);
+      font-size: 0.85rem;
+      padding: 2rem 0;
+    }
+    .section-divider {
+      max-width: 760px;
+      margin: 3rem auto;
+    }
+    .footnote {
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--text-pale);
+      line-height: 2.2;
+      margin-top: 2.5rem;
+    }
+
+    @media (max-width: 600px) {
+      .producer-card { padding: 2rem 1.4rem 1.8rem; }
+      .producer-name { font-size: 1.3rem; }
+      .supporter-chip { font-size: 0.82rem; }
+    }
+  </style>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WZSLHDJ1MQ"></script>
   <script>
@@ -66,20 +250,48 @@
 <div class="section">
   <div class="project-lead fade-in">
 
-    <p style="text-align:center; color:var(--purple-pale); font-size:0.9rem; line-height:2.2; margin-bottom:3rem;">
+    <p style="text-align:center; color:var(--purple-pale); font-size:0.9rem; line-height:2.2; margin-bottom:2rem;">
       ミュージックワールドの旅を支えてくださっている皆様です。<br>
       心よりお礼申し上げます。
     </p>
 
     <div class="gold-divider fade-in"><span class="icon">♦</span></div>
 
-    <div id="supporters-list" style="margin-top:3rem; text-align:center;">
-      <p style="color:var(--text-pale); font-size:0.85rem;">読み込み中...</p>
+    <!-- ============================================================
+         Producer Class Supporter — 最上位特設ボックス
+    ============================================================ -->
+    <div class="producer-section fade-in" id="producer-section" style="display:none;">
+      <p class="producer-label">— Producer Class Supporter —</p>
+      <div class="producer-card">
+        <div class="producer-crown">✦</div>
+        <p class="producer-title">この世界を共に創る方々</p>
+        <div class="producer-names-list" id="producer-names-list">
+          <!-- JSで動的挿入 -->
+        </div>
+      </div>
     </div>
 
-    <div class="gold-divider fade-in" style="margin-top:3rem;"><span class="icon">♦</span></div>
+    <!-- ============================================================
+         Story Supporter — 名前リスト
+    ============================================================ -->
+    <div class="story-section fade-in" id="story-section" style="display:none;">
+      <div class="story-section-header">
+        <span class="story-label">— Story Supporters —</span>
+        <span class="story-sublabel">物語の一部になってくださった皆様</span>
+      </div>
+      <div class="supporters-grid" id="story-names-list">
+        <!-- JSで動的挿入 -->
+      </div>
+    </div>
 
-    <p style="text-align:center; font-size:0.78rem; color:var(--text-pale); margin-top:2rem; line-height:2.0;">
+    <!-- ローディング表示 -->
+    <div id="loading-msg" class="loading-msg">読み込み中...</div>
+
+    <div class="section-divider">
+      <div class="gold-divider fade-in"><span class="icon">♦</span></div>
+    </div>
+
+    <p class="footnote">
       ※ 掲載はご支援時に掲載名をご記入いただいた方のみです。<br>
       ※ 順不同・敬称略。
     </p>
@@ -111,31 +323,80 @@
 <script src="js/main.js"></script>
 <script src="js/effects.js"></script>
 <script>
+  // Google Sheets 公開CSV
+  // 列A: 掲載名 / 列B: プラン (producer or story_supporter)
   const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vREXx9XAtpsm3QnKDsVcyoAhzhwUI1lvrd2EElK9H4m4pLP9YbYGA5Qv98DCMEJ-zbu7m0R_GdjH5N1/pub?gid=0&single=true&output=csv';
 
   fetch(CSV_URL)
     .then(res => res.text())
     .then(csv => {
       const rows = csv.trim().split('\n').slice(1); // ヘッダー行をスキップ
-      const names = rows
-        .map(row => row.split(',')[0].trim().replace(/^"|"$/g, ''))
-        .filter(name => name.length > 0);
 
-      const list = document.getElementById('supporters-list');
+      const producers = [];
+      const stories   = [];
 
-      if (names.length === 0) {
-        list.innerHTML = '<p style="color:var(--text-pale); font-size:0.85rem;">現在、掲載されているSupporterはいません。</p>';
-        return;
+      rows.forEach(row => {
+        // CSV行をパース（ダブルクォート対応）
+        const cols = row.match(/(".*?"|[^,]+)(?=,|$)/g) || [];
+        const name = (cols[0] || '').trim().replace(/^"|"$/g, '');
+        const plan = (cols[1] || '').trim().replace(/^"|"$/g, '').toLowerCase();
+
+        if (!name) return;
+
+        if (plan === 'producer') {
+          producers.push(name);
+        } else {
+          // plan列が空 or story_supporter どちらも story として扱う
+          stories.push(name);
+        }
+      });
+
+      const loadingMsg = document.getElementById('loading-msg');
+      loadingMsg.style.display = 'none';
+
+      // Producer Class を表示
+      if (producers.length > 0) {
+        const section = document.getElementById('producer-section');
+        const list    = document.getElementById('producer-names-list');
+        section.style.display = 'block';
+
+        list.innerHTML = producers.map((name, i) => `
+          <div class="producer-name-item">
+            <div class="producer-name">${escapeHtml(name)}</div>
+            <div class="producer-badge">Producer Class Supporter</div>
+            ${i < producers.length - 1 ? '<div class="producer-divider"></div>' : ''}
+          </div>
+        `).join('');
       }
 
-      list.innerHTML = names.map(name =>
-        `<p style="font-family:var(--font-heading); color:var(--gold-light); font-size:1.05rem; letter-spacing:0.08em; margin:0.6rem 0;">${name}</p>`
-      ).join('');
+      // Story Supporter を表示
+      if (stories.length > 0) {
+        const section = document.getElementById('story-section');
+        const list    = document.getElementById('story-names-list');
+        section.style.display = 'block';
+
+        list.innerHTML = stories.map(name =>
+          `<span class="supporter-chip">${escapeHtml(name)}</span>`
+        ).join('');
+      }
+
+      // 両方空の場合
+      if (producers.length === 0 && stories.length === 0) {
+        loadingMsg.style.display = 'block';
+        loadingMsg.textContent   = '現在、掲載されているSupporterはいません。';
+      }
     })
     .catch(() => {
-      document.getElementById('supporters-list').innerHTML =
-        '<p style="color:var(--text-pale); font-size:0.85rem;">読み込みに失敗しました。</p>';
+      document.getElementById('loading-msg').textContent = '読み込みに失敗しました。';
     });
+
+  function escapeHtml(str) {
+    return str
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
 </script>
 </body>
 </html>
