@@ -346,23 +346,36 @@
     }
     // フォームデータを取得
     const charSelected = document.querySelector('input[name="character"]:checked');
-    const charValue    = charSelected ? charSelected.value : '';
     const nickname     = document.getElementById('name').value.trim();
     const displayName  = document.getElementById('display_name').value.trim();
     const anonymous    = document.getElementById('anonymous').checked ? '1' : '0';
     // パイプ文字はデリミタなので除去
     const message      = (document.getElementById('message').value.trim()).replace(/\|/g, '');
 
-    // ¥3万以上プランはキャラクター選択が必須
     const price = parseInt(selected.dataset.price, 10);
+
+    // キャラクター確定（¥3万以上=選択、Supporter=ランダム）
+    let charValue = charSelected ? charSelected.value : '';
     if (price >= 30000 && !charValue) {
       alert('希望キャラクターを選択してください。');
       return;
     }
+    if (price < 30000 && !charValue) {
+      // Supporterプラン：決済前にランダム確定（Zapierへ渡すため）
+      const RANDOM_POOL = [
+        'violin_princess','violin_princess','violin_princess','violin_princess',
+        'sax_knight','sax_knight','sax_knight','sax_knight',
+        'castanet','castanet','castanet','castanet',
+        'piano_prince','piano_prince','piano_prince','piano_prince',
+        'clarinet_princess','clarinet_princess','clarinet_princess',
+        'master_tact'  // レア 1/20
+      ];
+      charValue = RANDOM_POOL[Math.floor(Math.random() * RANDOM_POOL.length)];
+    }
 
     // localStorageに保存（thank-you.htmlで使用）
     localStorage.setItem('mw_plan', selected.value);
-    if (charValue)   localStorage.setItem('mw_selected_character', charValue);
+    localStorage.setItem('mw_selected_character', charValue);
     if (nickname)    localStorage.setItem('mw_nickname', nickname);
     if (displayName) localStorage.setItem('mw_display_name', displayName);
     if (message)     localStorage.setItem('mw_message', message);
