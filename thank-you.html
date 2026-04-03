@@ -203,12 +203,14 @@
 
 <script src="js/main.js"></script>
 <script>
-  // お礼メッセージ画像 4枚からランダムに1枚選んで表示
+  // お礼メッセージ画像（通常5枚＋レアカード1枚 / master-tactは1/20=5%）
   const MESSAGE_IMAGES = [
-    'images/project/rewards/messages/violin-princess.png?v=20260402',
-    'images/project/rewards/messages/sax-knight.png?v=20260402',
-    'images/project/rewards/messages/castanet.png?v=20260402',
-    'images/project/rewards/messages/piano-prince.png?v=20260402',
+    ...Array(4).fill('images/project/rewards/messages/message-card-violin-princess.png?v=20260403'),
+    ...Array(4).fill('images/project/rewards/messages/message-card-sax-knight.png?v=20260403'),
+    ...Array(4).fill('images/project/rewards/messages/message-card-castanet.png?v=20260403'),
+    ...Array(4).fill('images/project/rewards/messages/message-card-piano-prince.png?v=20260403'),
+    ...Array(3).fill('images/project/rewards/messages/message-card-clarinet-princess.png?v=20260403'),
+    'images/project/rewards/messages/message-card-master-tact.png?v=20260403',
   ];
 
   // URLパラメータからプラン判定（Stripeのリダイレクト先に ?plan=supporter 等を付けておく）
