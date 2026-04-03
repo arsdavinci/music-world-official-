@@ -205,6 +205,18 @@
         </span>
       </label>
     </div>
+    <div class="form-field" id="message-field">
+      <label>みんなからのひとこと <span style="font-size:0.7rem; color:var(--text-pale);">（任意）</span></label>
+      <textarea id="message" name="message" rows="3"
+        placeholder="ここに何でも記載してください。創作の励みになります"
+        style="width:100%; padding:0.6rem 0.9rem; box-sizing:border-box;
+          background:rgba(255,255,255,0.06); border:1px solid rgba(201,162,39,0.25);
+          border-radius:4px; color:var(--purple-pale); font-size:0.88rem;
+          resize:vertical; font-family:inherit; line-height:1.7;
+          transition:border-color 0.2s;"
+        onfocus="this.style.borderColor='rgba(201,162,39,0.6)'"
+        onblur="this.style.borderColor='rgba(201,162,39,0.25)'"></textarea>
+    </div>
     <div class="form-field" id="char-select-field" style="display:none;">
       <label>希望キャラクター <span style="font-size:0.7rem; color:var(--text-pale);">（お礼メッセージ画像）</span></label>
       <div class="char-select-group">
@@ -338,6 +350,8 @@
     const nickname     = document.getElementById('name').value.trim();
     const displayName  = document.getElementById('display_name').value.trim();
     const anonymous    = document.getElementById('anonymous').checked ? '1' : '0';
+    // パイプ文字はデリミタなので除去
+    const message      = (document.getElementById('message').value.trim()).replace(/\|/g, '');
 
     // ¥3万以上プランはキャラクター選択が必須
     const price = parseInt(selected.dataset.price, 10);
@@ -351,19 +365,20 @@
     if (charValue)   localStorage.setItem('mw_selected_character', charValue);
     if (nickname)    localStorage.setItem('mw_nickname', nickname);
     if (displayName) localStorage.setItem('mw_display_name', displayName);
+    if (message)     localStorage.setItem('mw_message', message);
     localStorage.setItem('mw_anonymous', anonymous);
 
     // client_reference_id: Zapierが受け取る全データ
-    // フォーマット（パイプ区切り5フィールド固定）:
-    //   plan|character|nickname|display_name|anonymous
-    // anonymous: '0'=掲載OK, '1'=匿名希望（掲載しない）
-    // 例: story_supporter|violin_princess|ミクさん|田中太郎|0
+    // フォーマット（パイプ区切り6フィールド固定）:
+    //   plan|character|nickname|display_name|anonymous|message
+    // 例: story_supporter|violin_princess|ミクさん|田中太郎|0|応援してます！
     const refId = [
-      selected.value,
-      charValue,
-      nickname,
-      displayName,
-      anonymous
+      selected.value,   // 1: プラン
+      charValue,        // 2: キャラクター
+      nickname,         // 3: ニックネーム
+      displayName,      // 4: 掲載名
+      anonymous,        // 5: 匿名フラグ（0=掲載可, 1=匿名希望）
+      message           // 6: ひとこと
     ].join('|');
 
     let stripeUrl = url + '?prefilled_email=' + encodeURIComponent(email);
