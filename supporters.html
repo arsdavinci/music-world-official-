@@ -324,9 +324,11 @@
 <script src="js/main.js"></script>
 <script src="js/effects.js"></script>
 <script>
-  // Google Sheets 公開CSV
-  // 列A: 掲載名 / 列B: プラン (producer or story_supporter)
-  const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vREXx9XAtpsm3QnKDsVcyoAhzhwUI1lvrd2EElK9H4m4pLP9YbYGA5Qv98DCMEJ-zbu7m0R_GdjH5N1/pub?gid=0&single=true&output=csv';
+  // Google Sheets 公開CSV（supporters_publicシート）
+  // 列A: 掲載名 / 列B: プラン (producer / story_supporter / executive)
+  // supporters_all:    gid=0
+  // supporters_public: gid=1987730365
+  const CSV_URL = 'https://docs.google.com/spreadsheets/d/1IavKjUCNLcCAZ10xudJzVeYdQG0EiSkpsoclYvNqMnw/pub?gid=1987730365&single=true&output=csv';
 
   fetch(CSV_URL)
     .then(res => res.text())
