@@ -118,11 +118,24 @@
   <div class="reward-card" style="margin-top:2rem;" id="reward-section">
     <h2>DIGITAL REWARDS — デジタル特典</h2>
 
-    <!-- Supporter: お礼メッセージ画像（ランダム） / 3万以上: メール案内 -->
+    <!-- Supporter: お礼メッセージ画像（ランダム） / 3万以上: 選択キャラ表示 -->
     <div id="reward-higher" style="display:none;">
-      <p style="font-size:0.82rem; color:var(--purple-pale); line-height:1.8;">
-        お選びいただいたキャラクターのお礼メッセージ画像は、<br>
-        ご注文確認後メールにてお送りします。
+      <p style="font-size:0.82rem; color:var(--purple-pale); margin-bottom:1.4rem; line-height:1.8;">
+        お選びいただいたキャラクターのお礼メッセージ画像です。今すぐ保存できます。<br>
+        <span style="font-size:0.75rem;">念のため、メールにてもお送りしました。</span>
+      </p>
+      <div style="text-align:center; margin-bottom:1.4rem;">
+        <img id="higher-message-image" src="" alt="お礼メッセージ画像"
+          style="max-width:100%; border-radius:10px; border:1px solid rgba(201,162,39,0.3); display:none;">
+      </div>
+      <div style="text-align:center;">
+        <a id="higher-message-dl-btn" href="#" download class="download-btn" style="display:none;">
+          <span class="icon">🎨</span> 画像をダウンロード
+        </a>
+      </div>
+      <p style="font-size:0.75rem; color:var(--gold); margin-top:1rem; text-align:center; line-height:1.8;">
+        ⚠ この画像は今すぐ保存してください。<br>
+        <span style="color:var(--text-pale);">別の端末やブラウザからは表示できません。</span>
       </p>
     </div>
     <div id="reward-supporter">
@@ -256,11 +269,32 @@
     document.getElementById('same-image-notice').style.display = 'block';
   }
 
-  // Story Supporter以上: ランダムカードを非表示、メール案内を表示
+  // Story Supporter以上: 選択キャラのカードを表示
   if (['story_supporter', 'executive', 'producer'].includes(plan)) {
     document.getElementById('reward-supporter').style.display = 'none';
     document.getElementById('reward-higher').style.display = 'block';
     document.getElementById('reward-story').style.display = 'block';
+
+    const CHARACTER_IMAGES = {
+      violin_princess:   'images/project/rewards/messages/message-card-violin-princess.png?v=20260403',
+      sax_knight:        'images/project/rewards/messages/message-card-sax-knight.png?v=20260403',
+      castanet:          'images/project/rewards/messages/message-card-castanet.png?v=20260403',
+      piano_prince:      'images/project/rewards/messages/message-card-piano-prince.png?v=20260403',
+      master_tact:       'images/project/rewards/messages/message-card-master-tact.png?v=20260403',
+      clarinet_princess: 'images/project/rewards/messages/message-card-clarinet-princess.png?v=20260403',
+    };
+    const selectedChar = localStorage.getItem('mw_selected_character');
+    const charSrc = CHARACTER_IMAGES[selectedChar];
+    if (charSrc) {
+      const higherImg = document.getElementById('higher-message-image');
+      const higherBtn = document.getElementById('higher-message-dl-btn');
+      higherImg.src = charSrc;
+      higherImg.onload = () => {
+        higherImg.style.display = 'block';
+        higherBtn.href = charSrc;
+        higherBtn.style.display = 'inline-flex';
+      };
+    }
   }
 
   // Supporter（物理特典なし）は物理特典カードを非表示

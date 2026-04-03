@@ -322,6 +322,11 @@
       window.location.href = 'mailto:info@arsdavinci.com?subject=' + subject + '&body=' + body;
       return;
     }
+    // キャラクター選択をlocalStorageに保存（thank-you.htmlで表示するため）
+    const charSelected = document.querySelector('input[name="character"]:checked');
+    if (charSelected) {
+      localStorage.setItem('mw_selected_character', charSelected.value);
+    }
     // Stripe Payment Link にメールをプリフィル（Stripeが対応している場合）
     window.location.href = url + '?prefilled_email=' + encodeURIComponent(email);
   });
