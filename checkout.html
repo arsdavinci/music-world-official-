@@ -196,6 +196,9 @@
     <div class="form-field" id="display-name-field">
       <label>Supportersページ掲載名 <span style="font-size:0.7rem; color:var(--text-pale);">（希望者のみ）</span></label>
       <input type="text" id="display_name" name="display_name" placeholder="例：らむねさん / 空欄なら掲載しません">
+      <div id="display-name-notice" style="display:none; margin-top:0.5rem; font-size:0.75rem; line-height:1.7;
+        color:var(--gold); background:rgba(201,162,39,0.08); border:1px solid rgba(201,162,39,0.25);
+        border-radius:6px; padding:0.5rem 0.8rem;"></div>
     </div>
     <div class="form-field" id="anonymous-field">
       <label style="display:flex; align-items:flex-start; gap:0.6rem; cursor:pointer; font-size:0.82rem; color:var(--purple-pale);">
@@ -307,6 +310,32 @@
 
 <script src="js/main.js"></script>
 <script>
+  // supporters_publicから掲載名と累計金額を取得してキャッシュ
+  const SUPPORTERS_CSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vREXx9XAtpsm3QnKDsVcyoAhzhwUI1lvrd2EElK9H4m4pLP9YbYGA5Qv98DCMEJ-zbu7m0R_GdjH5N1/pub?gid=1987730365&single=true&output=csv';
+  const supporterTotals = new Map(); // 掲載名 → 累計金額
+
+  fetch(SUPPORTERS_CSV).then(r => r.text()).then(csv => {
+    csv.trim().split('\n').slice(1).forEach(row => {
+      const cols = row.match(/(".*?"|[^,]+)(?=,|$)/g) || [];
+      const name   = (cols[0] || '').trim().replace(/^"|"$/g, '');
+      const amount = parseInt((cols[2] || '0').trim().replace(/^"|"$/g, ''), 10) || 0;
+      if (!name) return;
+      supporterTotals.set(name, (supporterTotals.get(name) || 0) + amount);
+    });
+  }).catch(() => {});
+
+  document.getElementById('display_name').addEventListener('input', function () {
+    const val    = this.value.trim();
+    const notice = document.getElementById('display-name-notice');
+    if (!val || !supporterTotals.has(val)) {
+      notice.style.display = 'none';
+      return;
+    }
+    const current = supporterTotals.get(val).toLocaleString();
+    notice.style.display = 'block';
+    notice.textContent   = `⚠ この掲載名はすでに登録されています（現在の累計支援額：¥${current}）。今回の支援分も合算されます。`;
+  });
+
   // Stripe Payment Links — プランごとに設定（Stripeダッシュボードで取得したURLを貼る）
   const STRIPE_LINKS = {
     supporter:       'https://buy.stripe.com/9B65kD5Lb61X3qUbc5dEs04',
