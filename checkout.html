@@ -302,7 +302,7 @@
       <button type="button" id="btn-random-draw" class="btn-random-draw">
         🎲 ランダムで引く
       </button>
-      <p class="random-desc">特別仕様カードを手に入れるチャンスがあります</p>
+      <p class="random-desc" id="random-chance-desc">特別仕様カードを手に入れるチャンスがあります</p>
 
       <div id="random-result" style="display:none;"></div>
     </div>
@@ -425,9 +425,12 @@
   planRadios.forEach(r => {
     r.addEventListener('change', () => {
       const price = parseInt(r.dataset.price, 10);
+      const isProducer = r.value === 'producer';
       addrSection.classList.toggle('visible', price >= 100000);
       // キャラ選択は¥3万以上
       charField.style.display = price >= 30000 ? 'block' : 'none';
+      // Producerは特典確定なので「チャンス」文言を非表示
+      document.getElementById('random-chance-desc').style.display = isProducer ? 'none' : '';
       // 全プランで掲載名・匿名欄を表示
       document.getElementById('display-name-field').style.display = 'block';
       document.getElementById('anonymous-field').style.display   = 'block';
