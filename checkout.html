@@ -88,6 +88,71 @@
       border-top: 1px solid rgba(201,162,39,0.1); padding-top: 1rem;
       margin-top: 1rem;
     }
+
+    /* ランダム抽選 */
+    .char-random-divider {
+      text-align: center; font-size: 0.7rem; color: var(--text-pale);
+      letter-spacing: 0.12em; margin: 1rem 0 0.8rem;
+    }
+    .btn-random-draw {
+      font-family: var(--font-heading); font-size: 0.82rem;
+      letter-spacing: 0.12em; color: var(--gold);
+      border: 1px solid rgba(201,162,39,0.4);
+      background: rgba(201,162,39,0.06); border-radius: 8px;
+      padding: 0.65rem 1.6rem; cursor: pointer; transition: all 0.25s;
+      display: block; width: 100%;
+    }
+    .btn-random-draw:hover {
+      background: rgba(201,162,39,0.14);
+      box-shadow: 0 0 18px rgba(201,162,39,0.2);
+    }
+    .btn-random-draw:disabled {
+      opacity: 0.5; cursor: default;
+    }
+    .random-desc {
+      font-size: 0.72rem; color: var(--text-pale);
+      margin-top: 0.4rem; line-height: 1.6; text-align: center;
+    }
+    .random-result-box {
+      margin-top: 1rem; padding: 1rem 1.2rem;
+      border-radius: 8px; text-align: center;
+    }
+    .random-result-box.is-legendary {
+      background: linear-gradient(135deg, rgba(201,162,39,0.12), rgba(201,162,39,0.05));
+      border: 1px solid rgba(201,162,39,0.55);
+      box-shadow: 0 0 30px rgba(201,162,39,0.2);
+      animation: legendaryGlow 2s ease-in-out infinite alternate;
+    }
+    @keyframes legendaryGlow {
+      from { box-shadow: 0 0 20px rgba(201,162,39,0.15); }
+      to   { box-shadow: 0 0 40px rgba(201,162,39,0.35); }
+    }
+    .random-result-box.is-normal {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(201,162,39,0.2);
+    }
+    .random-result-label {
+      font-family: var(--font-heading); font-size: 0.62rem;
+      letter-spacing: 0.2em; color: rgba(201,162,39,0.7);
+      margin-bottom: 0.4rem;
+    }
+    .random-result-name {
+      font-family: var(--font-heading); font-size: 1rem;
+      color: var(--gold-light); letter-spacing: 0.08em;
+    }
+    .random-result-img {
+      max-width: 180px; border-radius: 6px;
+      border: 1px solid rgba(201,162,39,0.3);
+      margin: 0.7rem auto 0; display: block;
+    }
+    .btn-random-reset {
+      font-size: 0.72rem; color: var(--text-pale);
+      background: none; border: none; cursor: pointer;
+      text-decoration: underline; margin-top: 0.6rem;
+      display: block; width: 100%; text-align: center;
+    }
+    .btn-random-reset:hover { color: var(--gold); }
+
     @media (max-width: 600px) {
       .form-section { padding: 1.4rem 1.2rem; }
     }
@@ -223,7 +288,7 @@
     </div>
     <div class="form-field" id="char-select-field" style="display:none;">
       <label>希望キャラクター <span style="font-size:0.7rem; color:var(--text-pale);">（お礼メッセージ画像）</span></label>
-      <div class="char-select-group">
+      <div class="char-select-group" id="char-radio-group">
         <label class="char-option"><input type="radio" name="character" value="violin_princess">バイオリン姫</label>
         <label class="char-option"><input type="radio" name="character" value="sax_knight">サックスフォーン騎士</label>
         <label class="char-option"><input type="radio" name="character" value="castanet">カスタネット坊や</label>
@@ -231,6 +296,15 @@
         <label class="char-option"><input type="radio" name="character" value="master_tact">マスタータクト</label>
         <label class="char-option"><input type="radio" name="character" value="clarinet_princess">クラリネット姫</label>
       </div>
+
+      <div class="char-random-divider">— または —</div>
+
+      <button type="button" id="btn-random-draw" class="btn-random-draw">
+        🎲 ランダムで引く
+      </button>
+      <p class="random-desc">特別仕様カードを手に入れるチャンスがあります</p>
+
+      <div id="random-result" style="display:none;"></div>
     </div>
   </div>
 
@@ -360,6 +434,91 @@
     });
   });
 
+  // ランダム抽選ロジック
+  const RANDOM_POOL = [
+    'violin_princess','violin_princess','violin_princess','violin_princess',
+    'sax_knight','sax_knight','sax_knight','sax_knight',
+    'castanet','castanet','castanet','castanet',
+    'piano_prince','piano_prince','piano_prince','piano_prince',
+    'clarinet_princess','clarinet_princess','clarinet_princess',
+    'master_tact'
+  ];
+  const CHAR_LABELS = {
+    violin_princess:   'バイオリン姫',
+    sax_knight:        'サックスフォーン騎士',
+    castanet:          'カスタネット坊や',
+    piano_prince:      'ピアノ王子',
+    master_tact:       'マスタータクト',
+    clarinet_princess: 'クラリネット姫',
+    captain_guitar:    'キャプテンギター',
+  };
+  const CHAR_IMAGES = {
+    violin_princess:   'images/project/rewards/messages/message-card-violin-princess.png?v=20260403',
+    sax_knight:        'images/project/rewards/messages/message-card-sax-knight.png?v=20260403',
+    castanet:          'images/project/rewards/messages/message-card-castanet.png?v=20260403',
+    piano_prince:      'images/project/rewards/messages/message-card-piano-prince.png?v=20260403',
+    master_tact:       'images/project/rewards/messages/message-card-master-tact.png?v=20260403',
+    clarinet_princess: 'images/project/rewards/messages/message-card-clarinet-princess.png?v=20260403',
+    captain_guitar:    'images/project/rewards/messages/message-card-captain-guitar.png?v=20260403',
+  };
+
+  let randomDrawChar = null; // ランダム抽選で確定したキャラ
+
+  function clearRandomDraw() {
+    randomDrawChar = null;
+    document.getElementById('random-result').style.display = 'none';
+    document.getElementById('random-result').innerHTML = '';
+    document.getElementById('btn-random-draw').disabled = false;
+    document.getElementById('btn-random-draw').textContent = '🎲 ランダムで引く';
+  }
+
+  // ラジオ選択時はランダム結果をクリア
+  document.querySelectorAll('input[name="character"]').forEach(r => {
+    r.addEventListener('change', clearRandomDraw);
+  });
+
+  document.getElementById('btn-random-draw').addEventListener('click', function () {
+    // ラジオをクリア
+    document.querySelectorAll('input[name="character"]').forEach(r => r.checked = false);
+
+    // 抽選
+    const isLegendary = Math.random() < 1 / 1000;
+    randomDrawChar = isLegendary
+      ? 'captain_guitar'
+      : RANDOM_POOL[Math.floor(Math.random() * RANDOM_POOL.length)];
+
+    const label  = CHAR_LABELS[randomDrawChar] || randomDrawChar;
+    const imgSrc = CHAR_IMAGES[randomDrawChar];
+    const resultEl = document.getElementById('random-result');
+
+    if (isLegendary) {
+      resultEl.innerHTML = `
+        <div class="random-result-box is-legendary">
+          <p class="random-result-label">✦ LEGENDARY ✦</p>
+          <p class="random-result-name">👑 ${label}</p>
+          <p style="font-size:0.72rem;color:var(--purple-pale);margin-top:0.3rem;">伝説のカードが当たりました…！</p>
+          <img class="random-result-img" src="${imgSrc}" alt="${label}">
+          <p style="font-size:0.72rem;color:var(--gold);margin-top:0.8rem;line-height:1.6;">このカードで決定しました</p>
+          <button type="button" class="btn-random-reset" id="btn-random-reset">やり直す（キャラクター選択に戻る）</button>
+        </div>`;
+    } else {
+      resultEl.innerHTML = `
+        <div class="random-result-box is-normal">
+          <p class="random-result-label">RESULT</p>
+          <p class="random-result-name">${label}</p>
+          <img class="random-result-img" src="${imgSrc}" alt="${label}">
+          <p style="font-size:0.72rem;color:var(--gold-light);margin-top:0.8rem;line-height:1.6;">このカードで決定しました</p>
+          <button type="button" class="btn-random-reset" id="btn-random-reset">やり直す（キャラクター選択に戻る）</button>
+        </div>`;
+    }
+    resultEl.style.display = 'block';
+    this.disabled = true;
+    this.textContent = '🎲 抽選済み';
+
+    // やり直しボタン
+    document.getElementById('btn-random-reset').addEventListener('click', clearRandomDraw);
+  });
+
   // フォーム送信 → Stripeへ
   document.getElementById('checkout-form').addEventListener('submit', function(e) {
     e.preventDefault();
@@ -386,23 +545,18 @@
 
     const price = parseInt(selected.dataset.price, 10);
 
-    // キャラクター確定（¥3万以上=選択、Supporter=ランダム）
-    let charValue = charSelected ? charSelected.value : '';
+    // キャラクター確定（ランダム抽選結果 > ラジオ選択 > Supporterランダム）
+    let charValue = randomDrawChar || (charSelected ? charSelected.value : '');
     if (price >= 30000 && !charValue) {
-      alert('希望キャラクターを選択してください。');
+      alert('希望キャラクターを選択するか、ランダムで引いてください。');
       return;
     }
     if (price < 30000 && !charValue) {
       // Supporterプラン：決済前にランダム確定（Zapierへ渡すため）
-      const RANDOM_POOL = [
-        'violin_princess','violin_princess','violin_princess','violin_princess',
-        'sax_knight','sax_knight','sax_knight','sax_knight',
-        'castanet','castanet','castanet','castanet',
-        'piano_prince','piano_prince','piano_prince','piano_prince',
-        'clarinet_princess','clarinet_princess','clarinet_princess',
-        'master_tact'  // レア 1/20
-      ];
-      charValue = RANDOM_POOL[Math.floor(Math.random() * RANDOM_POOL.length)];
+      const isLeg = Math.random() < 1 / 1000;
+      charValue = isLeg
+        ? 'captain_guitar'
+        : RANDOM_POOL[Math.floor(Math.random() * RANDOM_POOL.length)];
     }
 
     // localStorageに保存（thank-you.htmlで使用）

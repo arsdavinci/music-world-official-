@@ -346,12 +346,25 @@
       piano_prince:      'images/project/rewards/messages/message-card-piano-prince.png?v=20260403',
       master_tact:       'images/project/rewards/messages/message-card-master-tact.png?v=20260403',
       clarinet_princess: 'images/project/rewards/messages/message-card-clarinet-princess.png?v=20260403',
+      captain_guitar:    'images/project/rewards/messages/message-card-captain-guitar.png?v=20260403',
     };
     const selectedChar = localStorage.getItem('mw_selected_character');
     const charSrc = CHARACTER_IMAGES[selectedChar];
     const higherImg = document.getElementById('higher-message-image');
     const higherBtn = document.getElementById('higher-message-dl-btn');
     if (charSrc) {
+      // キャプテンギター（伝説カード）演出
+      if (selectedChar === 'captain_guitar') {
+        higherImg.closest('#reward-higher').querySelector('p').insertAdjacentHTML('beforebegin', `
+          <div style="text-align:center; margin-bottom:1rem;">
+            <p style="font-family:var(--font-heading); font-size:0.62rem; letter-spacing:0.25em; color:rgba(201,162,39,0.75); margin-bottom:0.2rem;">✦ LEGENDARY ✦</p>
+            <p style="font-size:1rem; color:var(--gold); font-family:var(--font-heading); letter-spacing:0.1em;">👑 キャプテンギター</p>
+            <p style="font-size:0.75rem; color:var(--purple-pale); margin-top:0.2rem;">伝説のカードを引き当てました…！</p>
+          </div>
+        `);
+        higherImg.style.boxShadow = '0 0 40px rgba(201,162,39,0.5)';
+        higherImg.style.border    = '2px solid rgba(201,162,39,0.7)';
+      }
       higherImg.src = charSrc;
       higherImg.onload = () => {
         higherImg.style.display = 'block';
