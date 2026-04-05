@@ -395,8 +395,12 @@
       message           // 6: ひとこと
     ].join('|');
 
+    // Base64 URL-safeエンコード（日本語・パイプ文字をStripeが拒否するため）
+    const encodedRefId = btoa(unescape(encodeURIComponent(refId)))
+      .replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '');
+
     let stripeUrl = url + '?prefilled_email=' + encodeURIComponent(email);
-    stripeUrl += '&client_reference_id=' + encodeURIComponent(refId);
+    stripeUrl += '&client_reference_id=' + encodedRefId;
     window.location.href = stripeUrl;
   });
 </script>
