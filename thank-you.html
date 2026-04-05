@@ -177,9 +177,24 @@
         追加のデジタル特典です。以下からダウンロードしてください。<br>
         <span style="font-size:0.75rem;">ダウンロードURLはメールにも記載しています。</span>
       </p>
+
+      <p style="font-family:var(--font-heading); color:var(--gold); font-size:0.72rem; letter-spacing:0.15em; margin:0 0 0.5rem;">未公開設定資料</p>
       <a href="images/project/rewards/未公開設定資料.pdf" download class="download-btn">
         <span class="icon">📄</span> 未公開設定資料 PDF
       </a>
+
+      <p style="font-family:var(--font-heading); color:var(--gold); font-size:0.72rem; letter-spacing:0.15em; margin:1.2rem 0 0.5rem;">ミュージックワールド2 未公開資料</p>
+      <a href="https://github.com/arsdavinci/music-world-official-/raw/main/images/project/rewards/mw2/acoustic-ship.png" download class="download-btn">
+        <span class="icon">🖼</span> acoustic-ship
+      </a>
+      <a href="https://github.com/arsdavinci/music-world-official-/raw/main/images/project/rewards/mw2/captain-guitar.png" download class="download-btn">
+        <span class="icon">🖼</span> captain-guitar
+      </a>
+      <a href="https://github.com/arsdavinci/music-world-official-/raw/main/images/project/rewards/mw2/mw2-title-logo.png" download class="download-btn">
+        <span class="icon">🖼</span> MW2タイトルロゴ
+      </a>
+
+      <p style="font-family:var(--font-heading); color:var(--gold); font-size:0.72rem; letter-spacing:0.15em; margin:1.2rem 0 0.5rem;">主題歌「Symphony of One World」</p>
       <a href="images/project/rewards/Symphony of One World.wav" download class="download-btn">
         <span class="icon">🎵</span> Symphony of One World（WAV）
       </a>
@@ -382,15 +397,13 @@
   if (plan === 'producer') {
     const specialSrc = 'images/project/rewards/messages/message-card-captain-guitar.png?v=20260403';
     document.getElementById('reward-story').insertAdjacentHTML('afterend', `
-      <div style="margin-top:1.4rem; border-top:1px solid rgba(201,162,39,0.12); padding-top:1.4rem;">
-        <p style="font-family:var(--font-heading); color:var(--gold); font-size:0.78rem; letter-spacing:0.15em; margin-bottom:0.6rem;">
-          ミュージックワールド2特別仕様キャラクターカード
-        </p>
-        <p style="font-size:0.78rem; color:var(--purple-pale); line-height:1.9; margin-bottom:1rem;">
+      <div class="reward-card" style="margin-top:1.4rem;">
+        <h2>ミュージックワールド2特別仕様キャラクターカード</h2>
+        <p style="font-size:0.8rem; color:var(--purple-pale); line-height:1.9; margin-bottom:1.2rem;">
           このカードはランダム抽選では <strong style="color:var(--gold);">1/1000</strong> の確率でしか手に入らない特別な1枚です。<br>
           Producer Class Supporterとして、確実にお届けしています。
         </p>
-        <div style="text-align:center; margin-bottom:1rem;">
+        <div style="text-align:center; margin-bottom:1.2rem;">
           <img src="${specialSrc}" alt="特別仕様キャラクターカード"
             style="max-width:100%; border-radius:10px;
               border:2px solid rgba(201,162,39,0.6);
