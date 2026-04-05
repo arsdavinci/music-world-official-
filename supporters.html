@@ -318,7 +318,7 @@
     const label = document.getElementById('sort-label');
     if (rankingMode) {
       this.textContent = '← 新着順に戻る';
-      label.textContent = '👑 高額サポーター 上位10名';
+      label.textContent = '👑 高額サポーター 上位10名 👑';
       const top10 = [...allSupporters]
         .sort((a, b) => b.total - a.total)
         .slice(0, 10);
