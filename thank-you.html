@@ -378,6 +378,29 @@
     }
   }
 
+  // Producerプラン：ミュージックワールド2特別仕様カードを追加表示
+  if (plan === 'producer') {
+    const specialSrc = 'images/project/rewards/messages/message-card-captain-guitar.png?v=20260403';
+    document.getElementById('reward-story').insertAdjacentHTML('afterend', `
+      <div style="margin-top:1.4rem; border-top:1px solid rgba(201,162,39,0.12); padding-top:1.4rem;">
+        <p style="font-family:var(--font-heading); color:var(--gold); font-size:0.78rem; letter-spacing:0.15em; margin-bottom:0.8rem;">
+          ミュージックワールド2特別仕様キャラクターカード
+        </p>
+        <div style="text-align:center; margin-bottom:1rem;">
+          <img src="${specialSrc}" alt="特別仕様キャラクターカード"
+            style="max-width:100%; border-radius:10px;
+              border:2px solid rgba(201,162,39,0.6);
+              box-shadow:0 0 40px rgba(201,162,39,0.4);">
+        </div>
+        <div style="text-align:center;">
+          <a href="${specialSrc}" download class="download-btn">
+            <span class="icon">🎴</span> 特別仕様カードをダウンロード
+          </a>
+        </div>
+      </div>
+    `);
+  }
+
   // Supporter・Story Supporter（物理特典なし）は物理特典カードを非表示
   if (['supporter', 'story_supporter'].includes(plan)) {
     document.getElementById('physical-reward-card').style.display = 'none';
