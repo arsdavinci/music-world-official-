@@ -180,7 +180,7 @@
 
     <div class="supporters-section fade-in">
       <div class="supporters-controls">
-        <button class="btn-ranking" id="btn-ranking">✦ 高額サポーター 上位10名</button>
+        <button class="btn-ranking" id="btn-ranking">👑 高額サポーター 上位10名</button>
       </div>
       <div class="supporters-grid" id="supporters-list">
         <!-- JSで動的挿入 -->
@@ -251,7 +251,7 @@
   function renderList(list, showRank) {
     const grid = document.getElementById('supporters-list');
     grid.innerHTML = list.map((s, i) => {
-      const crown  = s.tier === 'premium' ? '<span class="chip-crown">✦</span>' : '';
+      const crown  = s.tier === 'premium' ? '<span class="chip-crown">👑</span>' : '';
       const rank   = showRank ? `<span class="ranking-badge">${i + 1}.</span>` : '';
       return `<span class="supporter-chip" data-tier="${s.tier}">${rank}${crown}${escapeHtml(s.name)}</span>`;
     }).join('');
