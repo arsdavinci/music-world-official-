@@ -16,6 +16,283 @@
   <link rel="icon" href="images/logos/favicon.png" type="image/png">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/effects.css">
+  <style>
+    /* ============================================================
+       Support Plans
+    ============================================================ */
+    .support-plans {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.6rem;
+      max-width: 1100px;
+      margin: 2.5rem auto 0;
+    }
+
+    .plan-card {
+      position: relative;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(201,162,39,0.2);
+      border-radius: 14px;
+      padding: 2rem 1.6rem 1.8rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .plan-card:hover {
+      border-color: rgba(201,162,39,0.4);
+      box-shadow: 0 8px 36px rgba(0,0,0,0.35);
+    }
+
+    /* Featured */
+    .plan-card--featured {
+      border-color: rgba(201,162,39,0.45);
+      background: rgba(201,162,39,0.04);
+      box-shadow: 0 0 40px rgba(201,162,39,0.1);
+    }
+
+    /* Producer */
+    .plan-card--producer {
+      border-color: rgba(201,162,39,0.35);
+    }
+
+    .plan-badge {
+      position: absolute;
+      top: -0.85rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--font-heading);
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      padding: 0.28rem 1.1rem;
+      border-radius: 30px;
+      white-space: nowrap;
+    }
+    .plan-badge--recommended {
+      background: linear-gradient(135deg, var(--gold), #e8c84a);
+      color: #1a0a12;
+    }
+    .plan-badge--limited {
+      background: linear-gradient(135deg, #7a3a10, #c96a10);
+      color: #fff;
+    }
+
+    .plan-price {
+      font-family: var(--font-heading);
+      font-size: 1.55rem;
+      color: var(--gold);
+      letter-spacing: 0.03em;
+      margin-bottom: 0.2rem;
+    }
+    .plan-price span {
+      font-size: 0.9rem;
+      color: var(--text-pale);
+    }
+
+    .plan-name {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      color: var(--gold-light);
+      letter-spacing: 0.12em;
+      margin-bottom: 0.35rem;
+    }
+
+    .plan-tagline {
+      font-size: 0.78rem;
+      color: var(--purple-pale);
+      font-style: italic;
+      letter-spacing: 0.05em;
+      margin-bottom: 1.2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(201,162,39,0.1);
+    }
+
+    .plan-benefits {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+    .plan-benefits li {
+      font-size: 0.82rem;
+      color: var(--purple-pale);
+      line-height: 1.6;
+      padding-left: 1.1rem;
+      position: relative;
+    }
+    .plan-benefits li::before {
+      content: '·';
+      position: absolute;
+      left: 0.2rem;
+      color: var(--gold);
+      font-size: 1.1rem;
+      line-height: 1.2;
+    }
+    .plan-benefits li.highlight {
+      color: var(--gold-light);
+    }
+    .plan-benefits li.highlight::before {
+      content: '★';
+      font-size: 0.65rem;
+      top: 0.1rem;
+    }
+
+    /* Physical / Special section inside producer card */
+    .plan-section-label {
+      font-family: var(--font-heading);
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      color: rgba(201,162,39,0.65);
+      margin-top: 1rem;
+      margin-bottom: 0.4rem;
+      padding-top: 0.8rem;
+      border-top: 1px solid rgba(201,162,39,0.12);
+    }
+
+    .plan-notice {
+      font-size: 0.72rem;
+      color: var(--text-pale);
+      line-height: 1.8;
+      margin-top: 1.2rem;
+      padding-top: 0.8rem;
+      border-top: 1px solid rgba(201,162,39,0.1);
+    }
+
+    /* ============================================================
+       Special Card Preview (Producer)
+    ============================================================ */
+    .special-card-preview {
+      margin: 0.8rem 0 0;
+      text-align: center;
+    }
+    .special-card-preview img {
+      max-width: 100%;
+      border-radius: 8px;
+      border: 1px solid rgba(201,162,39,0.25);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    }
+    .special-card-preview p {
+      font-size: 0.7rem;
+      color: var(--text-pale);
+      margin-top: 0.5rem;
+    }
+
+    /* ============================================================
+       Plush Gallery
+    ============================================================ */
+    .plush-gallery {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 1.5rem 0 0;
+    }
+    .plush-item {
+      text-align: center;
+      max-width: 200px;
+    }
+    .plush-item img {
+      width: 100%;
+      border-radius: 10px;
+      border: 1px solid rgba(201,162,39,0.2);
+    }
+    .plush-label {
+      font-family: var(--font-heading);
+      font-size: 0.75rem;
+      color: var(--gold-light);
+      letter-spacing: 0.1em;
+      margin-top: 0.5rem;
+    }
+    .plush-item--set img {
+      border-color: rgba(201,162,39,0.4);
+      box-shadow: 0 0 16px rgba(201,162,39,0.15);
+    }
+
+    /* ============================================================
+       Agreement / CTA
+    ============================================================ */
+    .support-agreement {
+      max-width: 580px;
+      margin: 3rem auto 0;
+      text-align: center;
+    }
+    .support-notice {
+      text-align: left;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(201,162,39,0.12);
+      border-radius: 10px;
+      padding: 1.4rem 1.6rem;
+      margin-bottom: 1.6rem;
+    }
+    .support-notice p {
+      font-size: 0.8rem;
+      color: var(--text-pale);
+      line-height: 1.8;
+      margin: 0;
+    }
+    .agree-row {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.85rem;
+      color: var(--purple-pale);
+      cursor: pointer;
+      margin-bottom: 1.4rem;
+    }
+    .agree-row input { accent-color: var(--gold); }
+
+    .btn-support {
+      display: block;
+      width: 100%;
+      padding: 1rem;
+      background: linear-gradient(135deg, #c9a227, #e8c84a);
+      color: #1a0a12;
+      font-family: var(--font-heading);
+      font-size: 0.88rem;
+      letter-spacing: 0.14em;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.25s;
+      opacity: 0.35;
+    }
+    .btn-support:not([aria-disabled="true"]) {
+      opacity: 1;
+    }
+    .btn-support:not([aria-disabled="true"]):hover {
+      box-shadow: 0 0 24px rgba(201,162,39,0.4);
+      transform: translateY(-1px);
+    }
+
+    .project-cta-links {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .project-cta-links a {
+      font-size: 0.8rem;
+      color: var(--text-pale);
+      text-decoration: none;
+      letter-spacing: 0.06em;
+      transition: color 0.2s;
+    }
+    .project-cta-links a:hover { color: var(--gold); }
+
+    /* ============================================================
+       Responsive
+    ============================================================ */
+    @media (max-width: 700px) {
+      .support-plans {
+        grid-template-columns: 1fr;
+        max-width: 440px;
+      }
+    }
+  </style>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WZSLHDJ1MQ"></script>
   <script>
@@ -65,7 +342,7 @@
 </div>
 
 <div class="announcement-band" style="font-size:0.82rem; letter-spacing:0.08em;">
-  ✦ &nbsp; 受付期間：2026年4月1日 〜 2026年6月30日（予定）&nbsp;&nbsp;|&nbsp;&nbsp; Producer Classは限定10セット &nbsp; ✦
+  ✦ &nbsp; 受付期間：2026年4月1日 〜 2026年6月30日（予定）&nbsp;&nbsp;|&nbsp;&nbsp; Producer Class は限定10セット &nbsp; ✦
 </div>
 
 <div class="section">
@@ -81,22 +358,23 @@
       <div class="plan-name">Supporter</div>
       <div class="plan-tagline">「この物語の最初の一歩を支える」</div>
       <ul class="plan-benefits">
-        <li>お礼メッセージ画像<br><span style="font-size:0.75rem;color:var(--text-pale);">（キャラクターはランダム）</span></li>
+        <li>お礼メッセージ画像（デジタル）<br><span style="font-size:0.72rem;color:var(--text-pale);">キャラクターはランダム</span></li>
+        <li><a href="supporters.html" style="color:inherit;">公式サイト内 Supportersページ</a>にお名前掲載（希望者のみ）</li>
       </ul>
     </div>
 
     <!-- Story Supporter FEATURED -->
     <div class="plan-card plan-card--featured fade-in">
-      <div class="plan-badge">RECOMMENDED</div>
+      <div class="plan-badge plan-badge--recommended">RECOMMENDED</div>
       <div class="plan-price">¥30,000</div>
       <div class="plan-name">Story Supporter</div>
       <div class="plan-tagline">「物語の一部になる」</div>
       <ul class="plan-benefits">
-        <li>未公開設定資料<br><span style="font-size:0.75rem;color:var(--text-pale);">（初期構想・ボツ案など）</span></li>
-        <li>ミュージックワールド2 未公開資料<br><span style="font-size:0.75rem;color:var(--text-pale);">（キャラクターデザイン・タイトルロゴ）</span></li>
-        <li>お礼メッセージ画像<br><span style="font-size:0.75rem;color:var(--text-pale);">（お好きなキャラクターを1種選択可能）</span></li>
-        <li><a href="supporters.html" style="color:inherit;">公式サイト内 Supportersページ</a>にお名前掲載<br><span style="font-size:0.75rem;color:var(--text-pale);">（希望者のみ）</span></li>
-        <li>主題歌「Symphony of One World」音源データ<br><span style="font-size:0.75rem;color:var(--text-pale);">（WAV／高音質版）</span></li>
+        <li>未公開設定資料（デジタル）<br><span style="font-size:0.72rem;color:var(--text-pale);">初期構想・ボツ案など</span></li>
+        <li>ミュージックワールド2 未公開資料（デジタル）<br><span style="font-size:0.72rem;color:var(--text-pale);">キャラクターデザイン・タイトルロゴ</span></li>
+        <li>主題歌「Symphony of One World」音源データ（WAV／高音質／デジタル）</li>
+        <li>お礼メッセージ画像（デジタル）<br><span style="font-size:0.72rem;color:var(--text-pale);">お好きなキャラクターを1種選択可能</span></li>
+        <li><a href="supporters.html" style="color:inherit;">公式サイト内 Supportersページ</a>にお名前掲載（希望者のみ）</li>
       </ul>
     </div>
 
@@ -106,34 +384,51 @@
       <div class="plan-name">Executive Supporter</div>
       <div class="plan-tagline">「未来の制作に関わる」</div>
       <ul class="plan-benefits">
-        <li>未公開設定資料（初期構想・ボツ案など）</li>
-        <li>ミュージックワールド2 未公開資料</li>
-        <li>お礼メッセージ画像（キャラクター1種選択可）</li>
+        <li>未公開設定資料（デジタル）</li>
+        <li>ミュージックワールド2 未公開資料（デジタル）</li>
+        <li>主題歌「Symphony of One World」音源データ（WAV／高音質／デジタル）</li>
+        <li>お礼メッセージ画像（デジタル）<br><span style="font-size:0.72rem;color:var(--text-pale);">キャラクター1種選択可能</span></li>
         <li><a href="supporters.html" style="color:inherit;">公式サイト内 Supportersページ</a>にお名前掲載（希望者のみ）</li>
-        <li>主題歌「Symphony of One World」音源データ（WAV）</li>
-        <li class="plan-benefit--highlight">特別仕様のメッセージカードを1種選択可能</li>
-        <li class="plan-benefit--highlight">バイオリン姫／サクソフォーン騎士ぬいぐるみ（いずれか1点・ランダム）<br>＋制作者からの直筆サイン付きメッセージカード（専用デザイン・郵送）</li>
+        <li class="highlight">特別仕様のメッセージカードを1種選択可能</li>
+        <li class="highlight">バイオリン姫またはサクソフォーン騎士ぬいぐるみ（いずれか1点・ランダム）<br>＋制作者からの直筆サイン付きメッセージカード（専用デザイン・郵送）</li>
       </ul>
     </div>
 
     <!-- Producer Class -->
-    <div class="plan-card fade-in" style="border-color:rgba(201,162,39,0.35); position:relative;">
-      <div class="plan-badge" style="background:linear-gradient(135deg,#7a3a10,#c96a10);">LIMITED 10</div>
+    <div class="plan-card plan-card--producer fade-in">
+      <div class="plan-badge plan-badge--limited">LIMITED 10</div>
       <div class="plan-price">¥500,000 <span>〜</span></div>
       <div class="plan-name">Producer Class Supporter</div>
       <div class="plan-tagline">「この世界を共に創る」</div>
       <ul class="plan-benefits">
-        <li>未公開設定資料（初期構想・ボツ案など）</li>
-        <li>ミュージックワールド2 未公開資料</li>
-        <li>お礼メッセージ画像（キャラクター1種選択可）</li>
-        <li><a href="supporters.html" style="color:inherit;">公式サイト内 Supportersページ</a>にお名前掲載（希望者のみ）</li>
-        <li>主題歌「Symphony of One World」音源データ（WAV）</li>
-        <li class="plan-benefit--highlight">特別仕様のメッセージカードを1種選択可能</li>
-        <li class="plan-benefit--highlight">バイオリン姫／サクソフォーン騎士ぬいぐるみセット（限定10セット）<br>＋制作者からの直筆サイン付きメッセージカード（郵送）</li>
-        <li class="plan-benefit--highlight">Supportersページに👑王冠マーク付きで掲載（希望者のみ）</li>
-        <li class="plan-benefit--highlight">ミュージックワールド2完成時、絵本へのお名前またはスポンサー名掲載（初版のみ・予定）</li>
+        <li>未公開設定資料（デジタル）</li>
+        <li>ミュージックワールド2 未公開資料（デジタル）</li>
+        <li>主題歌「Symphony of One World」音源データ（WAV／高音質／デジタル）</li>
+        <li>お礼メッセージ画像（デジタル）<br><span style="font-size:0.72rem;color:var(--text-pale);">キャラクター選択可</span></li>
+        <li class="highlight">特別仕様キャラクターカード（1点）</li>
+        <li class="highlight">👑 <a href="supporters.html" style="color:inherit;">Supportersページ</a>に王冠マーク付きでお名前掲載（希望者のみ）</li>
       </ul>
-      <p style="font-size:0.75rem; color:var(--text-pale); margin-top:1rem; line-height:1.8; border-top:1px solid rgba(201,162,39,0.12); padding-top:0.8rem;">
+
+      <div class="plan-section-label">PHYSICAL — LIMITED</div>
+      <ul class="plan-benefits">
+        <li class="highlight">ぬいぐるみセット（限定10セット）<br><span style="font-size:0.72rem;color:var(--text-pale);">バイオリン姫＋サクソフォーン騎士</span></li>
+        <li class="highlight">制作者直筆サイン付きメッセージカード（専用デザイン・郵送）</li>
+      </ul>
+
+      <div class="plan-section-label">SPECIAL</div>
+      <ul class="plan-benefits">
+        <li class="highlight">ミュージックワールド2完成時、絵本へのお名前またはスポンサー名掲載（初版のみ・予定）</li>
+      </ul>
+
+      <!-- Special card preview -->
+      <div class="special-card-preview">
+        <img src="images/project/rewards/messages/message-card-captain-guitar.png"
+             alt="特別仕様キャラクターカード（キャプテンギター）"
+             onerror="this.closest('.special-card-preview').style.display='none'">
+        <p>特別仕様キャラクターカード イメージ</p>
+      </div>
+
+      <p class="plan-notice">
         ※ 本掲載は初版発行分を対象としたものです<br>
         ※ 増刷・再版時の掲載は対象外となる場合があります<br>
         ※ 掲載内容・形式は制作状況により調整される場合があります
@@ -209,10 +504,10 @@
       <input type="checkbox" id="agree-check">
       <span>上記内容およびご案内に同意する</span>
     </label>
-    <a href="checkout.html" id="btn-proceed" class="btn-support" style="pointer-events:none; text-align:center; display:block;" aria-disabled="true">
+    <a href="checkout.html" id="btn-proceed" class="btn-support" style="pointer-events:none;" aria-disabled="true">
       応援プランを選ぶ → 次へ進む
     </a>
-    <p style="font-size:0.75rem; color:var(--text-pale); margin-top:1rem; text-align:center;">
+    <p style="font-size:0.75rem; color:var(--text-pale); margin-top:1rem;">
       ご入金確認後、受付完了のご連絡をメールにてお送りします。
     </p>
   </div>
@@ -253,11 +548,9 @@
     if (check.checked) {
       btn.removeAttribute('aria-disabled');
       btn.style.pointerEvents = '';
-      btn.style.opacity = '';
     } else {
       btn.setAttribute('aria-disabled', 'true');
       btn.style.pointerEvents = 'none';
-      btn.style.opacity = '0.35';
     }
   });
 </script>
