@@ -180,8 +180,9 @@
     <div class="gold-divider fade-in"><span class="icon">♦</span></div>
 
     <div class="supporters-section fade-in">
-      <div class="supporters-controls">
-        <button class="btn-ranking" id="btn-ranking">👑 高額サポーター 上位10名</button>
+      <div class="supporters-controls" style="flex-direction:column; align-items:center; gap:0.6rem;">
+        <div id="sort-label" style="font-size:0.72rem; color:var(--text-pale); letter-spacing:0.1em;">新着順</div>
+        <button class="btn-ranking" id="btn-ranking">👑 高額サポーター 上位10名を見る</button>
       </div>
       <div class="supporters-grid" id="supporters-list">
         <!-- JSで動的挿入 -->
@@ -314,12 +315,17 @@
   document.getElementById('btn-ranking').addEventListener('click', function () {
     rankingMode = !rankingMode;
     this.classList.toggle('active', rankingMode);
+    const label = document.getElementById('sort-label');
     if (rankingMode) {
+      this.textContent = '← 新着順に戻る';
+      label.textContent = '👑 高額サポーター 上位10名';
       const top10 = [...allSupporters]
         .sort((a, b) => b.total - a.total)
         .slice(0, 10);
       renderList(top10, true);
     } else {
+      this.textContent = '👑 高額サポーター 上位10名を見る';
+      label.textContent = '新着順';
       renderList(allSupporters, false);
     }
   });
