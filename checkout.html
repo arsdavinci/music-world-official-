@@ -504,12 +504,14 @@
           どのカードが届くかはお支払い完了後のお楽しみです。<br>
           <span style="color:var(--gold);">特別仕様カードが当たるかも…！</span>
         </p>
+        <button type="button" class="btn-random-reset" id="btn-random-reset">キャラクター選択に戻る</button>
       </div>`;
     resultEl.style.display = 'block';
     this.disabled = true;
     this.textContent = '🎲 ランダム選択済み';
     // ランダム確定後はキャラクター手動選択を無効化
     document.querySelectorAll('input[name="character"]').forEach(r => r.disabled = true);
+    document.getElementById('btn-random-reset').addEventListener('click', clearRandomDraw);
   });
 
   // フォーム送信 → Stripeへ
