@@ -270,7 +270,11 @@
   const greetingEl = document.getElementById('supporter-greeting');
   if (greetingEl) greetingEl.textContent = '今日の' + callName;
 
-  const picked = MESSAGE_IMAGES[pickedIdx];
+  // checkout.htmlで決定したキャラクターをlocalStorageから取得して優先使用
+  const storedChar = localStorage.getItem('mw_selected_character');
+  const picked = storedChar
+    ? `images/project/rewards/messages/message-card-${storedChar.replace(/_/g, '-')}.png?v=20260403`
+    : MESSAGE_IMAGES[pickedIdx];
   const img    = document.getElementById('message-image');
   const dlBtn  = document.getElementById('message-dl-btn');
 
