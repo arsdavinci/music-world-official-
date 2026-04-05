@@ -326,10 +326,9 @@
       addrSection.classList.toggle('visible', price >= 100000);
       // キャラ選択は¥3万以上
       charField.style.display = price >= 30000 ? 'block' : 'none';
-      // 掲載名・匿名欄はSupporterプランでは非表示（掲載対象外）
-      const isSupporter = r.value === 'supporter';
-      document.getElementById('display-name-field').style.display = isSupporter ? 'none' : 'block';
-      document.getElementById('anonymous-field').style.display   = isSupporter ? 'none' : 'block';
+      // 全プランで掲載名・匿名欄を表示
+      document.getElementById('display-name-field').style.display = 'block';
+      document.getElementById('anonymous-field').style.display   = 'block';
     });
   });
 
