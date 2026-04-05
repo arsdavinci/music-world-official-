@@ -470,53 +470,43 @@
     document.getElementById('random-result').innerHTML = '';
     document.getElementById('btn-random-draw').disabled = false;
     document.getElementById('btn-random-draw').textContent = '🎲 ランダムで引く';
+    // ラジオを再度選択可能に
+    document.querySelectorAll('input[name="character"]').forEach(r => r.disabled = false);
   }
 
-  // ラジオ選択時はランダム結果をクリア
+  // ラジオ選択時はランダム結果をクリア（ランダム選択後はラジオ無効のため実質不要だが念のため）
   document.querySelectorAll('input[name="character"]').forEach(r => {
-    r.addEventListener('change', clearRandomDraw);
+    r.addEventListener('change', () => {
+      if (!randomDrawChar) clearRandomDraw();
+    });
   });
 
   document.getElementById('btn-random-draw').addEventListener('click', function () {
     // ラジオをクリア
     document.querySelectorAll('input[name="character"]').forEach(r => r.checked = false);
 
-    // 抽選
+    // 抽選（結果は決済完了まで非公開）
     const isLegendary = Math.random() < 1 / 1000;
     randomDrawChar = isLegendary
       ? 'captain_guitar'
       : RANDOM_POOL[Math.floor(Math.random() * RANDOM_POOL.length)];
 
-    const label  = CHAR_LABELS[randomDrawChar] || randomDrawChar;
-    const imgSrc = CHAR_IMAGES[randomDrawChar];
     const resultEl = document.getElementById('random-result');
-
-    if (isLegendary) {
-      resultEl.innerHTML = `
-        <div class="random-result-box is-legendary">
-          <p class="random-result-label">✦ LEGENDARY ✦</p>
-          <p class="random-result-name">👑 ${label}</p>
-          <p style="font-size:0.72rem;color:var(--purple-pale);margin-top:0.3rem;">伝説のカードが当たりました…！</p>
-          <img class="random-result-img" src="${imgSrc}" alt="${label}">
-          <p style="font-size:0.72rem;color:var(--gold);margin-top:0.8rem;line-height:1.6;">このカードで決定しました</p>
-          <button type="button" class="btn-random-reset" id="btn-random-reset">やり直す（キャラクター選択に戻る）</button>
-        </div>`;
-    } else {
-      resultEl.innerHTML = `
-        <div class="random-result-box is-normal">
-          <p class="random-result-label">RESULT</p>
-          <p class="random-result-name">${label}</p>
-          <img class="random-result-img" src="${imgSrc}" alt="${label}">
-          <p style="font-size:0.72rem;color:var(--gold-light);margin-top:0.8rem;line-height:1.6;">このカードで決定しました</p>
-          <button type="button" class="btn-random-reset" id="btn-random-reset">やり直す（キャラクター選択に戻る）</button>
-        </div>`;
-    }
+    resultEl.innerHTML = `
+      <div class="random-result-box is-normal">
+        <p class="random-result-label">✦ RANDOM SELECTED ✦</p>
+        <p style="font-size:1.8rem; margin:0.4rem 0 0.2rem;">🎴</p>
+        <p class="random-result-name" style="font-size:0.85rem;">ランダムを選択しました</p>
+        <p style="font-size:0.72rem;color:var(--purple-pale);margin-top:0.5rem;line-height:1.8;">
+          どのカードが届くかはお支払い完了後のお楽しみです。<br>
+          <span style="color:var(--gold);">特別仕様カードが当たるかも…！</span>
+        </p>
+      </div>`;
     resultEl.style.display = 'block';
     this.disabled = true;
-    this.textContent = '🎲 抽選済み';
-
-    // やり直しボタン
-    document.getElementById('btn-random-reset').addEventListener('click', clearRandomDraw);
+    this.textContent = '🎲 ランダム選択済み';
+    // ランダム確定後はキャラクター手動選択を無効化
+    document.querySelectorAll('input[name="character"]').forEach(r => r.disabled = true);
   });
 
   // フォーム送信 → Stripeへ
