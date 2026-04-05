@@ -237,6 +237,8 @@
     ...Array(3).fill('images/project/rewards/messages/message-card-clarinet-princess.png?v=20260403'),
     'images/project/rewards/messages/message-card-master-tact.png?v=20260403',
   ];
+  const LEGENDARY_IMAGE = 'images/project/rewards/messages/message-card-captain-guitar.png?v=20260403';
+  const LEGENDARY_PROB  = 1 / 1000; // 1/1000
 
   // URLパラメータからプラン判定（なければlocalStorageから取得）
   const params = new URLSearchParams(window.location.search);
@@ -249,19 +251,33 @@
 
   let pickedIdx;
   let isRepeatBuyer = false; // 2回目以降の購入かどうか
+  let isLegendary   = false; // キャプテンギター当選フラグ
   if (sessionId && sessionId !== storedSession) {
     // 新しい決済 → ランダムに選んで保存
     if (storedSession !== null) isRepeatBuyer = true;
-    pickedIdx = Math.floor(Math.random() * MESSAGE_IMAGES.length);
-    localStorage.setItem('mw_reward_idx',  pickedIdx);
-    localStorage.setItem('mw_session_id',  sessionId);
+    if (Math.random() < LEGENDARY_PROB) {
+      isLegendary = true;
+      pickedIdx = -1; // 伝説カード
+    } else {
+      pickedIdx = Math.floor(Math.random() * MESSAGE_IMAGES.length);
+    }
+    localStorage.setItem('mw_reward_idx',     pickedIdx);
+    localStorage.setItem('mw_is_legendary',   isLegendary ? '1' : '0');
+    localStorage.setItem('mw_session_id',     sessionId);
   } else if (storedIdx !== null) {
     // 同じURLを再訪問 → 前回と同じ画像
-    pickedIdx = parseInt(storedIdx, 10);
+    pickedIdx   = parseInt(storedIdx, 10);
+    isLegendary = localStorage.getItem('mw_is_legendary') === '1';
   } else {
     // sessionIdなしの初訪問（テスト用など）→ ランダム
-    pickedIdx = Math.floor(Math.random() * MESSAGE_IMAGES.length);
-    localStorage.setItem('mw_reward_idx', pickedIdx);
+    if (Math.random() < LEGENDARY_PROB) {
+      isLegendary = true;
+      pickedIdx = -1;
+    } else {
+      pickedIdx = Math.floor(Math.random() * MESSAGE_IMAGES.length);
+    }
+    localStorage.setItem('mw_reward_idx',   pickedIdx);
+    localStorage.setItem('mw_is_legendary', isLegendary ? '1' : '0');
   }
 
   // ニックネームで呼びかけ（未入力なら「あなた」）
@@ -272,11 +288,34 @@
 
   // checkout.htmlで決定したキャラクターをlocalStorageから取得して優先使用
   const storedChar = localStorage.getItem('mw_selected_character');
-  const picked = storedChar
-    ? `images/project/rewards/messages/message-card-${storedChar.replace(/_/g, '-')}.png?v=20260403`
-    : MESSAGE_IMAGES[pickedIdx];
+  let picked;
+  if (isLegendary && !storedChar) {
+    picked = LEGENDARY_IMAGE;
+  } else if (storedChar) {
+    picked = `images/project/rewards/messages/message-card-${storedChar.replace(/_/g, '-')}.png?v=20260403`;
+  } else {
+    picked = MESSAGE_IMAGES[pickedIdx];
+  }
+
   const img    = document.getElementById('message-image');
   const dlBtn  = document.getElementById('message-dl-btn');
+
+  // 伝説カード当選時：ビジュアル演出
+  if (isLegendary && !storedChar) {
+    const wrap = document.getElementById('message-image-wrap');
+    wrap.insertAdjacentHTML('beforebegin', `
+      <div id="legendary-banner" style="
+        text-align:center; margin-bottom:1rem;
+        animation: fadeIn 1s ease;
+      ">
+        <p style="font-family:var(--font-heading); font-size:0.65rem; letter-spacing:0.25em; color:rgba(201,162,39,0.7); margin-bottom:0.3rem;">✦ LEGENDARY ✦</p>
+        <p style="font-size:1.1rem; color:var(--gold); font-family:var(--font-heading); letter-spacing:0.1em;">キャプテンギター</p>
+        <p style="font-size:0.75rem; color:var(--purple-pale); margin-top:0.3rem;">伝説のカードが出ました…！</p>
+      </div>
+    `);
+    img.style.boxShadow = '0 0 40px rgba(201,162,39,0.5)';
+    img.style.border    = '2px solid rgba(201,162,39,0.7)';
+  }
 
   img.src = picked;
   img.onload = () => {
