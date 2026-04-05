@@ -155,15 +155,43 @@
     .card-sample-item {
       text-align: center;
     }
-    .card-sample-item img {
-      width: 100%;
+    .card-sample-img-wrap {
+      position: relative;
+      display: block;
       border-radius: 8px;
+      overflow: hidden;
       border: 1px solid rgba(201,162,39,0.2);
       transition: transform 0.25s, box-shadow 0.25s;
+      user-select: none;
+      -webkit-user-select: none;
     }
-    .card-sample-item img:hover {
+    .card-sample-img-wrap:hover {
       transform: translateY(-4px) scale(1.03);
       box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+    }
+    .card-sample-img-wrap img {
+      width: 100%;
+      display: block;
+      filter: brightness(0.6);
+      pointer-events: none;
+      -webkit-user-drag: none;
+    }
+    .card-sample-img-wrap::after {
+      content: 'SAMPLE';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%) rotate(-25deg);
+      font-family: var(--font-heading);
+      font-size: clamp(0.9rem, 4vw, 1.4rem);
+      font-weight: bold;
+      letter-spacing: 0.2em;
+      color: rgba(255,255,255,0.55);
+      text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+      border: 2px solid rgba(255,255,255,0.35);
+      padding: 0.15em 0.5em;
+      border-radius: 3px;
+      pointer-events: none;
+      white-space: nowrap;
     }
     .card-sample-label {
       font-family: var(--font-heading);
@@ -496,27 +524,39 @@
     </p>
     <div class="card-sample-gallery fade-in">
       <div class="card-sample-item">
-        <img src="images/project/rewards/messages/message-card-violin-princess.png?v=20260403" alt="バイオリン姫">
+        <div class="card-sample-img-wrap">
+          <img src="images/project/rewards/messages/message-card-violin-princess.png?v=20260403" alt="バイオリン姫">
+        </div>
         <p class="card-sample-label">バイオリン姫</p>
       </div>
       <div class="card-sample-item">
-        <img src="images/project/rewards/messages/message-card-sax-knight.png?v=20260403" alt="サックスフォーン騎士">
+        <div class="card-sample-img-wrap">
+          <img src="images/project/rewards/messages/message-card-sax-knight.png?v=20260403" alt="サックスフォーン騎士">
+        </div>
         <p class="card-sample-label">サックスフォーン騎士</p>
       </div>
       <div class="card-sample-item">
-        <img src="images/project/rewards/messages/message-card-castanet.png?v=20260403" alt="カスタネット坊や">
+        <div class="card-sample-img-wrap">
+          <img src="images/project/rewards/messages/message-card-castanet.png?v=20260403" alt="カスタネット坊や">
+        </div>
         <p class="card-sample-label">カスタネット坊や</p>
       </div>
       <div class="card-sample-item">
-        <img src="images/project/rewards/messages/message-card-piano-prince.png?v=20260403" alt="ピアノ王子">
+        <div class="card-sample-img-wrap">
+          <img src="images/project/rewards/messages/message-card-piano-prince.png?v=20260403" alt="ピアノ王子">
+        </div>
         <p class="card-sample-label">ピアノ王子</p>
       </div>
       <div class="card-sample-item">
-        <img src="images/project/rewards/messages/message-card-clarinet-princess.png?v=20260403" alt="クラリネット姫">
+        <div class="card-sample-img-wrap">
+          <img src="images/project/rewards/messages/message-card-clarinet-princess.png?v=20260403" alt="クラリネット姫">
+        </div>
         <p class="card-sample-label">クラリネット姫</p>
       </div>
       <div class="card-sample-item">
-        <img src="images/project/rewards/messages/message-card-master-tact.png?v=20260403" alt="マスタータクト">
+        <div class="card-sample-img-wrap">
+          <img src="images/project/rewards/messages/message-card-master-tact.png?v=20260403" alt="マスタータクト">
+        </div>
         <p class="card-sample-label">マスタータクト</p>
       </div>
     </div>
