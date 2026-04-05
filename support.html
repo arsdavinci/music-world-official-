@@ -142,6 +142,47 @@
       top: 0.1rem;
     }
 
+    /* ============================================================
+       Card Sample Gallery
+    ============================================================ */
+    .card-sample-gallery {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 1rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .card-sample-item {
+      text-align: center;
+    }
+    .card-sample-item img {
+      width: 100%;
+      border-radius: 8px;
+      border: 1px solid rgba(201,162,39,0.2);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .card-sample-item img:hover {
+      transform: translateY(-4px) scale(1.03);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+    }
+    .card-sample-label {
+      font-family: var(--font-heading);
+      font-size: 0.68rem;
+      color: var(--text-pale);
+      letter-spacing: 0.06em;
+      margin-top: 0.4rem;
+    }
+    @media (max-width: 760px) {
+      .card-sample-gallery {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    @media (max-width: 480px) {
+      .card-sample-gallery {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
     /* Physical / Special section inside producer card */
     .plan-section-label {
       font-family: var(--font-heading);
@@ -443,6 +484,46 @@
     </div>
 
   </div><!-- /.support-plans -->
+
+  <!-- お礼メッセージカード サンプルギャラリー -->
+  <div class="section" style="padding-top:3rem; padding-bottom:0;">
+    <div class="gold-divider fade-in"><span class="icon">♦</span></div>
+    <h2 class="section-title fade-in" style="margin-top:2rem;">お礼メッセージカード</h2>
+    <p class="section-subtitle fade-in">6 Characters</p>
+    <p class="fade-in" style="text-align:center; color:var(--purple-pale); font-size:0.88rem; max-width:620px; margin:0 auto 2rem; line-height:2;">
+      全プランにお礼メッセージカード（デジタル）をお送りします。<br>
+      Supporterプランはランダム、Story Supporter以上はお好きなキャラクターを選択いただけます。
+    </p>
+    <div class="card-sample-gallery fade-in">
+      <div class="card-sample-item">
+        <img src="images/project/rewards/messages/message-card-violin-princess.png?v=20260403" alt="バイオリン姫">
+        <p class="card-sample-label">バイオリン姫</p>
+      </div>
+      <div class="card-sample-item">
+        <img src="images/project/rewards/messages/message-card-sax-knight.png?v=20260403" alt="サックスフォーン騎士">
+        <p class="card-sample-label">サックスフォーン騎士</p>
+      </div>
+      <div class="card-sample-item">
+        <img src="images/project/rewards/messages/message-card-castanet.png?v=20260403" alt="カスタネット坊や">
+        <p class="card-sample-label">カスタネット坊や</p>
+      </div>
+      <div class="card-sample-item">
+        <img src="images/project/rewards/messages/message-card-piano-prince.png?v=20260403" alt="ピアノ王子">
+        <p class="card-sample-label">ピアノ王子</p>
+      </div>
+      <div class="card-sample-item">
+        <img src="images/project/rewards/messages/message-card-clarinet-princess.png?v=20260403" alt="クラリネット姫">
+        <p class="card-sample-label">クラリネット姫</p>
+      </div>
+      <div class="card-sample-item">
+        <img src="images/project/rewards/messages/message-card-master-tact.png?v=20260403" alt="マスタータクト">
+        <p class="card-sample-label">マスタータクト</p>
+      </div>
+    </div>
+    <p class="fade-in" style="text-align:center; font-size:0.75rem; color:var(--text-pale); margin-top:1rem;">
+      ※ Supporterプランのみランダム配布。他プランはご自身でキャラクターを選択できます。
+    </p>
+  </div>
 
   <!-- ぬいぐるみセクション -->
   <div class="section" style="padding-top:3rem; padding-bottom:0;">
