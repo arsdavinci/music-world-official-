@@ -331,9 +331,8 @@
       notice.style.display = 'none';
       return;
     }
-    const current = supporterTotals.get(val).toLocaleString();
     notice.style.display = 'block';
-    notice.textContent   = `⚠ この掲載名はすでに登録されています（現在の累計支援額：¥${current}）。今回の支援分も合算されます。`;
+    notice.textContent   = '⚠ この掲載名はすでに登録されています。今回の支援分も累計に合算されます。';
   });
 
   // Stripe Payment Links — プランごとに設定（Stripeダッシュボードで取得したURLを貼る）
