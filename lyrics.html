@@ -509,7 +509,10 @@
       isSeeking = false;
     });
     seekBar.addEventListener('mouseup',  () => { isSeeking = false; });
-    seekBar.addEventListener('touchend', () => { isSeeking = false; });
+    seekBar.addEventListener('touchend', () => {
+      audio.currentTime = parseFloat(seekBar.value);
+      isSeeking = false;
+    });
 
     /* ── 音量 ── */
     function updateVolIcon(v) {
