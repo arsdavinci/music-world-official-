@@ -321,8 +321,11 @@
 
       <!-- 表紙画像カルーセル -->
       <div class="book-cover">
-        <img id="book-cover-img" style="cursor:zoom-in;"
-             src="images/books/Music World_FrontCover with Obi.png" alt="MUSIC WORLD 表紙">
+        <picture>
+    <source srcset="images/books/Music World_FrontCover with Obi.webp" type="image/webp">
+    <img id="book-cover-img" style="cursor:zoom-in;"
+             src="images/books/Music World_FrontCover with Obi.png" alt="MUSIC WORLD 表紙" loading="lazy">
+    </picture>
         <div id="book-dots" style="display:flex;gap:8px;justify-content:center;"></div>
       </div>
 

@@ -303,7 +303,7 @@ footer .footer-logo-sub {
   position: relative; overflow: hidden;
 
   /* キービジュアル背景 */
-  background-image: url('../images/background/hero-background-main.png');
+  background-image: url('../images/background/hero-background-main.webp');
   background-size: cover;
   background-position: center top;
   background-attachment: fixed; /* PC: パララックス */
@@ -387,7 +387,7 @@ footer .footer-logo-sub {
 /* ── トップページ専用スタイル ── */
 /* stars-bg をキービジュアルに差し替え（スクロール後も背景が続く） */
 .page-top .stars-bg {
-  background: url('../images/background/hero-background-main.png') center top / cover no-repeat;
+  background: url('../images/background/hero-background-main.webp') center top / cover no-repeat;
 }
 /* トップページでは stars-bg のスパークルアニメーションを非表示 */
 .page-top .stars-bg::before,
