@@ -537,6 +537,13 @@
     const anonymous    = document.getElementById('anonymous').checked ? '1' : '0';
     // パイプ文字はデリミタなので除去
     const message      = (document.getElementById('message').value.trim()).replace(/\|/g, '');
+    // 住所（physical特典用）
+    const postal      = (document.getElementById('postal')?.value     || '').trim().replace(/\|/g, '');
+    const prefecture  = (document.getElementById('prefecture')?.value  || '').trim();
+    const addrLine1   = (document.getElementById('address')?.value     || '').trim().replace(/\|/g, '');
+    const addrLine2   = (document.getElementById('address2')?.value    || '').trim().replace(/\|/g, '');
+    const fullName    = (document.getElementById('full_name')?.value   || '').trim().replace(/\|/g, '');
+    const address     = [postal, prefecture, addrLine1, addrLine2, fullName].filter(Boolean).join(' ');
 
     const price = parseInt(selected.dataset.price, 10);
 
@@ -563,16 +570,16 @@
     localStorage.setItem('mw_anonymous', anonymous);
 
     // client_reference_id: Zapierが受け取る全データ
-    // フォーマット（パイプ区切り6フィールド固定）:
-    //   plan|character|nickname|display_name|anonymous|message
-    // 例: story_supporter|violin_princess|らむねさん|田中太郎|0|応援してます！
+    // フォーマット（パイプ区切り7フィールド固定）:
+    //   plan|character|nickname|display_name|anonymous|message|address
     const refId = [
       selected.value,   // 1: プラン
       charValue,        // 2: キャラクター
       nickname,         // 3: ニックネーム
       displayName,      // 4: 掲載名
       anonymous,        // 5: 匿名フラグ（0=掲載可, 1=匿名希望）
-      message           // 6: ひとこと
+      message,          // 6: ひとこと
+      address           // 7: 配送先住所（郵便番号 都道府県 住所 建物 氏名）
     ].join('|');
 
     // Base64 URL-safeエンコード（日本語・パイプ文字をStripeが拒否するため）
