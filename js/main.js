@@ -1766,7 +1766,15 @@ function saveBGMState(audio) {
 }
 
 function loadBGMState() {
-  try { return JSON.parse(localStorage.getItem(BGM_KEY) || '{}'); }
+  try {
+    const state = JSON.parse(localStorage.getItem(BGM_KEY) || '{}');
+    // BGM_KEY の time が 0 または未記録の場合、BGM_POS_KEY の最終位置を使う
+    if (!(state.time > 0)) {
+      const pos = parseFloat(localStorage.getItem('bgm_last_pos') || '0');
+      if (pos > 0) state.time = pos;
+    }
+    return state;
+  }
   catch(e) { return {}; }
 }
 
@@ -1912,30 +1920,49 @@ function initBGMPlayer() {
       `linear-gradient(to right, #d4af37 ${pct}%, rgba(212,175,55,0.22) ${pct}%)`;
   }
 
+  /* ── 再生位置を定期的にlocalStorageへ記録（モバイル対策） ── */
+  // iOS/Androidはbeforeunloadやvisibilitychangeの時点でaudio.currentTimeが
+  // すでに0にリセットされている場合があるため、再生中は常に最新位置を保持する。
+  const BGM_POS_KEY = 'bgm_last_pos';
+  let _lastKnownTime = 0;
+  function _savePos() {
+    if (!audio.paused && audio.currentTime > 0) {
+      _lastKnownTime = audio.currentTime;
+      try { localStorage.setItem(BGM_POS_KEY, String(_lastKnownTime)); } catch(e) {}
+    }
+  }
+
   /* ── ページ遷移前に状態保存 ── */
   function saveCurrent() {
-    // audio.paused はブラウザ自動再生制限で true になる場合がある。
-    // ユーザーが意図的に停止していなければ「再生中」として保存する。
+    // currentTimeがすでにリセットされている場合は最後に記録した値を使う
+    const time = (audio.currentTime > 0) ? audio.currentTime : _lastKnownTime;
     const consent = localStorage.getItem(BGM_CONSENT_KEY);
     if (consent === 'yes' && !window._bgmUserPaused) {
       try {
         localStorage.setItem(BGM_KEY, JSON.stringify({
-          time:    audio.currentTime,
+          time:    time,
           playing: true,
           volume:  audio.volume,
         }));
       } catch(e) {}
     } else {
-      saveBGMState(audio);
+      try {
+        localStorage.setItem(BGM_KEY, JSON.stringify({
+          time:    time,
+          playing: !audio.paused,
+          volume:  audio.volume,
+        }));
+      } catch(e) {}
     }
   }
   window.addEventListener('beforeunload', saveCurrent);
+  window.addEventListener('pagehide',     saveCurrent);
   document.addEventListener('visibilitychange', () => { if (document.hidden) saveCurrent(); });
 
   /* ── audio イベント ── */
   audio.addEventListener('play',  () => setPlaying(true));
   audio.addEventListener('pause', () => setPlaying(false));
-  audio.addEventListener('timeupdate', updateSeek);
+  audio.addEventListener('timeupdate', () => { updateSeek(); _savePos(); });
   audio.addEventListener('loadedmetadata', () => {
     durationEl.textContent = formatTime(audio.duration);
     updateSeek();
