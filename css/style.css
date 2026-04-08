@@ -151,6 +151,22 @@ nav ul li a.nav-project:hover {
   text-shadow: none;
 }
 
+/* Support nav button */
+nav ul li a.nav-support {
+  color: var(--gold);
+  border-color: rgba(201,162,39,0.6);
+  background: rgba(201,162,39,0.08);
+  border-radius: 3px;
+  font-weight: 600;
+  padding: 0.4rem 0.8rem;
+}
+nav ul li a.nav-support:hover {
+  color: #fff;
+  background: rgba(201,162,39,0.25);
+  border-color: var(--gold);
+  box-shadow: 0 0 10px rgba(201,162,39,0.3);
+}
+
 /* Hamburger */
 .hamburger { display: none; cursor: pointer; background: none; border: none; padding: 0.5rem; }
 .hamburger span {
