@@ -151,8 +151,8 @@ nav ul li a.nav-project:hover {
   text-shadow: none;
 }
 
-/* Support nav button */
-nav ul li a.nav-support {
+/* Supporters nav highlight */
+nav ul li a.nav-supporters {
   color: var(--gold);
   border-color: rgba(201,162,39,0.6);
   background: rgba(201,162,39,0.08);
@@ -160,11 +160,19 @@ nav ul li a.nav-support {
   font-weight: 600;
   padding: 0.4rem 0.8rem;
 }
-nav ul li a.nav-support:hover {
+nav ul li a.nav-supporters:hover {
   color: #fff;
   background: rgba(201,162,39,0.25);
   border-color: var(--gold);
   box-shadow: 0 0 10px rgba(201,162,39,0.3);
+}
+/* Footer support links */
+.footer-links a.footer-support,
+.footer-links a.footer-supporters {
+  color: var(--gold);
+}
+.footer-links a.footer-supporters {
+  font-weight: 600;
 }
 
 /* Hamburger */
