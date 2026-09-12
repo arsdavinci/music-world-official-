@@ -1239,7 +1239,7 @@ const i18n_en = {
   /* ─ index.html ─ */
   'index-title':'Music World ~ Violin Princess and the Magic Symphony ~ | Official Site',
   'index-tagline':'A symphony that saves the world, woven from different tones——<br>When the music of four kingdoms becomes one, a miracle is born.',
-  'index-announce':'✦ &nbsp; 24 Chapters Complete &nbsp;&nbsp;|&nbsp;&nbsp; Four Kingdoms · 19 Characters &nbsp;&nbsp;|&nbsp;&nbsp; BGM "Symphony of One World" &nbsp; ✦',
+  'index-announce':'✦ &nbsp; 24 Chapters Complete &nbsp;&nbsp;|&nbsp;&nbsp; Four Kingdoms · 23 Characters &nbsp;&nbsp;|&nbsp;&nbsp; BGM "Symphony of One World" &nbsp; ✦',
   'index-section-title':'A Story of Different Tones Saving the World',
   'index-card1-h':'Music is Magic',
   'index-card1-p':'Strings, winds, percussion, keys—each kingdom\'s instrument carries its own magical power. The delicate melody of Violin Princess holds the power to move hearts and change the world.',
@@ -1250,7 +1250,7 @@ const i18n_en = {
   'index-card4-h':'An Epic Story of 24 Chapters',
   'index-card4-p':'From a princess\'s escape after her family is taken, training with a master, bonds with allies, to a Grand Symphony that saves the world—a deep, moving story spanning 24 chapters.',
   'index-nav-story-sub':'World, synopsis & chapter list',
-  'index-nav-char-sub':'19 colorful characters',
+  'index-nav-char-sub':'23 colorful characters',
   'index-nav-world-sub':'The four musical kingdoms',
   'index-nav-gallery-sub':'Stills, artwork & design sheets',
   /* ─ story.html ─ */
@@ -1496,7 +1496,7 @@ const i18n_zh = {
   /* ─ index.html ─ */
   'index-title':'音乐世界 ～小提琴公主与魔法交响乐～ | 官方网站',
   'index-tagline':'不同音色交织出拯救世界的交响乐——<br>当四个王国的音乐合而为一，奇迹便会诞生。',
-  'index-announce':'✦ &nbsp; 全24章 完结 &nbsp;&nbsp;|&nbsp;&nbsp; 四个王国・19位角色 &nbsp;&nbsp;|&nbsp;&nbsp; BGM「Symphony of One World」 &nbsp; ✦',
+  'index-announce':'✦ &nbsp; 全24章 完结 &nbsp;&nbsp;|&nbsp;&nbsp; 四个王国・23位角色 &nbsp;&nbsp;|&nbsp;&nbsp; BGM「Symphony of One World」 &nbsp; ✦',
   'index-section-title':'不同音色交织出的拯救世界之故事',
   'index-card1-h':'音乐即魔法',
   'index-card1-p':'弦・管・打・键——四个王国各自的乐器拥有独特的魔法力量。小提琴公主演奏的细腻旋律，蕴藏着感动人心、改变世界的力量。',
@@ -1507,7 +1507,7 @@ const i18n_zh = {
   'index-card4-h':'全24章的壮阔故事',
   'index-card4-p':'从家人被夺走的公主出逃，到师傅的修行、伙伴间的羁绊，直至拯救世界的大交响乐——跨越24章的深刻感人故事。',
   'index-nav-story-sub':'世界观・剧情・章节列表',
-  'index-nav-char-sub':'19位个性鲜明的角色',
+  'index-nav-char-sub':'23位个性鲜明的角色',
   'index-nav-world-sub':'四个音乐王国',
   'index-nav-gallery-sub':'剧照・艺术图・设定资料',
   /* ─ story.html ─ */
