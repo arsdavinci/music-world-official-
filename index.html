@@ -51,8 +51,9 @@
   }
   </script>
   <link rel="icon" href="images/logos/favicon.png" type="image/png">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/effects.css">
+  <link rel="stylesheet" href="css/style.css?v=20261002a">
+  <link rel="stylesheet" href="css/effects.css?v=20261002a">
+  <link rel="stylesheet" href="css/premium.css?v=20261002a">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WZSLHDJ1MQ"></script>
   <script>
@@ -85,8 +86,8 @@
         <li><a href="gallery.html"    data-i18n="nav-gallery">ギャラリー</a></li>
         <li><a href="lyrics.html"     data-i18n="nav-lyrics">歌詞</a></li>
         <li><a href="book.html"       data-i18n="nav-book">絵本</a></li>
-        <li><a href="project.html" class="nav-project">Project</a></li>
-        <li><a href="support.html" class="nav-support">支援する</a></li>
+        <li><a href="project.html" class="nav-project" data-i18n="nav-project">Project</a></li>
+        <li><a href="support.html" class="nav-support" data-i18n="nav-support">支援する</a></li>
         <li><a href="supporters.html" class="nav-supporters">SUPPORTERS</a></li>
       </ul>
     </nav>
@@ -99,98 +100,197 @@
 </header>
 
 <!-- ── Hero ── -->
-<section class="hero">
+<section class="hero hm-hero" id="top">
+  <div class="hm-hero__bg" aria-hidden="true"></div>
+  <div class="hm-hero__rays" aria-hidden="true"></div>
+  <canvas class="hm-hero__sparkles" aria-hidden="true"></canvas>
+  <div class="hm-hero__veil" aria-hidden="true"></div>
   <h1 class="hero-title">
-    <picture>
-    <source srcset="images/logos/title-logo.webp" type="image/webp">
-    <img src="images/logos/title-logo.png" alt="ミュージックワールド バイオリン姫と魔法のシンフォニー" class="hero-title-logo">
-    </picture>
+    <span class="hm-logo-wrap">
+      <picture>
+        <source srcset="images/logos/title-logo.webp" type="image/webp">
+        <img src="images/logos/title-logo.png" alt="ミュージックワールド バイオリン姫と魔法のシンフォニー" class="hero-title-logo" width="1525" height="653" fetchpriority="high">
+      </picture>
+      <span class="hm-logo-shine" aria-hidden="true"></span>
+    </span>
   </h1>
   <div class="hero-buttons">
-    <a href="story.html" class="btn btn-hero"><span data-i18n="btn-view-story">ストーリーを見る</span></a>
+    <a href="story.html" class="btn btn-hero hm-btn-main"><span data-i18n="btn-view-story">ストーリーを見る</span></a>
     <a href="characters.html" class="btn btn-hero"><span data-i18n="btn-meet-characters">キャラクター紹介</span></a>
     <a href="project.html" class="btn btn-hero"><span>PROJECT</span></a>
   </div>
+  <a href="#intro" class="hm-scroll" aria-label="下へスクロール">SCROLL<i></i></a>
 </section>
 
-<!-- ── Hero Tagline ── -->
-<div class="hero-tagline-band">
-  <p class="hero-tagline" data-i18n="index-tagline" data-i18n-html>
-    異なる音色が奏でる、世界を救うシンフォニー——<br>
-    弦・管・打・鍵、四つの国の音楽が一つになるとき奇跡が生まれる。
-  </p>
-</div>
-
-<!-- ── Announcement ── -->
+<!-- ── Announcement（premium.js がティッカーに変換） ── -->
 <div class="announcement-band" data-i18n="index-announce" data-i18n-html>
   ✦ &nbsp; 全24章 完結 &nbsp;&nbsp;|&nbsp;&nbsp; 四つの国、19人のキャラクター &nbsp;&nbsp;|&nbsp;&nbsp; BGM「Symphony of One World」 &nbsp; ✦
 </div>
 
 <!-- ── Introduction ── -->
-<div class="hero-intro-wrap">
-<div class="section">
-  <h2 class="section-title fade-in" data-i18n="index-section-title">異なる音色が奏でる世界を救う物語</h2>
-  <p class="section-subtitle fade-in">A Symphony That Saves the World</p>
-
-  <div class="info-grid">
-    <div class="info-card card fade-in">
-      <div class="icon-wrap">🎻</div>
-      <h3 data-i18n="index-card1-h">音楽は魔法</h3>
-      <p data-i18n="index-card1-p">弦・管・打・鍵——四つの国それぞれの音楽が持つ固有の魔法の力。バイオリン姫が奏でる繊細な旋律は、人々の心を動かし世界を変える力を秘めている。</p>
+<section class="hm-section hm-intro" id="intro">
+  <div class="hm-wrap hm-intro__grid">
+    <div class="hm-intro__text">
+      <span class="hm-eyebrow pm-reveal">About the Story</span>
+      <h2 class="hm-h2 pm-reveal" data-i18n="index-section-title">異なる音色が奏でる世界を救う物語</h2>
+      <p class="hm-intro__tagline pm-reveal" data-i18n="index-tagline" data-i18n-html>
+        異なる音色が奏でる、世界を救うシンフォニー——<br>
+        弦・管・打・鍵、四つの国の音楽が一つになるとき奇跡が生まれる。
+      </p>
+      <div class="hm-stats pm-reveal">
+        <div class="hm-stat"><b data-count="24">24</b><span>Chapters</span></div>
+        <div class="hm-stat"><b data-count="4">4</b><span>Kingdoms</span></div>
+        <div class="hm-stat"><b data-count="1">1</b><span>Symphony</span></div>
+      </div>
     </div>
-    <div class="info-card card fade-in">
-      <div class="icon-wrap">🌟</div>
-      <h3 data-i18n="index-card2-h">四つの対立する国</h3>
-      <p data-i18n="index-card2-p">ゲンガク・カンガク・ダガク・ケンバンガク——それぞれが独自の文化と音楽の魔法を持ち、対立と友情の狭間で揺れる四国の物語。</p>
-    </div>
-    <div class="info-card card fade-in">
-      <div class="icon-wrap">💫</div>
-      <h3 data-i18n="index-card3-h">感動のシンフォニー</h3>
-      <p data-i18n="index-card3-p">かつての敵と手を組み、仲間と絆を深め、師に学ぶ——すべての旅が一つのシンフォニーへと収束するクライマックスは、見た者の心を永遠に揺さぶる。</p>
-    </div>
-    <div class="info-card card fade-in">
-      <div class="icon-wrap">🎼</div>
-      <h3 data-i18n="index-card4-h">全24章の壮大な物語</h3>
-      <p data-i18n="index-card4-p">家族を奪われた姫の脱出から、師との修行、仲間との絆、そして世界を救うグランドシンフォニーまで——24章にわたる深く感動的な物語。</p>
+    <div class="hm-pillars">
+      <article class="hm-pillar pm-reveal" data-num="01">
+        <div class="hm-pillar__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20 15 9"/><path d="M15 9l2.2-2.2"/><path d="M18.5 2.5l.6 1.6 1.6.6-1.6.6-.6 1.6-.6-1.6-1.6-.6 1.6-.6z"/><path d="M9 3.5v3M7.5 5h3M20 12.5v3M18.5 14h3"/></svg></div>
+        <h3 data-i18n="index-card1-h">音楽は魔法</h3>
+        <p data-i18n="index-card1-p">弦・管・打・鍵——四つの国それぞれの音楽が持つ固有の魔法の力。バイオリン姫が奏でる繊細な旋律は、人々の心を動かし世界を変える力を秘めている。</p>
+      </article>
+      <article class="hm-pillar pm-reveal" data-num="02">
+        <div class="hm-pillar__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l4.5 4L12 5l4.5 7L21 8l-2 11H5z"/><path d="M5 19h14"/><circle cx="12" cy="13.5" r="1.2"/></svg></div>
+        <h3 data-i18n="index-card2-h">四つの対立する国</h3>
+        <p data-i18n="index-card2-p">ゲンガク・カンガク・ダガク・ケンバンガク——それぞれが独自の文化と音楽の魔法を持ち、対立と友情の狭間で揺れる四国の物語。</p>
+      </article>
+      <article class="hm-pillar pm-reveal" data-num="03">
+        <div class="hm-pillar__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-9.5A3.9 3.9 0 0 1 12 8a3.9 3.9 0 0 1 7 2.5C19 15.6 12 20 12 20z"/><path d="M14 6V2.5l3 1"/></svg></div>
+        <h3 data-i18n="index-card3-h">感動のシンフォニー</h3>
+        <p data-i18n="index-card3-p">かつての敵と手を組み、仲間と絆を深め、師に学ぶ——すべての旅が一つのシンフォニーへと収束するクライマックスは、見た者の心を永遠に揺さぶる。</p>
+      </article>
+      <article class="hm-pillar pm-reveal" data-num="04">
+        <div class="hm-pillar__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5C10 5 7 4.5 3 5v13c4-.5 7 0 9 1.5 2-1.5 5-2 9-1.5V5c-4-.5-7 0-9 1.5z"/><path d="M12 6.5v13"/><path d="M6 9h3M6 12h3M15 9h3M15 12h3"/></svg></div>
+        <h3 data-i18n="index-card4-h">全24章の壮大な物語</h3>
+        <p data-i18n="index-card4-p">家族を奪われた姫の脱出から、師との修行、仲間との絆、そして世界を救うグランドシンフォニーまで——24章にわたる深く感動的な物語。</p>
+      </article>
     </div>
   </div>
-</div>
-</div><!-- /.hero-intro-wrap -->
+</section>
 
-<!-- ── Quick Nav ── -->
-<div class="section" style="text-align:center; padding-top: 0;">
-  <div class="gold-divider fade-in"><span class="icon">♦</span></div>
-  <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:1.5rem; margin-top:2rem;">
-    <a href="story.html" class="card fade-in" style="display:flex;align-items:center;gap:1rem;text-decoration:none;">
-      <span style="font-size:2rem;">📖</span>
-      <div>
-        <div style="font-family:var(--font-heading);color:var(--gold);letter-spacing:0.1em;font-size:0.9rem;" data-i18n="nav-story">ストーリー</div>
-        <div style="font-size:0.78rem;color:var(--purple-pale);" data-i18n="index-nav-story-sub">世界観・あらすじ・章構成</div>
-      </div>
-    </a>
-    <a href="characters.html" class="card fade-in" style="display:flex;align-items:center;gap:1rem;text-decoration:none;">
-      <span style="font-size:2rem;">👥</span>
-      <div>
-        <div style="font-family:var(--font-heading);color:var(--gold);letter-spacing:0.1em;font-size:0.9rem;" data-i18n="nav-characters">キャラクター</div>
-        <div style="font-size:0.78rem;color:var(--purple-pale);" data-i18n="index-nav-char-sub">18人の個性豊かなキャラクター</div>
-      </div>
-    </a>
-    <a href="world.html" class="card fade-in" style="display:flex;align-items:center;gap:1rem;text-decoration:none;">
-      <span style="font-size:2rem;">🗺️</span>
-      <div>
-        <div style="font-family:var(--font-heading);color:var(--gold);letter-spacing:0.1em;font-size:0.9rem;" data-i18n="nav-world">ワールド</div>
-        <div style="font-size:0.78rem;color:var(--purple-pale);" data-i18n="index-nav-world-sub">四つの音楽の国々</div>
-      </div>
-    </a>
-    <a href="gallery.html" class="card fade-in" style="display:flex;align-items:center;gap:1rem;text-decoration:none;">
-      <span style="font-size:2rem;">🖼️</span>
-      <div>
-        <div style="font-family:var(--font-heading);color:var(--gold);letter-spacing:0.1em;font-size:0.9rem;" data-i18n="nav-gallery">ギャラリー</div>
-        <div style="font-size:0.78rem;color:var(--purple-pale);" data-i18n="index-nav-gallery-sub">スチール・アート・設定資料</div>
-      </div>
-    </a>
+<!-- ── Four Kingdoms ── -->
+<section class="hm-section hm-kingdoms" id="kingdoms">
+  <div class="hm-wrap">
+    <div class="hm-head hm-head--center">
+      <span class="hm-eyebrow pm-reveal">Four Kingdoms</span>
+      <h2 class="hm-h2 pm-reveal" data-i18n="world-kingdoms-title">四つの音楽の国</h2>
+      <p class="hm-lead pm-reveal" data-i18n="home-kingdoms-lead">弦・管・打・鍵。それぞれの音楽が魔法となる、四つの国。パネルに触れて、旅の舞台をのぞいてみよう。</p>
+    </div>
+    <div class="hm-kingdoms__list pm-reveal">
+      <a href="world.html" class="hm-kingdom hm-kingdom--gengaku is-active" aria-expanded="true">
+        <img src="images/home/kingdom-gengaku.webp" alt="" loading="lazy" width="1280" height="720">
+        <span class="hm-kingdom__num">I</span>
+        <span class="hm-kingdom__vert" data-i18n="world-gengaku-name">ゲンガク国</span>
+        <div class="hm-kingdom__body">
+          <div class="hm-kingdom__sub">Kingdom of Strings</div>
+          <div class="hm-kingdom__name" data-i18n="world-gengaku-name">ゲンガク国</div>
+          <p class="hm-kingdom__desc" data-i18n="home-k-gengaku">桜色の城と水路がきらめく、伝統と気品の国。バイオリン姫の故郷であり、物語のはじまりの地。</p>
+          <span class="hm-kingdom__more"><span data-i18n="home-k-more">ワールドを見る</span> →</span>
+        </div>
+      </a>
+      <a href="world.html" class="hm-kingdom hm-kingdom--kangaku" aria-expanded="false">
+        <img src="images/home/kingdom-kangaku.webp" alt="" loading="lazy" width="1280" height="720">
+        <span class="hm-kingdom__num">II</span>
+        <span class="hm-kingdom__vert" data-i18n="world-kangaku-name">カンガク国</span>
+        <div class="hm-kingdom__body">
+          <div class="hm-kingdom__sub">Kingdom of Winds</div>
+          <div class="hm-kingdom__name" data-i18n="world-kangaku-name">カンガク国</div>
+          <p class="hm-kingdom__desc" data-i18n="home-k-kangaku">蒸気と真鍮が輝く、即興と活気の要塞都市。街角からはジャズのような演奏が聞こえてくる。</p>
+          <span class="hm-kingdom__more"><span data-i18n="home-k-more">ワールドを見る</span> →</span>
+        </div>
+      </a>
+      <a href="world.html" class="hm-kingdom hm-kingdom--dagaku" aria-expanded="false">
+        <img src="images/home/kingdom-dagaku.webp" alt="" loading="lazy" width="1280" height="720">
+        <span class="hm-kingdom__num">III</span>
+        <span class="hm-kingdom__vert" data-i18n="world-dagaku-name">ダガク国</span>
+        <div class="hm-kingdom__body">
+          <div class="hm-kingdom__sub">Kingdom of Percussion</div>
+          <div class="hm-kingdom__name" data-i18n="world-dagaku-name">ダガク国</div>
+          <p class="hm-kingdom__desc" data-i18n="home-k-dagaku">深い森の奥でリズムを刻む、部族の村々。狂いのない拍子とともに踊る暮らしが息づいている。</p>
+          <span class="hm-kingdom__more"><span data-i18n="home-k-more">ワールドを見る</span> →</span>
+        </div>
+      </a>
+      <a href="world.html" class="hm-kingdom hm-kingdom--kenban" aria-expanded="false">
+        <img src="images/home/kingdom-kenbangaku.webp" alt="" loading="lazy" width="1280" height="720">
+        <span class="hm-kingdom__num">IV</span>
+        <span class="hm-kingdom__vert" data-i18n="world-kenban-name">ケンバンガク国</span>
+        <div class="hm-kingdom__body">
+          <div class="hm-kingdom__sub">Kingdom of Keys</div>
+          <div class="hm-kingdom__name" data-i18n="world-kenban-name">ケンバンガク国</div>
+          <p class="hm-kingdom__desc" data-i18n="home-k-kenban">鍵盤のような街並みに尖塔がそびえる、神秘の帝国。ドラゴンの影が舞うという噂も絶えない。</p>
+          <span class="hm-kingdom__more"><span data-i18n="home-k-more">ワールドを見る</span> →</span>
+        </div>
+      </a>
+    </div>
   </div>
-</div>
+</section>
+
+<!-- ── Cast ── -->
+<section class="hm-section hm-cast" id="cast">
+  <div class="hm-wrap">
+    <div class="hm-head hm-cast__head">
+      <div>
+        <span class="hm-eyebrow pm-reveal">The Cast</span>
+        <h2 class="hm-h2 pm-reveal" data-i18n="home-cast-title" data-i18n-html>物語を彩る、<em>愛しき仲間たち</em></h2>
+        <p class="hm-lead pm-reveal" data-i18n="home-cast-lead">勇敢な姫、黄金の騎士、謎めいた王子——個性豊かなキャラクターたちが、ひとつのシンフォニーを奏でる。</p>
+      </div>
+      <div class="hm-cast__nav pm-reveal">
+        <button type="button" class="hm-round-btn" data-cast-prev aria-label="前へ">←</button>
+        <button type="button" class="hm-round-btn" data-cast-next aria-label="次へ">→</button>
+      </div>
+    </div>
+  </div>
+  <div class="hm-cast__track" tabindex="0" aria-label="キャラクター一覧">
+    <a href="characters.html" class="hm-cast__card pm-reveal" style="--pos:52%"><img src="images/home/cast-violin-princess.webp" alt="" loading="lazy" draggable="false"><span class="hm-cast__badge" aria-hidden="true">♪</span><span class="hm-cast__info"><span class="hm-cast__role" data-i18n="char-violin-role">主人公</span><span class="hm-cast__name" data-i18n="char-violin-name">バイオリン姫</span></span></a>
+    <a href="characters.html" class="hm-cast__card pm-reveal" style="--pos:45%"><img src="images/home/cast-sax-knight.webp" alt="" loading="lazy" draggable="false"><span class="hm-cast__badge" aria-hidden="true">♫</span><span class="hm-cast__info"><span class="hm-cast__role" data-i18n="char-sax-role">騎士団大将</span><span class="hm-cast__name" data-i18n="char-sax-name">サックス</span></span></a>
+    <a href="characters.html" class="hm-cast__card pm-reveal" style="--pos:40%"><img src="images/home/cast-piano-prince.webp" alt="" loading="lazy" draggable="false"><span class="hm-cast__badge" aria-hidden="true">♩</span><span class="hm-cast__info"><span class="hm-cast__role" data-i18n="char-piano-role">ケンバンガク国 王子</span><span class="hm-cast__name" data-i18n="char-piano-name">ピアノ王子</span></span></a>
+    <a href="characters.html" class="hm-cast__card pm-reveal" style="--pos:78%"><img src="images/home/cast-master-tact.webp" alt="" loading="lazy" draggable="false"><span class="hm-cast__badge" aria-hidden="true">𝄞</span><span class="hm-cast__info"><span class="hm-cast__role" data-i18n="char-maestro-role">伝説の音楽家</span><span class="hm-cast__name" data-i18n="char-maestro-name">マスタータクト</span></span></a>
+    <a href="characters.html" class="hm-cast__card pm-reveal" style="--pos:48%"><img src="images/home/cast-clarinet-princess.webp" alt="" loading="lazy" draggable="false"><span class="hm-cast__badge" aria-hidden="true">♬</span><span class="hm-cast__info"><span class="hm-cast__role" data-i18n="char-clarinet-role">カンガク国 姫</span><span class="hm-cast__name" data-i18n="char-clarinet-name">クラリネット姫</span></span></a>
+    <a href="characters.html" class="hm-cast__card pm-reveal" style="--pos:52%"><img src="images/home/cast-castanet.webp" alt="" loading="lazy" draggable="false"><span class="hm-cast__badge" aria-hidden="true">♪</span><span class="hm-cast__info"><span class="hm-cast__role" data-i18n="char-castanet-role">ダガク国の子供</span><span class="hm-cast__name" data-i18n="char-castanet-name">カスタネット</span></span></a>
+    <a href="characters.html" class="hm-cast__card pm-reveal" style="--pos:76%"><img src="images/home/cast-harp-queen.webp" alt="" loading="lazy" draggable="false"><span class="hm-cast__badge" aria-hidden="true">♫</span><span class="hm-cast__info"><span class="hm-cast__role" data-i18n="char-harp-role">女王 / 姫の母</span><span class="hm-cast__name" data-i18n="char-harp-name">ハープ女王</span></span></a>
+    <a href="characters.html" class="hm-cast__card pm-reveal" style="--pos:45%"><img src="images/home/cast-pipe-organ-witch.webp" alt="" loading="lazy" draggable="false"><span class="hm-cast__badge" aria-hidden="true">♩</span><span class="hm-cast__info"><span class="hm-cast__role" data-i18n="char-pipeorgan-role">黒幕</span><span class="hm-cast__name" data-i18n="char-pipeorgan-name">パイプオルガン魔女</span></span></a>
+    <a href="characters.html" class="hm-cast__card hm-cast__card--more pm-reveal"><span class="hm-cast__more-inner"><b>→</b><span data-i18n="home-cast-more">すべてのキャラクターを見る</span></span></a>
+  </div>
+</section>
+
+<!-- ── Explore ── -->
+<section class="hm-section hm-explore" id="explore">
+  <div class="hm-wrap">
+    <div class="hm-head hm-head--center">
+      <span class="hm-eyebrow pm-reveal">Explore</span>
+      <h2 class="hm-h2 pm-reveal" data-i18n="home-explore-title" data-i18n-html>物語の<em>扉をひらく</em></h2>
+    </div>
+    <div class="hm-tiles">
+      <a href="story.html" class="hm-tile pm-reveal"><img src="images/story/magic-score-main.webp" alt="" loading="lazy"><span class="hm-tile__arrow" aria-hidden="true">→</span><span class="hm-tile__en">Story</span><span class="hm-tile__ja" data-i18n="nav-story">ストーリー</span><span class="hm-tile__sub" data-i18n="index-nav-story-sub">世界観・あらすじ・章構成</span></a>
+      <a href="characters.html" class="hm-tile pm-reveal"><img src="images/gallery/queens_hall_characters.webp" alt="" loading="lazy"><span class="hm-tile__arrow" aria-hidden="true">→</span><span class="hm-tile__en">Characters</span><span class="hm-tile__ja" data-i18n="nav-characters">キャラクター</span><span class="hm-tile__sub" data-i18n="index-nav-char-sub">19人の個性豊かなキャラクター</span></a>
+      <a href="world.html" class="hm-tile pm-reveal"><img src="images/world/main/music-world-map.webp" alt="" loading="lazy"><span class="hm-tile__arrow" aria-hidden="true">→</span><span class="hm-tile__en">World</span><span class="hm-tile__ja" data-i18n="nav-world">ワールド</span><span class="hm-tile__sub" data-i18n="index-nav-world-sub">四つの音楽の国々</span></a>
+      <a href="gallery.html" class="hm-tile pm-reveal"><img src="images/gallery/orchestra_hall_interior.webp" alt="" loading="lazy"><span class="hm-tile__arrow" aria-hidden="true">→</span><span class="hm-tile__en">Gallery</span><span class="hm-tile__ja" data-i18n="nav-gallery">ギャラリー</span><span class="hm-tile__sub" data-i18n="index-nav-gallery-sub">スチール・アート・設定資料</span></a>
+      <a href="lyrics.html" class="hm-tile pm-reveal"><img src="images/home/tile-lyrics.webp" alt="" loading="lazy"><span class="hm-tile__arrow" aria-hidden="true">→</span><span class="hm-tile__en">Lyrics</span><span class="hm-tile__ja" data-i18n="nav-lyrics">歌詞</span><span class="hm-tile__sub" data-i18n="home-nav-lyrics-sub">主題歌「Symphony of One World」</span></a>
+      <a href="book.html" class="hm-tile pm-reveal"><img src="images/home/tile-book.webp" alt="" loading="lazy"><span class="hm-tile__arrow" aria-hidden="true">→</span><span class="hm-tile__en">Picture Book</span><span class="hm-tile__ja" data-i18n="nav-book">絵本</span><span class="hm-tile__sub" data-i18n="home-nav-book-sub">原作絵本のご案内</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ── Project CTA ── -->
+<section class="hm-section hm-cta">
+  <div class="hm-wrap">
+    <div class="hm-cta__box pm-reveal">
+      <div class="hm-cta__notes" aria-hidden="true">
+        <span style="left:6%;top:18%;--fs:3rem;--d:5s">♪</span>
+        <span style="left:88%;top:14%;--fs:2.2rem;--d:7s">♫</span>
+        <span style="left:12%;top:72%;--fs:1.8rem;--d:6s">♬</span>
+        <span style="left:82%;top:70%;--fs:3.4rem;--d:8s">𝄞</span>
+      </div>
+      <span class="hm-eyebrow">Music World Project</span>
+      <h2 class="hm-cta__title" data-i18n="home-cta-title" data-i18n-html>次の物語を、<em>一緒に奏でよう。</em></h2>
+      <p class="hm-cta__lead" data-i18n="home-cta-lead">「ミュージックワールド」の次の物語は、皆さまの応援とともに紡がれていきます。</p>
+      <div class="hm-cta__btns">
+        <a href="project.html" class="btn hm-btn-ghost"><span data-i18n="home-cta-project">プロジェクトを見る</span></a>
+        <a href="support.html" class="btn hm-btn-gold"><span data-i18n="nav-support">支援する</span></a>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- ── Footer ── -->
 <footer>
@@ -204,10 +304,11 @@
     <a href="gallery.html"    data-i18n="footer-link-gallery">ギャラリー</a>
     <a href="lyrics.html"     data-i18n="footer-link-lyrics">歌詞</a>
     <a href="book.html"       data-i18n="footer-link-book">絵本</a>
-    <a href="support.html" class="footer-support">支援する</a>
+    <a href="project.html"    data-i18n="nav-project">Project</a>
+    <a href="support.html" class="footer-support" data-i18n="nav-support">支援する</a>
     <a href="supporters.html" class="footer-supporters">SUPPORTERS</a>
   </div>
-  <p>© 2025 Violin Princess Production Committee. All Rights Reserved.</p>
+  <p>© 2025–2026 Violin Princess Production Committee. All Rights Reserved.</p>
   <p style="margin-top:0.5rem;" data-i18n="footer-copy2">このサイトはフィクション作品の公式サイトです。</p>
 </footer>
 
@@ -233,7 +334,7 @@
 
   <!-- 動画本体 -->
   <video id="opening-video" class="opening-video__player"
-    poster="images/background/opening-poster.png"
+    poster="images/background/opening-poster.jpg.webp"
     playsinline
     preload="none">
     <source src="https://github.com/arsdavinci/music-world-official-/releases/download/v1.0/Music.World_.Official.Teaser.Trailer.mp4" type="video/mp4">
@@ -278,7 +379,8 @@
 
 </div>
 
-<script src="js/main.js"></script>
-<script src="js/effects.js"></script>
+<script src="js/main.js?v=20261002a"></script>
+<script src="js/effects.js?v=20261002a"></script>
+<script src="js/premium.js?v=20261002a"></script>
 </body>
 </html>

@@ -71,8 +71,8 @@ function initPageScripts() {
       personality: '勇敢でおてんば。強い意志と繊細な感性を持つ。',
       desc: 'ゲンガク国の王女。幼い頃からバイオリンを愛し、美しく繊細な音色で人々の心を癒してきた。ケンバンガク国の侵攻で家族を奪われ、国を追われる苦難に直面する。敵国の騎士サックスと不本意ながら手を組み、囚われた家族と民を救うための旅へ踏み出す。マスタータクトのもとで修行を積み、音楽の真の力に目覚めていく。',
       instrument: 'バイオリン（魔法の弓弦）', ability: '魔法の音色・心を癒す旋律・音の結界',
-      mainImgSrc: 'images/characters/main/violin-princess.png',
-      detailImgSrc: 'images/characters/details/violin-princess-detail.png',
+      mainImgSrc: 'images/characters/main/violin-princess.webp',
+      detailImgSrc: 'images/characters/details/violin-princess-detail.webp',
     },
     sax: {
       name: 'サックス', nameSub: 'Sax / Alto Saxophone',
@@ -81,8 +81,8 @@ function initPageScripts() {
       personality: '力強く熱い男。クラリネット姫に密かに想いを寄せる。',
       desc: 'カンガク国の騎士団大将。金色の鎧に身を包んだ豪胆な武人。本来はバイオリン姫と敵対関係にあるが、共通の敵であるパイプオルガン魔女の存在を知り、不本意ながら協力関係を結ぶ。熱い正義感と仲間への強い絆が最大の武器。クラリネット姫への想いを心の支えに戦い続ける。',
       instrument: 'アルト・サクソフォーン（音波の魔法武器）', ability: '音波衝撃・金属強化・突撃の鬨の声',
-      mainImgSrc: 'images/characters/main/sax-knight.png',
-      detailImgSrc: 'images/characters/details/sax-knight-detail.png',
+      mainImgSrc: 'images/characters/main/sax-knight.webp',
+      detailImgSrc: 'images/characters/details/sax-knight-detail.webp',
     },
     piano: {
       name: 'ピアノ王子', nameSub: 'Piano Prince',
@@ -91,8 +91,8 @@ function initPageScripts() {
       personality: '気品があり謎めいた存在。冷静沈着だが内に熱を秘める。',
       desc: 'ケンバンガク国の王子。黒いマントと大きな帽子に身を包んだ謎めいた青年。白馬「フォルテシモ」に乗り、静かに戦場を駆ける。父・チェンバロ皇帝が魔女に操られていることを知り、内側から国を救おうとする。',
       instrument: 'グランドピアノ（時空を操る鍵盤）', ability: '時の調律・空間のアルペジオ・フォルテシモの突進',
-      mainImgSrc: 'images/characters/main/piano-prince.png',
-      detailImgSrc: 'images/characters/details/piano-prince-detail.png',
+      mainImgSrc: 'images/characters/main/piano-prince.webp',
+      detailImgSrc: 'images/characters/details/piano-prince-detail.webp',
     },
     maestro: {
       name: 'マスタータクト', nameSub: 'Master Tact / Takt Maestro',
@@ -101,8 +101,8 @@ function initPageScripts() {
       personality: '豪放磊落だが深い知恵を持つ。弟子には厳しく愛情深い。',
       desc: 'かつて世界中の音楽家の頂点に立った伝説の指揮者・タクト・マエストロ。今は各地を放浪する老人として知られている。魔法の指揮棒は音楽の力を何倍にも増幅させる。バイオリン姫と出会い、その才能を見抜いて修行をつける。',
       instrument: '魔法の指揮棒（マエストロの杖）', ability: '音楽の増幅・万能の指揮・時の旋律を読む',
-      mainImgSrc: 'images/characters/main/master-tact.png',
-      detailImgSrc: 'images/characters/details/master-tact-detail.png',
+      mainImgSrc: 'images/characters/main/master-tact.webp',
+      detailImgSrc: 'images/characters/details/master-tact-detail.webp',
     },
     castanet: {
       name: 'カスタネット', nameSub: 'Castanet',
@@ -111,7 +111,8 @@ function initPageScripts() {
       personality: '無邪気で愛らしい。大きな前歯でカタカタと音を鳴らす。',
       desc: 'ダガク国に暮らす小さな子供。大きな前歯でカスタネットのようにカタカタと音を鳴らす独特の特技を持つ。ダガク国の奥地を知り尽くした案内役として活躍する。その無邪気な笑顔と純粋な心で、疲れた仲間たちを明るく照らす存在。',
       instrument: 'カスタネット（大きな前歯と手のひら）', ability: 'リズムの魔法・地の道案内・笑顔の癒し',
-      detailImgSrc: 'images/characters/details/castanet-detail.png',
+      mainImgSrc: 'images/characters/main/castanet.webp',
+      detailImgSrc: 'images/characters/details/castanet-detail.webp',
     },
     harp: {
       name: 'ハープ女王', nameSub: 'Harp Queen',
@@ -120,8 +121,8 @@ function initPageScripts() {
       personality: '気品に満ちた優雅な女王。民への深い愛と強い意志を持つ。',
       desc: 'ゲンガク国の女王であり、バイオリン姫の母。美しいハープの音色で国民を魅了し、国に平和をもたらしてきた。ケンバンガク国の侵攻によって囚われの身となるが、その気品と意志は折れることなく、娘の帰還を信じ続ける。',
       instrument: 'ハープ（女王の平和の楽器）', ability: '心の安定・癒しの旋律・魔法の障壁',
-      mainImgSrc: 'images/characters/main/harp-queen.png',
-      detailImgSrc: 'images/characters/details/harp-queen-detail.png',
+      mainImgSrc: 'images/characters/main/harp-queen.webp',
+      detailImgSrc: 'images/characters/details/harp-queen-detail.webp',
     },
     viola: {
       name: 'ヴィオラ王子', nameSub: 'Viola Prince',
@@ -130,8 +131,8 @@ function initPageScripts() {
       personality: '妹思いで正義感が強い。冷静で的確な判断力を持つ。',
       desc: 'ゲンガク国の王子であり、バイオリン姫の兄。妹の才能を誰より信じ、いつも陰で支えてきた。ケンバンガク国の侵攻に果敢に立ち向かい、民を守るために奮戦するも、捕らわれてしまう。',
       instrument: 'ヴィオラ（深く豊かな中音の弦）', ability: '音の盾・共鳴の守護・深音の轟き',
-      mainImgSrc: 'images/characters/main/viola-prince.png',
-      detailImgSrc: 'images/characters/details/viola-prince-detail.png',
+      mainImgSrc: 'images/characters/main/viola-prince.webp',
+      detailImgSrc: 'images/characters/details/viola-prince-detail.webp',
     },
     cello: {
       name: 'チェロ執事', nameSub: 'Cello Butler',
@@ -140,8 +141,8 @@ function initPageScripts() {
       personality: '生真面目で几帳面。王家への忠誠心が深い。ときに茶目っ気を見せる。',
       desc: 'ゲンガク国の王宮に仕える執事。幼い頃のバイオリン姫の面倒を見てきた古参のしもべ。チェロの深い音色は聴く者の心を落ち着かせ、仲間の動揺を鎮める効果がある。',
       instrument: 'チェロ（深みある低弦の鳴響）', ability: '心の鎮静・共鳴の守り・低音の結界',
-      mainImgSrc: 'images/characters/main/cello-butler.png',
-      detailImgSrc: 'images/characters/details/cello-butler-detail.png',
+      mainImgSrc: 'images/characters/main/cello-butler.webp',
+      detailImgSrc: 'images/characters/details/cello-butler-detail.webp',
     },
     contrabass: {
       name: 'コントラバス伯爵', nameSub: 'Contrabass Count',
@@ -150,8 +151,8 @@ function initPageScripts() {
       personality: '低く重厚な存在感。寡黙だが頼りになる大物。',
       desc: 'ゲンガク国の重鎮伯爵。コントラバスの低く重厚な音色のように、どっしりとした存在感を放つ。長年にわたりゲンガク国を支えてきた実力者であり、危機に際しては誰よりも力強く国民を鼓舞する。',
       instrument: 'コントラバス（大地を揺るがす最低音）', ability: '大地振動・重低音の衝撃・威圧の轟き',
-      mainImgSrc: 'images/characters/main/contrabass-count.png',
-      detailImgSrc: 'images/characters/details/contrabass-count.png',
+      mainImgSrc: 'images/characters/main/contrabass-count.webp',
+      detailImgSrc: 'images/characters/details/contrabass-count.webp',
     },
     clarinet: {
       name: 'クラリネット姫', nameSub: 'Clarinet Princess',
@@ -160,8 +161,8 @@ function initPageScripts() {
       personality: '優しく聡明。人の心を読む感受性の高さが持ち味。',
       desc: 'カンガク国の姫。サックスが密かに想いを寄せる相手。優しく聡明で、周囲の人の感情を敏感に察知する力を持つ。裏では仲間たちに情報を送り、内側から状況を変えようと尽力する。',
       instrument: 'クラリネット（澄み渡る管の音色）', ability: '心の声を聴く・音の探知・癒しの調べ',
-      mainImgSrc: 'images/characters/main/clarinet-princess.png',
-      detailImgSrc: 'images/characters/details/clarinet-princess-detail.png',
+      mainImgSrc: 'images/characters/main/clarinet-princess.webp',
+      detailImgSrc: 'images/characters/details/clarinet-princess-detail.webp',
     },
     trombone: {
       name: 'トロンボーン兵士', nameSub: 'Trombone Soldier',
@@ -170,8 +171,8 @@ function initPageScripts() {
       personality: '実直で規律を重んじる。職務に忠実で手を抜くことを知らない。',
       desc: 'カンガク国の城門や要所を守る門番兵士。トロンボーンのように伸びる音波で遠くまで異変を知らせる連絡役でもある。サックス大将を心から尊敬し、どんな過酷な任務もやり遂げる真面目な実力者。寡黙ながらも仲間思いで、いざというときに頼りになる存在。',
       instrument: 'トロンボーン（伸縮するスライドの管楽器）', ability: '遠距離音波伝達・音壁の形成・士気鼓舞の咆哮',
-      mainImgSrc: 'images/characters/main/trombone-soldier.png',
-      detailImgSrc: 'images/characters/details/trombone-soldier-detail.png',
+      mainImgSrc: 'images/characters/main/trombone-soldier.webp',
+      detailImgSrc: 'images/characters/details/trombone-soldier-detail.webp',
     },
     accordion: {
       name: 'アコーディオン騎士団', nameSub: 'Accordion Knights',
@@ -181,8 +182,8 @@ function initPageScripts() {
       desc: 'ケンバンガク国各地を巡回する精鋭騎士団。蛇腹の鎧に刻まれた鍵盤模様こそ白と黒の秩序への誓いの証。アコーディオンの鍵盤はれっきとした鍵盤楽器の証であり、ケンバンガク国の誇りを胸に城塞から辺境の村まで守り続ける。単体では中堅だが、複数人で音を重ねると爆発的な力を発揮する頼もしい存在。',
       instrument: 'アコーディオン（鍵盤を持つ蛇腹式鍵盤楽器）',
       ability: '連携音波・蛇腹の盾・和音爆発',
-      mainImgSrc: 'images/characters/main/accordion-knights.png',
-      detailImgSrc: 'images/characters/details/accordion-knights-detail.png',
+      mainImgSrc: 'images/characters/main/accordion-knights.webp',
+      detailImgSrc: 'images/characters/details/accordion-knights-detail.webp',
     },
     tuba: {
       name: 'チューバ副大将', nameSub: 'Tuba Vice-General',
@@ -191,8 +192,8 @@ function initPageScripts() {
       personality: '巨体だが心優しい。サックスを尊敬し、忠実に従う。',
       desc: 'カンガク国騎士団の副大将。チューバのような大きな体格だが、内心は誰より優しく温かい人物。戦場では圧倒的な存在感で敵を威圧するが、仲間には常に穏やかに接する。',
       instrument: 'チューバ（最大の管楽器・大音量）', ability: '音圧の壁・大音量の衝撃波・士気向上',
-      mainImgSrc: 'images/characters/main/tuba-vice-general.png',
-      detailImgSrc: 'images/characters/details/tuba-vice-general-detail.png',
+      mainImgSrc: 'images/characters/main/tuba-vice-general.webp',
+      detailImgSrc: 'images/characters/details/tuba-vice-general-detail.webp',
     },
     marimba: {
       name: 'マリンバ', nameSub: 'Marimba',
@@ -201,8 +202,8 @@ function initPageScripts() {
       personality: '陽気で楽天的。語尾に「ンバ」をつけて話す。',
       desc: 'ダガク国に暮らす木琴兄妹の兄。「ンバ」が口癖の陽気な青年で、どんな状況でも笑顔を忘れない。妹のシロフォンと息の合ったコンビプレーで仲間を支える。',
       instrument: 'マリンバ（木製鍵盤打楽器）', ability: '音の温かみ・雰囲気の調和・打撃の連打',
-      mainImgSrc: 'images/characters/main/marimba.png',
-      detailImgSrc: 'images/characters/details/marimba-detail.png',
+      mainImgSrc: 'images/characters/main/marimba.webp',
+      detailImgSrc: 'images/characters/details/marimba-detail.webp',
     },
     xylophone: {
       name: 'シロフォン', nameSub: 'Xylophone',
@@ -211,8 +212,8 @@ function initPageScripts() {
       personality: '元気いっぱいで行動派。語尾に「フォン」をつけて話す。',
       desc: 'ダガク国に暮らす木琴兄妹の妹。「フォン」が口癖の元気な少女。行動力は兄のマリンバ以上で、危険を顧みず飛び込む勇気が周囲を驚かせる。',
       instrument: 'シロフォン（澄んだ高音の木琴）', ability: '高音の衝撃・速攻の連打・音の切り裂き',
-      mainImgSrc: 'images/characters/main/xylophone.png',
-      detailImgSrc: 'images/characters/details/xylophone-detail.png',
+      mainImgSrc: 'images/characters/main/xylophone.webp',
+      detailImgSrc: 'images/characters/details/xylophone-detail.webp',
     },
     glocken: {
       name: 'グロッケン', nameSub: 'Glocken',
@@ -221,8 +222,8 @@ function initPageScripts() {
       personality: '頭が硬く融通が利かない。語尾に「ケン」をつけて話す。',
       desc: 'ダガク国の神殿を守る門番。規則を絶対視する頑固者で「ケン」が口癖。しかし真剣な言葉に心を動かされると、誰よりも忠実な仲間に変わる。',
       instrument: 'グロッケンシュピール（鉄琴）', ability: '鉄の音波・結界の鐘・硬度の鎧',
-      mainImgSrc: 'images/characters/main/glockenspiel.png',
-      detailImgSrc: 'images/characters/details/glockenspiel-detail.png',
+      mainImgSrc: 'images/characters/main/glockenspiel.webp',
+      detailImgSrc: 'images/characters/details/glockenspiel-detail.webp',
     },
     timpani: {
       name: 'ティンパニー大王', nameSub: 'King Timpani',
@@ -231,8 +232,8 @@ function initPageScripts() {
       personality: '威厳があり豪快。ダガク国の民を深く愛する大王。',
       desc: 'ダガク国の王。ティンパニーのような巨大な体格を持ち、大地を揺るがすような声で話す豪快な大王。バイオリン姫の演奏に心を動かされ、ダガク国の力を貸すことを決意する。',
       instrument: 'ティンパニー（太鼓の王・大地の鼓動）', ability: '大地震動・轟音の鬨・鉄壁の守護',
-      mainImgSrc: 'images/characters/main/timpani-king.png',
-      detailImgSrc: 'images/characters/details/timpani-king-detail.png',
+      mainImgSrc: 'images/characters/main/timpani-king.webp',
+      detailImgSrc: 'images/characters/details/timpani-king-detail.webp',
     },
     organ: {
       name: 'オルガン兵士', nameSub: 'Organ Soldier',
@@ -241,8 +242,8 @@ function initPageScripts() {
       personality: '「めんどくさい」が口癖。サボる機会を常に狙っているが、いざとなると仕事はこなす。',
       desc: 'ケンバンガク国の下級兵士。「めんどくさい」という言葉を一日百回は口にするめんどくさがりの達人。パトロールをサボって昼寝、報告書は最低限、命令には必ず一言ぼやく。しかし根は真面目で、本当の危機には誰より先に動く不思議な兵士。チェンバロ皇帝が魔女に操られていることにも「なんか様子がおかしいんだよなあ…めんどくさいけど調べるか」とぼやきながら誰より早く気づいていた。',
       instrument: 'リードオルガン（くたびれた足踏み式オルガン）', ability: '怠惰の旋律・手抜きの和音・めんどくさいが最速の一撃',
-      mainImgSrc: 'images/characters/main/organ-soldier.png',
-      detailImgSrc: 'images/characters/details/organ-soldier-detail.png',
+      mainImgSrc: 'images/characters/main/organ-soldier.webp',
+      detailImgSrc: 'images/characters/details/organ-soldier-detail.webp',
     },
     cembalo: {
       name: 'チェンバロ皇帝', nameSub: 'Emperor Cembalo',
@@ -259,8 +260,8 @@ function initPageScripts() {
       personality: '冷酷で計算高い。権力への執着が強く、音楽を支配の道具と見る。',
       desc: '本作の真の黒幕。ケンバンガク国の皇帝を魔法で操り、世界征服を企む闇の魔女。パイプオルガンのような圧倒的な音圧と支配力を持ち、その力の真の深さは誰にも計り知れない。純粋な音楽の力と真っ向から対立する存在。',
       instrument: 'パイプオルガン（支配の大楽器）', ability: '魔音支配・闇の結界・音の呪縛・深淵の和音',
-      mainImgSrc: 'images/characters/main/pipe-organ-witch.png',
-      detailImgSrc: 'images/characters/details/pipe-organ-witch-detail.png',
+      mainImgSrc: 'images/characters/main/pipe-organ-witch.webp',
+      detailImgSrc: 'images/characters/details/pipe-organ-witch-detail.webp',
     },
     dragon: {
       name: '謎ドラゴン', nameSub: 'Mysterious Dragon',
@@ -269,8 +270,8 @@ function initPageScripts() {
       personality: '破壊の化身。言葉を持たず、ただ力と恐怖で全てを圧倒する。',
       desc: '最終決戦の地に突如として現れた謎の巨大ドラゴン。漆黒の体躯から放たれる闇の音圧は全てのシンフォニーを打ち消し、世界を覆い尽くす。その正体も、どこから来たかも一切不明。バイオリン姫たちが紡ぎ出す四国合奏のハーモニーのみが唯一の対抗手段となる。',
       instrument: '魔竜の咆哮（究極の破壊音）', ability: '闇の音圧爆撃・音の結界破壊・終焉の咆哮',
-      mainImgSrc: 'images/characters/main/pipe-organ-dragon.png',
-      detailImgSrc: 'images/characters/details/pipe-organ-dragon-detail.png',
+      mainImgSrc: 'images/characters/main/pipe-organ-dragon.webp',
+      detailImgSrc: 'images/characters/details/pipe-organ-dragon-detail.webp',
     },
     daspalla: {
       name: 'ダ・スパッラ兵士', nameSub: 'Violoncello da Spalla',
@@ -280,8 +281,8 @@ function initPageScripts() {
       desc: 'ゲンガク国王族を影から守り続ける護衛兵。古楽器「ヴィオロンチェロ・ダ・スパッラ」を背中に背負い、音と剣の両方を武器に戦う。ほとんど言葉を発しないが、その献身は誰より深く、ケンバンガク国の侵攻時にバイオリン姫の逃亡を命がけで切り開いた一人。',
       instrument: 'ヴィオロンチェロ・ダ・スパッラ（肩掛けの古い小型チェロ）',
       ability: '旋律の護盾・斬音の一撃・献身の共鳴',
-      mainImgSrc: 'images/characters/main/violoncello-da-spalla-soldier.png',
-      detailImgSrc: 'images/characters/details/violoncello-da-spalla-soldier-detail.png',
+      mainImgSrc: 'images/characters/main/violoncello-da-spalla-soldier.webp',
+      detailImgSrc: 'images/characters/details/violoncello-da-spalla-soldier-detail.webp',
     },
   };
 
@@ -463,7 +464,7 @@ function initPageScripts() {
       gvideo.load();                  // リセット
       gvSpinner.classList.remove('is-active');
       if (gvSubEl) gvSubEl.classList.remove('visible');
-      _gvLastKey = null;
+      _gvLastMain = null; _gvLastTelop = null;
       document.body.style.overflow = '';
       _bgmResume();
     }
@@ -601,7 +602,7 @@ function initPageScripts() {
         gvFsBtn.textContent  = '全画面';
         gvPPBtn.textContent  = '▶ 再生';
         if (gvCCBtn) { _setCCBtn(gvCCBtn, _getSubLang()); _updateCCMenuActive(document.getElementById('gvm-cc-menu'), _getSubLang()); }
-        _gvLastKey = null;
+        _gvLastMain = null; _gvLastTelop = null;
         gvm.classList.add('is-open');
         gvm.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
@@ -1225,7 +1226,6 @@ const i18n_en = {
   'btn-view-story':'View Story','btn-meet-characters':'Meet the Characters',
   'btn-view-characters':'View Characters','btn-to-worldmap':'World Map',
   'btn-to-gallery':'To Gallery','btn-to-story':'To Story',
-  'btn-press-kit':'Request Press Kit',
   /* ─ index.html ─ */
   'index-title':'Music World ~ Violin Princess and the Magic Symphony ~ | Official Site',
   'index-tagline':'A symphony that saves the world, woven from different tones——<br>When the music of four kingdoms becomes one, a miracle is born.',
@@ -1243,6 +1243,22 @@ const i18n_en = {
   'index-nav-char-sub':'19 colorful characters',
   'index-nav-world-sub':'The four musical kingdoms',
   'index-nav-gallery-sub':'Stills, artwork & design sheets',
+  'nav-project':'Project','nav-support':'Support',
+  'home-kingdoms-lead':'Strings, winds, percussion, keys — four kingdoms where music itself is magic. Touch a panel to glimpse each stage of the journey.',
+  'home-k-gengaku':'A graceful realm of cherry-pink castles and shimmering canals — home of the Violin Princess, where the story begins.',
+  'home-k-kangaku':'A lively fortress city of steam and gleaming brass, where jazz-like improvisation drifts from every street corner.',
+  'home-k-dagaku':'Tribal villages deep in the forest, keeping the rhythm and dancing to an unerring beat.',
+  'home-k-kenban':'A mysterious empire of piano-key streets and soaring spires — rumor says a dragon\'s shadow circles its towers.',
+  'home-k-more':'Explore the World',
+  'home-cast-title':'The beloved <em>companions of the story</em>',
+  'home-cast-lead':'A brave princess, a golden knight, a mysterious prince — a colorful cast playing a single symphony together.',
+  'home-cast-more':'See all characters',
+  'home-explore-title':'Open the <em>doors of the story</em>',
+  'home-nav-lyrics-sub':'Theme song "Symphony of One World"',
+  'home-nav-book-sub':'The original picture book',
+  'home-cta-title':'Let\'s play the next story — <em>together.</em>',
+  'home-cta-lead':'The next chapter of Music World will be woven together with your support.',
+  'home-cta-project':'View the Project',
   /* ─ story.html ─ */
   'story-title':'Story | Music World ~ Violin Princess and the Magic Symphony ~',
   'story-hero-h1':'Story',
@@ -1480,7 +1496,6 @@ const i18n_zh = {
   'btn-view-story':'查看故事','btn-meet-characters':'认识角色',
   'btn-view-characters':'查看角色','btn-to-worldmap':'世界地图',
   'btn-to-gallery':'前往图册','btn-to-story':'前往故事',
-  'btn-press-kit':'索取新闻资料包',
   /* ─ index.html ─ */
   'index-title':'音乐世界 ～小提琴公主与魔法交响乐～ | 官方网站',
   'index-tagline':'不同音色交织出拯救世界的交响乐——<br>当四个王国的音乐合而为一，奇迹便会诞生。',
@@ -1498,6 +1513,22 @@ const i18n_zh = {
   'index-nav-char-sub':'19位个性鲜明的角色',
   'index-nav-world-sub':'四个音乐王国',
   'index-nav-gallery-sub':'剧照・艺术图・设定资料',
+  'nav-project':'项目','nav-support':'支持我们',
+  'home-kingdoms-lead':'弦・管・打・键——音乐化为魔法的四个王国。触碰面板，一窥旅途的舞台。',
+  'home-k-gengaku':'樱色城堡与闪耀水道交织的典雅王国。小提琴公主的故乡，故事开始的地方。',
+  'home-k-kangaku':'蒸汽与黄铜闪耀的活力要塞都市，街角处处飘来爵士般的即兴演奏。',
+  'home-k-dagaku':'深林之中刻画节奏的部落村庄，人们随着精准的节拍起舞生活。',
+  'home-k-kenban':'琴键般的街道上尖塔耸立的神秘帝国，传说常有巨龙的影子盘旋。',
+  'home-k-more':'探索世界',
+  'home-cast-title':'为故事增色的<em>可爱伙伴们</em>',
+  'home-cast-lead':'勇敢的公主、黄金骑士、神秘王子——个性鲜明的角色们共同奏响一首交响乐。',
+  'home-cast-more':'查看全部角色',
+  'home-explore-title':'打开<em>故事之门</em>',
+  'home-nav-lyrics-sub':'主题曲「Symphony of One World」',
+  'home-nav-book-sub':'原作绘本介绍',
+  'home-cta-title':'下一个故事，<em>一起奏响吧。</em>',
+  'home-cta-lead':'「音乐世界」的下一个故事，将与大家的支持一同编织。',
+  'home-cta-project':'查看项目',
   /* ─ story.html ─ */
   'story-title':'故事 | 音乐世界 ～小提琴公主与魔法交响乐～',
   'story-hero-h1':'故事',
@@ -1657,11 +1688,11 @@ const charDataZh = {
 };
 
 /* ── 言語切替関数 ── */
-function setLanguage(lang) {
+function setLanguage(lang, syncSubs) {
   localStorage.setItem(LANG_KEY, lang);
   document.documentElement.lang = lang;
   // 字幕言語をサイト言語に同期（CCボタンも更新）
-  _applySubLang(lang);
+  if (syncSubs) _applySubLang(lang);
 
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key    = el.dataset.i18n;
@@ -1704,9 +1735,9 @@ function setLanguage(lang) {
   // BGM音源を言語に合わせて切り替え
   const audio = document.getElementById('bgm-audio');
   if (audio) {
-    const enSrc  = 'audio/Symphony of One World English version.wav';
-    const zhSrc  = 'audio/Symphony of One World Chinese version.wav';
-    const jaSrc  = 'audio/Symphony of One World.wav';
+    const enSrc  = 'audio/Symphony of One World English version.m4a';
+    const zhSrc  = 'audio/Symphony of One World Chinese version.m4a';
+    const jaSrc  = 'audio/Symphony of One World.m4a';
     const target = lang === 'en' ? enSrc : lang === 'zh' ? zhSrc : jaSrc;
     const source = audio.querySelector('source');
     const current = source ? source.getAttribute('src') : null;
@@ -1738,13 +1769,13 @@ function initLanguage() {
   }
   setLanguage(lang);
   document.querySelectorAll('.lang-btn').forEach(btn => {
-    btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
+    btn.addEventListener('click', () => setLanguage(btn.dataset.lang, true));
   });
 }
 
 /* ══════════════════════════════════════════════════════════
    BGM PLAYER
-   音源: audio/Symphony of One World.wav（プロジェクト内相対パス）
+   音源: audio/Symphony of One World.m4a（プロジェクト内相対パス）
 
    ・ページ遷移前に currentTime / volume / playing を localStorage に保存
    ・次ページ読み込み時に復元して自動再生
@@ -1835,10 +1866,10 @@ function initBGMPlayer() {
   window._bgmUserPaused = (saved.playing === false);
   const _initLang = localStorage.getItem(LANG_KEY) || 'ja';
   const _initSrc  = _initLang === 'en'
-    ? 'audio/Symphony of One World English version.wav'
+    ? 'audio/Symphony of One World English version.m4a'
     : _initLang === 'zh'
-      ? 'audio/Symphony of One World Chinese version.wav'
-      : 'audio/Symphony of One World.wav';
+      ? 'audio/Symphony of One World Chinese version.m4a'
+      : 'audio/Symphony of One World.m4a';
   const _initSub  = _initLang === 'en'
     ? 'Violin Princess &amp; the Magic Symphony BGM'
     : _initLang === 'zh'
@@ -1847,8 +1878,8 @@ function initBGMPlayer() {
 
   const playerHTML = `
     <div id="bgm-player" class="bgm-player">
-      <audio id="bgm-audio" loop preload="auto">
-        <source src="${_initSrc}" type="audio/wav">
+      <audio id="bgm-audio" loop preload="metadata">
+        <source src="${_initSrc}" type="audio/mp4">
       </audio>
 
       <div class="bgm-inner">
@@ -1858,7 +1889,7 @@ function initBGMPlayer() {
             <span class="bgm-note-anim" id="bgm-note-icon">♪</span>
             <div class="bgm-text">
               <div class="bgm-title">Symphony of One World</div>
-              <div class="bgm-sub" data-i18n="bgm-sub">${_initSub}</div>
+              <div class="bgm-sub" data-i18n="bgm-sub" data-ja="バイオリン姫と魔法のシンフォニー BGM">${_initSub}</div>
             </div>
           </div>
           <div class="bgm-controls">
@@ -2057,7 +2088,7 @@ function initBGMPlayer() {
   function enableFirstInteraction() {
     function onFirstInteraction() {
       window._bgmCancelAutoStart = null;
-      if (audio.paused) {
+      if (audio.paused && !window._bgmUserPaused) {
         audio.play()
           .then(() => {
             setPlaying(true);
@@ -2087,7 +2118,10 @@ function initBGMPlayer() {
     || location.pathname === '/'
     || location.pathname.endsWith('/');
 
-  if (isTopPage) {
+  let openingSeen = false;
+  try { openingSeen = !!sessionStorage.getItem('mw_opening_seen'); } catch (e) {}
+
+  if (isTopPage && !openingSeen) {
     // オープニングフローが終わったあと呼ばれるトリガーを公開
     // initOpeningFlow() → showMusicConsentDialog() → _bgmStartIfAgreed(agreed) の順に呼ばれる
     window._bgmStartIfAgreed = function(agreed) {
@@ -2099,7 +2133,7 @@ function initBGMPlayer() {
       }
     };
   } else if (consent === 'yes') {
-    // 他ページ：前回の選択を引き継いで再生
+    // 他ページ（または2回目以降のトップ）：前回の選択を引き継いで再生
     const shouldPlay = saved.playing !== false;
     if (shouldPlay) {
       tryAutoPlay();
@@ -2139,6 +2173,15 @@ function initOpeningFlow() {
   const durationEl = document.getElementById('ovc-duration');
 
   if (!modal) return;
+
+  /* 同じセッション内で2回目以降のトップ表示ではモーダルを出さない */
+  let _seen = false;
+  try { _seen = !!sessionStorage.getItem('mw_opening_seen'); sessionStorage.setItem('mw_opening_seen', '1'); } catch (e) {}
+  if (_seen) {
+    modal.remove();
+    if (overlay) overlay.remove();
+    return;
+  }
 
   /* ══ スクロールロック ══ */
   function lockScroll()   { document.body.style.overflow = 'hidden'; }
@@ -2582,6 +2625,11 @@ function initOpeningFlow() {
 
   /* ══ BGM確認モーダルを表示 ══ */
   function showBGMChoice() {
+    const _c = localStorage.getItem(BGM_CONSENT_KEY);
+    if (_c) {
+      if (_c === 'yes' && !window._bgmUserPaused && window._bgmStartIfAgreed) window._bgmStartIfAgreed(true);
+      return;
+    }
     showMusicConsentDialog((agreed) => {
       if (window._bgmStartIfAgreed) window._bgmStartIfAgreed(agreed);
     });

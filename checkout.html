@@ -6,8 +6,9 @@
   <title>応援プランのお申し込み | Music World Official</title>
   <meta name="robots" content="noindex">
   <link rel="icon" href="images/logos/favicon.png" type="image/png">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/effects.css">
+  <link rel="stylesheet" href="css/style.css?v=20261002a">
+  <link rel="stylesheet" href="css/effects.css?v=20261002a">
+  <link rel="stylesheet" href="css/premium.css?v=20261002a">
   <style>
     .checkout-form { max-width: 600px; margin: 0 auto; }
     .form-section {
@@ -188,8 +189,8 @@
         <li><a href="gallery.html">ギャラリー</a></li>
         <li><a href="lyrics.html">歌詞</a></li>
         <li><a href="book.html">絵本</a></li>
-        <li><a href="project.html" class="nav-project">Project</a></li>
-        <li><a href="support.html" class="nav-support">支援する</a></li>
+        <li><a href="project.html" class="nav-project" data-i18n="nav-project">Project</a></li>
+        <li><a href="support.html" class="nav-support" data-i18n="nav-support">支援する</a></li>
         <li><a href="supporters.html" class="nav-supporters">SUPPORTERS</a></li>
       </ul>
     </nav>
@@ -391,10 +392,11 @@
     <a href="guide.html">ご案内</a>
     <a href="legal.html">特商法表記</a>
   </div>
-  <p>© 2025 Violin Princess Production Committee. All Rights Reserved.</p>
+  <p>© 2025–2026 Violin Princess Production Committee. All Rights Reserved.</p>
 </footer>
 
-<script src="js/main.js"></script>
+<script src="js/main.js?v=20261002a"></script>
+<script src="js/premium.js?v=20261002a"></script>
 <script>
   // supporters_publicから掲載名と累計金額を取得してキャッシュ
   const SUPPORTERS_CSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vREXx9XAtpsm3QnKDsVcyoAhzhwUI1lvrd2EElK9H4m4pLP9YbYGA5Qv98DCMEJ-zbu7m0R_GdjH5N1/pub?gid=1987730365&single=true&output=csv';
@@ -569,6 +571,20 @@
     const address     = skipPhysical ? '物理特典不要' : [postal, prefecture, addrLine1, addrLine2, fullName].filter(Boolean).join(' ');
 
     const price = parseInt(selected.dataset.price, 10);
+
+    // 物理特典ありのプランは配送先の必須項目を確認（後から住所を受け付けられないため）
+    if (price >= 100000 && !skipPhysical) {
+      const missing = [];
+      if (!/^\d{3}-?\d{4}$/.test(postal)) missing.push('郵便番号（例: 123-4567）');
+      if (!prefecture) missing.push('都道府県');
+      if (!addrLine1)  missing.push('住所');
+      if (!fullName)   missing.push('氏名');
+      if (missing.length) {
+        alert('配送先の次の項目を入力してください：\n・' + missing.join('\n・') +
+              '\n\n物理特典が不要な場合は「物理特典は不要です」にチェックを入れてください。');
+        return;
+      }
+    }
 
     // キャラクター確定（ランダム抽選結果 > ラジオ選択 > Supporterランダム）
     let charValue = randomDrawChar || (charSelected ? charSelected.value : '');
