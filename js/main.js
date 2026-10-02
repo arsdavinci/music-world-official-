@@ -2028,16 +2028,26 @@ function initBGMPlayer() {
   });
 
   /* ── ページ復元（currentTime をセット） ── */
+  // 読み込み直後はシークできないことがあるため、成功するまで数回やり直す
+  let _restoreDone = !(saved.time > 0);
+  const _restoreDeadline = Date.now() + 15000;
+  const _restoreEvents = ['loadedmetadata', 'canplay', 'progress', 'playing'];
   function applyRestoredTime() {
-    if (saved.time && saved.time > 0) {
-      audio.currentTime = Math.min(saved.time, audio.duration || saved.time);
-    }
+    if (_restoreDone) return;
+    if (Date.now() > _restoreDeadline) { _finishRestore(); return; }
+    if (!audio.duration || isNaN(audio.duration)) return;
+    // 復元前に先頭から流れた分も足す
+    let target = saved.time + (audio.currentTime < 5 ? audio.currentTime : 0);
+    if (target >= audio.duration) target = target % audio.duration;
+    try { audio.currentTime = target; } catch (e) { return; }
+    if (Math.abs(audio.currentTime - target) < 1.5) _finishRestore();
   }
-  if (audio.readyState >= 1) {
-    applyRestoredTime();
-  } else {
-    audio.addEventListener('loadedmetadata', applyRestoredTime, { once: true });
+  function _finishRestore() {
+    _restoreDone = true;
+    _restoreEvents.forEach(ev => audio.removeEventListener(ev, applyRestoredTime));
   }
+  _restoreEvents.forEach(ev => audio.addEventListener(ev, applyRestoredTime));
+  if (audio.readyState >= 1) applyRestoredTime();
 
   /* ── 再生ボタン ── */
   playBtn.addEventListener('click', () => {
@@ -2065,6 +2075,7 @@ function initBGMPlayer() {
   });
   seekBar.addEventListener('change', () => {
     if (!audio.duration) return;
+    _finishRestore(); // 手動でシークしたら復元処理は中止
     audio.currentTime = (parseFloat(seekBar.value) / 100) * audio.duration;
     isSeeking = false;
   });

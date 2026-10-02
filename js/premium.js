@@ -66,7 +66,7 @@
     document.body.appendChild(bar);
     var fill = bar.firstChild;
 
-    var lastY = window.scrollY, ticking = false;
+    var ticking = false;
     function update() {
       ticking = false;
       var y = window.scrollY;
@@ -74,14 +74,8 @@
       var p = max > 0 ? Math.min(1, y / max) : 0;
       fill.style.setProperty('--p', p.toFixed(4));
       document.documentElement.style.setProperty('--pm-scroll-p', p.toFixed(4));
-      if (header) {
-        header.classList.toggle('scrolled', y > 30);
-        var down = y > lastY + 4, up = y < lastY - 4;
-        if (document.body.classList.contains('pm-nav-open')) header.classList.remove('pm-hidden');
-        else if (down && y > 240) header.classList.add('pm-hidden');
-        else if (up || y < 120) header.classList.remove('pm-hidden');
-      }
-      if (Math.abs(y - lastY) > 4) lastY = y;
+      // ヘッダーは常に表示（スクロール位置で見た目だけ切り替え）
+      if (header) header.classList.toggle('scrolled', y > 30);
       if (totop) totop.classList.toggle('is-on', y > window.innerHeight * 0.8);
       if (totop) totop.style.setProperty('--p', p.toFixed(4));
     }
