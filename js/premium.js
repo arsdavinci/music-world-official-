@@ -467,44 +467,131 @@
     });
   }
 
+  /* ── キャスト：自動で流れる無限ループ＋ドラッグ（慣性つき） ── */
   function initCast() {
     var track = document.querySelector('.hm-cast__track');
-    if (!track) return;
-    var prev = document.querySelector('[data-cast-prev]');
-    var next = document.querySelector('[data-cast-next]');
-    function step() {
-      var card = track.querySelector('.hm-cast__card');
-      return card ? card.getBoundingClientRect().width + 22 : 300;
-    }
-    if (prev) prev.addEventListener('click', function () { track.scrollBy({ left: -step(), behavior: 'smooth' }); });
-    if (next) next.addEventListener('click', function () { track.scrollBy({ left: step(), behavior: 'smooth' }); });
+    var rail = track && track.querySelector('.hm-cast__rail');
+    if (!rail) return;
+    var originals = Array.prototype.slice.call(rail.children);
 
-    // マウスドラッグでスクロール
-    var down = false, moved = 0, startX = 0, startL = 0;
+    // ループ用の複製（読み上げ・Tab移動の対象外）
+    function cloneSet() {
+      originals.forEach(function (el) {
+        var c = el.cloneNode(true);
+        c.setAttribute('aria-hidden', 'true');
+        c.setAttribute('tabindex', '-1');
+        c.classList.add('is-clone');
+        rail.appendChild(c);
+      });
+    }
+    cloneSet(); cloneSet();
+    var cards = Array.prototype.slice.call(rail.children);
+
+    var setW = 0;
+    function measure() {
+      var first = originals[0], firstClone = rail.children[originals.length];
+      setW = firstClone.offsetLeft - first.offsetLeft;
+    }
+    measure();
+    window.addEventListener('resize', measure);
+    window.addEventListener('load', measure);
+
+    var AUTO = reduceMotion ? 0 : 38;   // px/秒（右→左へゆっくり）
+    var HOVER = reduceMotion ? 0 : 10;  // ホバー中は減速
+    var x = 0, v = 0, speed = AUTO, targetSpeed = AUTO;
+    var tween = 0;                      // 矢印ボタンでの移動残り
+    var dragging = false, moved = 0, lastX = 0, lastT = 0, pid = null;
+    var visible = true, last = performance.now();
+
+    function wrap() {
+      if (!setW) return;
+      while (x <= -setW) x += setW;
+      while (x > 0) x -= setW;
+    }
+    function frame(t) {
+      var dt = Math.min(0.05, (t - last) / 1000); last = t;
+      if (!dragging) {
+        speed += (targetSpeed - speed) * Math.min(1, dt * 4);
+        x -= speed * dt;
+        if (Math.abs(v) > 1) { x += v * dt; v *= Math.pow(0.04, dt); } else v = 0;
+        if (tween) { var step = tween * Math.min(1, dt * 7); x += step; tween -= step; if (Math.abs(tween) < 0.5) tween = 0; }
+      }
+      wrap();
+      rail.style.transform = 'translate3d(' + x.toFixed(2) + 'px,0,0)';
+      if (visible) requestAnimationFrame(frame);
+    }
+    function start() { last = performance.now(); requestAnimationFrame(frame); }
+
+    // 画面外・タブ非表示では止める
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (es) {
+        var was = visible; visible = es[0].isIntersecting && !document.hidden;
+        if (visible && !was) start();
+      }).observe(track);
+    }
+    document.addEventListener('visibilitychange', function () {
+      var was = visible; visible = !document.hidden;
+      if (visible && !was) start();
+    });
+
+    // ドラッグ（マウス・タッチ共通）
     track.addEventListener('pointerdown', function (e) {
-      if (e.pointerType !== 'mouse') return;
-      down = true; moved = 0; startX = e.clientX; startL = track.scrollLeft;
+      if (e.button !== 0) return;
+      dragging = true; moved = 0; v = 0; tween = 0;
+      lastX = e.clientX; lastT = performance.now(); pid = e.pointerId;
     });
     window.addEventListener('pointermove', function (e) {
-      if (!down) return;
-      var dx = e.clientX - startX;
-      moved = Math.max(moved, Math.abs(dx));
-      if (moved > 5) track.classList.add('is-drag');
-      track.scrollLeft = startL - dx;
+      if (!dragging || e.pointerId !== pid) return;
+      var now = performance.now(), dx = e.clientX - lastX;
+      moved += Math.abs(dx);
+      if (moved > 6 && !track.classList.contains('is-drag')) {
+        track.classList.add('is-drag');
+        try { track.setPointerCapture(pid); } catch (err) {}
+      }
+      x += dx;
+      var inst = dx / Math.max(1, now - lastT) * 1000;
+      v = v * 0.6 + inst * 0.4;
+      lastX = e.clientX; lastT = now;
     });
-    window.addEventListener('pointerup', function () {
-      if (!down) return;
-      down = false;
+    function endDrag() {
+      if (!dragging) return;
+      dragging = false;
       track.classList.remove('is-drag');
-    });
+      if (performance.now() - lastT > 80) v = 0; // 止めてから離した時は慣性なし
+      v = Math.max(-3000, Math.min(3000, v));
+    }
+    window.addEventListener('pointerup', endDrag);
+    window.addEventListener('pointercancel', endDrag);
+    // ドラッグ後のクリックでページ遷移しない
     track.addEventListener('click', function (e) {
-      if (moved > 5) { e.preventDefault(); e.stopPropagation(); moved = 0; }
+      if (moved > 6) { e.preventDefault(); e.stopPropagation(); }
     }, true);
+    track.addEventListener('dragstart', function (e) { e.preventDefault(); });
 
+    // ホバーで減速、離れたら元の速度
+    if (finePointer) {
+      track.addEventListener('mouseenter', function () { targetSpeed = HOVER; });
+      track.addEventListener('mouseleave', function () { targetSpeed = AUTO; });
+    }
+
+    // 矢印ボタン・キーボード
+    function cardStep() { return cards[0].getBoundingClientRect().width + 22; }
+    var prev = document.querySelector('[data-cast-prev]');
+    var next = document.querySelector('[data-cast-next]');
+    if (prev) prev.addEventListener('click', function () { tween += cardStep(); });
+    if (next) next.addEventListener('click', function () { tween -= cardStep(); });
+    track.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft') { e.preventDefault(); tween += cardStep(); }
+      if (e.key === 'ArrowRight') { e.preventDefault(); tween -= cardStep(); }
+    });
+    track.addEventListener('focusin', function () { targetSpeed = 0; });
+    track.addEventListener('focusout', function () { targetSpeed = AUTO; });
+
+    // カードの立体傾き
     if (finePointer && !reduceMotion) {
-      track.querySelectorAll('.hm-cast__card').forEach(function (c) {
+      cards.forEach(function (c) {
         c.addEventListener('pointermove', function (e) {
-          if (down) return;
+          if (dragging) return;
           var r = c.getBoundingClientRect();
           c.style.setProperty('--ry', (((e.clientX - r.left) / r.width - 0.5) * 10).toFixed(2) + 'deg');
           c.style.setProperty('--rx', (((e.clientY - r.top) / r.height - 0.5) * -8).toFixed(2) + 'deg');
@@ -512,6 +599,7 @@
         c.addEventListener('pointerleave', function () { c.style.setProperty('--ry', '0deg'); c.style.setProperty('--rx', '0deg'); });
       });
     }
+    start();
   }
 
   function initCounters() {
