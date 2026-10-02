@@ -534,7 +534,9 @@ body.pm-bgm-playing .pm-eq i { animation: pm-eq 0.9s ease-in-out infinite altern
   .characters-grid .char-avatar { width: 88px !important; height: 88px !important; }
 }
 
-.char-popup { border-radius: 22px !important; overflow: hidden; box-shadow: 0 30px 80px rgba(90,33,64,0.3), 0 0 0 1px rgba(201,162,39,0.35) !important; }
+.char-popup { border-radius: 22px !important; overflow-x: hidden !important; overflow-y: auto !important; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; box-shadow: 0 30px 80px rgba(90,33,64,0.3), 0 0 0 1px rgba(201,162,39,0.35) !important; }
+/* ポップアップ表示中は背景ページをスクロールさせない */
+html:has(.char-popup.show), html:has(.detail-lightbox.open) { overflow: hidden; }
 .opening-modal__content, .bgm-consent-dialog { border-radius: 24px !important; }
 .bgm-consent-yes, .bgm-consent-no, .opening-modal__btn { border-radius: 999px !important; }
 
