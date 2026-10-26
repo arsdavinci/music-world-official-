@@ -1,0 +1,351 @@
+/* ============================================================
+   Music World — Motion Layer
+   js/motion.js とセット。MotionSites の技法をサイト向けに調整。
+   外せば premium のデザインに戻ります。
+   ============================================================ */
+:root {
+  --mw-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --mw-ink: #3d1a2e;
+}
+
+/* ============================================================
+   1. 奥行きカルーセル（キャラクター／トップ）
+   ============================================================ */
+.mw-car {
+  --tint: #f48fb1;
+  position: relative; isolation: isolate;
+  width: 100%; height: clamp(440px, 46vw, 600px);
+  margin: 0 auto; overflow: hidden;
+  touch-action: pan-y; user-select: none; -webkit-user-select: none;
+  outline: none;
+}
+.mw-car__glow {
+  position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: radial-gradient(60% 75% at 50% 62%, var(--tint), transparent 70%);
+  opacity: 0.38; transition: background 0.9s ease;
+}
+.mw-car__stage { position: absolute; inset: 0; perspective: 1100px; }
+.mw-car__card {
+  position: absolute; left: 50%; top: 44%;
+  width: clamp(200px, 25vw, 330px); aspect-ratio: 3 / 4;
+  border-radius: 22px; overflow: hidden;
+  background: #2a1424;
+  box-shadow: 0 24px 50px rgba(61,26,46,0.32), 0 0 0 1px rgba(255,255,255,0.5) inset;
+  transition: transform 0.75s var(--mw-ease), opacity 0.75s var(--mw-ease), filter 0.75s var(--mw-ease);
+  cursor: pointer; will-change: transform;
+  -webkit-tap-highlight-color: transparent;
+}
+.mw-car__card img { width: 100%; height: 100%; object-fit: cover; object-position: var(--pos, 50%) 50%; pointer-events: none; display: block; }
+.mw-car__card::after {
+  content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  background: linear-gradient(to top, rgba(30,10,24,0.55), transparent 38%);
+  box-shadow: inset 0 0 0 1.5px rgba(255,236,190,0.0);
+  transition: box-shadow 0.6s ease;
+}
+.mw-car__card.is-center::after { box-shadow: inset 0 0 0 1.5px rgba(255,236,190,0.75); }
+.mw-car__card:focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; }
+.mw-car__caption {
+  position: absolute; left: 0; right: 0; bottom: clamp(18px, 3vw, 34px);
+  text-align: center; z-index: 30; pointer-events: none;
+}
+.mw-car__role {
+  display: block; font-family: var(--font-heading); font-size: 0.72rem;
+  letter-spacing: 0.28em; color: var(--gold-dark); margin-bottom: 0.2rem;
+}
+.mw-car__name {
+  display: block; font-family: var(--font-body); font-weight: 700;
+  font-size: clamp(1.25rem, 2.6vw, 1.9rem); color: var(--mw-ink); letter-spacing: 0.08em;
+}
+.mw-car__caption.is-swap .mw-car__role, .mw-car__caption.is-swap .mw-car__name { animation: mw-cap-in 0.6s var(--mw-ease) both; }
+.mw-car__caption.is-swap .mw-car__name { animation-delay: 0.06s; }
+@keyframes mw-cap-in { from { opacity: 0; transform: translateY(10px); filter: blur(6px); } }
+.mw-car__btn {
+  position: absolute; top: 44%; z-index: 40; transform: translateY(-50%);
+  width: 52px; height: 52px; border-radius: 50%;
+  display: grid; place-items: center; cursor: pointer;
+  border: 1px solid rgba(201,162,39,0.5);
+  background: rgba(255,255,255,0.72); color: var(--gold-dark);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 8px 22px rgba(180,90,140,0.18);
+  font-size: 1.1rem; transition: transform 0.3s var(--mw-ease), background 0.3s;
+}
+.mw-car__btn:hover { transform: translateY(-50%) scale(1.08); background: #fff; }
+.mw-car__btn--prev { left: max(12px, 4%); }
+.mw-car__btn--next { right: max(12px, 4%); }
+.mw-car__count {
+  position: absolute; right: max(16px, 4%); bottom: clamp(18px, 3vw, 34px); z-index: 30;
+  font-family: var(--font-heading); font-size: 0.75rem; letter-spacing: 0.2em; color: var(--text-pale);
+  font-variant-numeric: tabular-nums;
+}
+.mw-car__hint {
+  text-align: center; font-family: var(--font-heading); font-size: 0.7rem;
+  letter-spacing: 0.25em; color: var(--text-pale); margin-top: 0.6rem;
+}
+/* キャラクターページ：ヒーロー直下の帯 */
+.mw-car-band { position: relative; margin: -1rem 0 2.5rem; }
+/* トップ：既存の無限スクロールを置き換え */
+.hm-cast__track[data-mw-carousel] { overflow: visible !important; cursor: default; padding: 0 0 2rem; -webkit-mask: none; mask: none; }
+.hm-cast__track[data-mw-carousel] .mw-car__card.hm-cast__card { margin: 0; flex: none; }
+.hm-cast__track[data-mw-carousel] .mw-car__card .hm-cast__info,
+.hm-cast__track[data-mw-carousel] .mw-car__card .hm-cast__badge,
+.hm-cast__track[data-mw-carousel] .mw-car__card::before { display: none; }
+.mw-cast-more { text-align: center; margin-top: 0.4rem; }
+@media (max-width: 640px) {
+  .mw-car { height: 480px; }
+  .mw-car__card { width: 58vw; top: 42%; }
+  .mw-car__btn { width: 44px; height: 44px; top: 42%; }
+  .mw-car__count { display: none; }
+}
+
+/* ============================================================
+   2. 全24章：積み重なる楽章カード（ストーリー）
+   ============================================================ */
+.chapters-grid.mw-acts { display: block !important; margin-top: 2.5rem; }
+.mw-act {
+  position: sticky; top: calc(var(--header-h, 64px) + 18px + var(--i) * 14px);
+  margin: 0 auto 2.2rem; max-width: 960px;
+  border-radius: 24px; padding: clamp(1.4rem, 3vw, 2.4rem) clamp(1.2rem, 3.4vw, 2.8rem);
+  background: var(--act-bg); color: var(--act-ink);
+  border: 1px solid var(--act-line);
+  box-shadow: 0 -12px 36px rgba(61,26,46,0.10), 0 18px 40px rgba(61,26,46,0.10);
+  transform-origin: 50% 0;
+  will-change: transform;
+}
+.mw-act:last-child { margin-bottom: 0; }
+.mw-act__head {
+  display: flex; align-items: baseline; gap: 0.9rem 1.4rem; flex-wrap: wrap;
+  padding-bottom: 1rem; margin-bottom: 1.2rem; border-bottom: 1px solid var(--act-line);
+}
+.mw-act__mvt { font-family: var(--font-title); font-size: clamp(1.6rem, 3.4vw, 2.4rem); line-height: 1; color: var(--act-accent); }
+.mw-act__range { font-family: var(--font-heading); font-size: 0.78rem; letter-spacing: 0.24em; color: var(--act-sub); }
+.mw-act__list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.4rem 2rem; }
+.mw-act .chapter-item {
+  background: none !important; border: 0 !important; box-shadow: none !important; border-radius: 0 !important;
+  padding: 0.7rem 0 !important; transform: none !important;
+  opacity: 1 !important; border-bottom: 1px dashed var(--act-line) !important;
+}
+.mw-act .chapter-num { color: var(--act-accent) !important; opacity: 0.75; font-size: 1.5rem !important; }
+.mw-act .chapter-text h4 { color: var(--act-ink) !important; font-size: 0.92rem !important; }
+.mw-act .chapter-text p { color: var(--act-sub) !important; font-size: 0.8rem !important; }
+.mw-act--1 { --act-bg: linear-gradient(150deg, #fff7fa, #fde3ee); --act-ink: #3d1a2e; --act-sub: #7a4060; --act-accent: #d4567f; --act-line: rgba(212,86,127,0.22); }
+.mw-act--2 { --act-bg: linear-gradient(150deg, #f6f0ff, #e6dcf6); --act-ink: #2e1d48; --act-sub: #5d4a80; --act-accent: #7a5bb0; --act-line: rgba(122,91,176,0.25); }
+.mw-act--3 { --act-bg: linear-gradient(150deg, #fffaf0, #f7ebcd); --act-ink: #3b2a0c; --act-sub: #6e5626; --act-accent: #a77d14; --act-line: rgba(167,125,20,0.26); }
+.mw-act--4 { --act-bg: radial-gradient(120% 120% at 20% 0%, #4a2552, #1e0d24 70%); --act-ink: #fff3f8; --act-sub: #e3cbe0; --act-accent: #e8c96a; --act-line: rgba(232,201,106,0.28); }
+@media (max-width: 720px) {
+  .mw-act__list { grid-template-columns: minmax(0, 1fr); }
+  .mw-act { top: calc(var(--header-h, 64px) + 10px + var(--i) * 8px); }
+}
+
+/* ============================================================
+   3. 読む速さで灯る文字（歌詞・Project）
+   ============================================================ */
+/* 歌詞：行ごとのワイプ（多言語切替でも崩れない） */
+.mw-lyric {
+  --fill: 0;
+  width: fit-content; margin-inline: auto;
+  background: linear-gradient(90deg,
+    var(--mw-ink) 0%,
+    var(--mw-ink) calc(var(--fill) * 112% - 12%),
+    var(--gold) calc(var(--fill) * 112% - 4%),
+    rgba(61,26,46,0.2) calc(var(--fill) * 112%),
+    rgba(61,26,46,0.2) 100%);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent !important;
+}
+.mw-lyric.is-lit { text-shadow: 0 0 18px rgba(232,201,106,0.0); }
+/* Project：一文字ずつ */
+.mw-chars .mw-ch { opacity: 0.16; transition: opacity 0.25s ease, color 0.25s ease; }
+.mw-chars .mw-ch.on { opacity: 1; }
+
+/* ============================================================
+   4. 流れ続ける壁（ギャラリー・Supporters）
+   ============================================================ */
+.mw-wall {
+  position: relative; overflow: hidden; padding: 0.4rem 0 1.6rem;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+}
+.mw-wall__row { display: flex; gap: 14px; width: max-content; will-change: transform; padding: 6px 0; }
+.mw-wall__row + .mw-wall__row { margin-top: 8px; }
+.mw-wall__item {
+  flex: none; height: clamp(110px, 15vw, 190px); aspect-ratio: 16 / 10;
+  border-radius: 14px; overflow: hidden; cursor: zoom-in; border: 0; padding: 0;
+  background: #2a1424; box-shadow: 0 10px 26px rgba(61,26,46,0.16);
+  transition: transform 0.5s var(--mw-ease), box-shadow 0.5s ease;
+}
+.mw-wall__item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.8s var(--mw-ease); }
+.mw-wall__item:hover { transform: translateY(-4px); box-shadow: 0 16px 34px rgba(61,26,46,0.26); }
+.mw-wall__item:hover img { transform: scale(1.06); }
+.mw-wall__cap {
+  text-align: center; font-family: var(--font-heading); font-size: 0.7rem;
+  letter-spacing: 0.28em; color: var(--text-pale); margin-top: 0.2rem;
+}
+/* Supporters：エンドロール */
+.mw-roll { position: relative; overflow: hidden; padding: 1.4rem 0;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); }
+.mw-roll__label { text-align: center; font-family: var(--font-heading); font-size: 0.72rem; letter-spacing: 0.3em; color: var(--gold-dark); margin-bottom: 0.9rem; }
+.mw-roll__row { display: flex; gap: 2.6rem; width: max-content; animation: mw-roll var(--dur, 60s) linear infinite; }
+.mw-roll__row + .mw-roll__row { margin-top: 0.8rem; animation-direction: reverse; }
+.mw-roll:hover .mw-roll__row { animation-play-state: paused; }
+.mw-roll__name { font-family: var(--font-body); font-size: clamp(1rem, 2vw, 1.35rem); color: var(--mw-ink); white-space: nowrap; letter-spacing: 0.08em; }
+.mw-roll__name[data-tier="premium"] { color: var(--gold-dark); font-weight: 700; }
+.mw-roll__name::after { content: '♪'; margin-left: 2.6rem; color: var(--gold); opacity: 0.6; }
+@keyframes mw-roll { to { transform: translateX(-50%); } }
+
+/* ============================================================
+   5. 四つの国の舞台（ワールド）
+   ============================================================ */
+.mw-stage {
+  position: relative; isolation: isolate; overflow: hidden;
+  max-width: 1200px; margin: 0 auto 3rem;
+  height: clamp(420px, 52vw, 640px); border-radius: 26px;
+  background: #1b0d16; color: #fff;
+  box-shadow: 0 30px 60px rgba(61,26,46,0.25);
+}
+.mw-stage__scene {
+  position: absolute; inset: 0; background-size: cover; background-position: center;
+  opacity: 0; transform: scale(1.08);
+  transition: opacity 1.2s ease, transform 7s ease-out;
+}
+.mw-stage__scene.is-on { opacity: 1; transform: scale(1); }
+.mw-stage::after {
+  content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: linear-gradient(0deg, rgba(20,6,16,0.88) 0%, rgba(20,6,16,0.35) 42%, transparent 70%),
+              linear-gradient(90deg, rgba(20,6,16,0.45), transparent 55%);
+}
+.mw-stage__info { position: absolute; z-index: 2; left: clamp(20px, 5%, 56px); right: clamp(20px, 5%, 56px); bottom: clamp(92px, 17%, 120px); max-width: 640px; }
+.mw-stage__num { font-family: var(--font-heading); font-size: 0.78rem; letter-spacing: 0.32em; color: var(--gold-light); }
+.mw-stage__name { font-family: var(--font-body); font-weight: 700; font-size: clamp(1.9rem, 4.6vw, 3.4rem); line-height: 1.15; margin: 0.3rem 0 0.4rem; letter-spacing: 0.06em; text-shadow: 0 4px 24px rgba(0,0,0,0.4); }
+.mw-stage__sub { font-family: var(--font-heading); font-size: 0.86rem; letter-spacing: 0.12em; color: #f3dde8; }
+.mw-stage__more {
+  display: inline-flex; align-items: center; gap: 0.5em; margin-top: 1rem;
+  padding: 0.55rem 1.2rem; border-radius: 999px; cursor: pointer;
+  border: 1px solid rgba(255,255,255,0.45); color: #fff; background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  font-size: 0.82rem; letter-spacing: 0.12em; transition: background 0.3s;
+}
+.mw-stage__more:hover { background: rgba(255,255,255,0.24); }
+.mw-stage__info.is-swap > * { animation: mw-cap-in 0.8s var(--mw-ease) both; }
+.mw-stage__info.is-swap > :nth-child(2) { animation-delay: 0.08s; }
+.mw-stage__info.is-swap > :nth-child(3) { animation-delay: 0.16s; }
+.mw-stage__info.is-swap > :nth-child(4) { animation-delay: 0.24s; }
+.mw-stage__tabs {
+  position: absolute; z-index: 3; left: clamp(20px, 5%, 56px); right: clamp(20px, 5%, 56px); bottom: clamp(20px, 4%, 34px);
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px;
+}
+.mw-stage__tab {
+  position: relative; text-align: left; cursor: pointer;
+  background: none; border: 0; padding: 0.7rem 0 0; color: rgba(255,255,255,0.65);
+  font-size: 0.85rem; letter-spacing: 0.08em; font-family: var(--font-body);
+}
+.mw-stage__tab::before, .mw-stage__tab::after { content: ''; position: absolute; left: 0; top: 0; height: 2px; border-radius: 2px; }
+.mw-stage__tab::before { right: 0; background: rgba(255,255,255,0.28); }
+.mw-stage__tab::after { width: 0; background: var(--gold-light); }
+.mw-stage__tab[aria-selected="true"] { color: #fff; }
+.mw-stage__tab[aria-selected="true"]::after { width: 100%; transition: width var(--mw-dur, 6s) linear; }
+.mw-stage.is-paused .mw-stage__tab[aria-selected="true"]::after { transition: none; }
+.mw-stage__tab small { display: block; font-family: var(--font-heading); font-size: 0.66rem; letter-spacing: 0.24em; color: var(--gold-light); opacity: 0.8; }
+@media (max-width: 640px) {
+  .mw-stage { border-radius: 0; height: 560px; margin-inline: calc(50% - 50vw); max-width: none; }
+  .mw-stage__tabs { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 6px; }
+  .mw-stage__info { bottom: 130px; }
+}
+
+/* ============================================================
+   6. 金属の質感で光る見出し
+   ============================================================ */
+.page-hero h1.mw-metal, h1.mw-metal {
+  background: linear-gradient(100deg,
+    #8a6a12 0%, #e8c96a 18%, #fff6d6 26%, #c9a227 36%, #7a5a0c 50%,
+    #e8c96a 66%, #fffbe8 74%, #b8901f 86%, #8a6a12 100%) !important;
+  background-size: 260% 100% !important;
+  -webkit-background-clip: text !important; background-clip: text !important;
+  -webkit-text-fill-color: transparent !important; color: transparent !important;
+  text-shadow: none !important;
+  filter: drop-shadow(0 1px 0 rgba(122,90,12,0.55)) drop-shadow(0 6px 18px rgba(201,162,39,0.28));
+  animation: mw-metal-in 1.3s var(--mw-ease) 0.1s both, mw-shine 6s ease-in-out 1.4s infinite !important;
+}
+@keyframes mw-shine { 0% { background-position: 100% 0; } 55%, 100% { background-position: -30% 0; } }
+@keyframes mw-metal-in {
+  from { opacity: 0; transform: translateY(24px); filter: blur(10px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ============================================================
+   7. 吸い寄せられる支援ボタン（光るリング）
+   ============================================================ */
+@property --mw-a { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
+.mw-cta {
+  border: 2px solid transparent !important;
+  translate: var(--mag-x, 0) var(--mag-y, 0);
+  transition: translate 0.35s var(--mw-ease), transform 0.35s var(--mw-ease), box-shadow 0.35s ease, opacity 0.25s !important;
+  animation: mw-ring-spin 3.6s linear infinite;
+  box-shadow: 0 10px 34px rgba(231,121,159,0.30), 0 0 0 0 rgba(232,201,106,0);
+}
+.mw-cta:hover { box-shadow: 0 14px 40px rgba(231,121,159,0.42), 0 0 26px rgba(232,201,106,0.45); }
+@keyframes mw-ring-spin { to { --mw-a: 360deg; } }
+/* 塗り（padding-box）＋回る光の縁（border-box） */
+.hm-cta .btn.hm-btn-gold.mw-cta {
+  background:
+    linear-gradient(135deg, #ffe9b0, var(--gold-light) 50%, var(--gold)) padding-box,
+    conic-gradient(from var(--mw-a), #c9a227, #fff3c8, #f48fb1, #e8c96a, #c9a227) border-box !important;
+}
+.store-card__btn.mw-cta {
+  background:
+    var(--gradient-gold) padding-box,
+    conic-gradient(from var(--mw-a), #c9a227, #fff3c8, #f48fb1, #e8c96a, #c9a227) border-box !important;
+  font-weight: 600;
+}
+.btn-support.mw-cta {
+  background:
+    linear-gradient(135deg, #c9a227, #e8c84a) padding-box,
+    conic-gradient(from var(--mw-a), #c9a227, #fff3c8, #f48fb1, #e8c96a, #c9a227) border-box !important;
+}
+.btn-support.mw-cta[aria-disabled="true"] { animation: none; translate: none; box-shadow: none; }
+
+/* ============================================================
+   8. ガラスのピル型ナビ（トップ）
+   ============================================================ */
+@media (min-width: 1101px) {
+  body.page-top header nav ul {
+    padding: 5px !important; border-radius: 999px; gap: 2px;
+    background: rgba(255,255,255,0.16);
+    border: 1px solid rgba(255,255,255,0.38);
+    backdrop-filter: blur(16px) saturate(1.5); -webkit-backdrop-filter: blur(16px) saturate(1.5);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 10px 30px rgba(40,10,28,0.18);
+    transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+  }
+  body.page-top header.scrolled nav ul {
+    background: rgba(255,255,255,0.62);
+    border-color: rgba(201,162,39,0.35);
+    box-shadow: inset 0 1px 0 #fff, 0 8px 24px rgba(180,90,140,0.12);
+  }
+  body.page-top header:not(.scrolled) .pm-nav-indicator {
+    background: rgba(255,255,255,0.3) !important;
+    border-color: rgba(255,255,255,0.55) !important;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.6) !important;
+  }
+  body.page-top header:not(.scrolled) nav ul li a.active,
+  body.page-top header:not(.scrolled) nav ul:hover li a:hover { color: #fff !important; text-shadow: 0 1px 8px rgba(0,0,0,0.35); }
+  body.page-top header:not(.scrolled) { background: linear-gradient(to bottom, rgba(40,10,28,0.32), rgba(40,10,28,0)) !important; }
+}
+
+/* ============================================================
+   9. トップの奥行きレイヤー（試作：js/motion.js の PARALLAX で ON/OFF）
+   ============================================================ */
+.hm-hero.mw-depth .hm-hero__bg { translate: calc(var(--dx, 0) * -14px) calc(var(--dy, 0) * -10px); scale: 1.04; }
+.hm-hero.mw-depth .hm-hero__rays { translate: calc(var(--dx, 0) * -26px) calc(var(--dy, 0) * -18px); }
+.hm-hero.mw-depth .hm-hero__sparkles { translate: calc(var(--dx, 0) * -40px) calc(var(--dy, 0) * -28px); }
+.hm-hero.mw-depth .hm-logo-wrap { display: inline-block; translate: calc(var(--dx, 0) * 18px) calc(var(--dy, 0) * 12px); }
+.hm-hero.mw-depth .hero-buttons { translate: calc(var(--dx, 0) * 8px) calc(var(--dy, 0) * 5px); }
+
+/* ============================================================
+   Reduced motion
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .mw-car__card, .mw-stage__scene { transition-duration: 0.01ms !important; }
+  .mw-metal, .mw-cta, .mw-roll__row { animation: none !important; }
+  .mw-stage__tab[aria-selected="true"]::after { transition: none; }
+  .mw-act { position: relative; top: auto; }
+}
