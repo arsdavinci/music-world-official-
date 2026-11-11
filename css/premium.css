@@ -188,7 +188,7 @@ body.page-top header:not(.scrolled) nav ul li a.nav-supporters { color: #ffe9b0 
 .lang-btn { border-radius: 999px !important; }
 
 /* ── Mobile / tablet nav：フルスクリーンメニュー ── */
-@media (max-width: 1100px) {
+@media (max-width: 1240px) {
   .hamburger { display: block !important; position: relative; z-index: 3; width: 44px; height: 44px; padding: 10px !important; }
   .hamburger span { transition: transform 0.45s var(--ease-out), opacity 0.3s ease, background 0.3s; transform-origin: center; }
   body.pm-nav-open .hamburger span { background: var(--gold-dark) !important; }
@@ -891,6 +891,228 @@ html:has(.char-popup.show), html:has(.detail-lightbox.open) { overflow: hidden; 
 body.page-top footer { margin-top: 0 !important; }
 /* ホームでは旧装飾の固定背景を淡色に */
 body.page-top .stars-bg { background: var(--gradient-bg) !important; }
+
+/* ============================================================
+   GAME（game.html）— MUSIC WORLD RPG 近日公開ページ
+   ============================================================ */
+/* ナビ：ゲームに NEW バッジ */
+nav ul li a.nav-game { position: relative; }
+nav ul li a.nav-game::before {
+  content: 'NEW'; position: absolute; top: -7px; right: -4px;
+  font-family: var(--font-heading); font-size: 0.5rem; font-weight: 700; letter-spacing: 0.08em;
+  padding: 1px 5px; border-radius: 999px; line-height: 1.4;
+  color: #fff; background: linear-gradient(135deg, #d4567f, var(--gold));
+  box-shadow: 0 2px 8px rgba(212,86,127,0.4);
+  animation: gm-badge 2.4s ease-in-out infinite;
+}
+@keyframes gm-badge { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-2px); } }
+@media (max-width: 1240px) {
+  nav ul li a.nav-game::before { position: static; order: 3; margin-left: auto; margin-right: 0.6rem; font-size: 0.6rem; opacity: 1; transform: none; animation: none; }
+}
+
+/* Hero */
+.gm-hero {
+  position: relative; min-height: 100svh; overflow: hidden; isolation: isolate;
+  display: flex; align-items: center; justify-content: center; text-align: center;
+  padding: calc(var(--header-h) + 2rem) 1.25rem 6rem; color: #fff;
+}
+.gm-hero__bg {
+  position: absolute; inset: -4%; z-index: -3;
+  background: url('../images/game/title-bg-wide.webp') center / cover no-repeat;
+  animation: gm-ken 40s ease-in-out infinite alternate;
+}
+@keyframes gm-ken { from { transform: scale(1.02); } to { transform: scale(1.12) translate(-1.5%, -1%); } }
+.gm-hero__veil {
+  position: absolute; inset: 0; z-index: -2;
+  background:
+    radial-gradient(90% 60% at 50% 30%, rgba(255,240,250,0.15), transparent 70%),
+    linear-gradient(180deg, rgba(42,20,48,0.25) 0%, transparent 30%, rgba(60,22,52,0.45) 65%, rgba(36,14,40,0.88) 100%);
+}
+.gm-hero__sparkles { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
+.gm-hero__inner { display: flex; flex-direction: column; align-items: center; gap: clamp(0.6rem, 1.6vh, 1.1rem); max-width: 860px; }
+.gm-new {
+  font-family: var(--font-heading); font-weight: 700; font-size: 0.78rem; letter-spacing: 0.45em;
+  padding: 0.45rem 1rem 0.45rem 1.45rem; border-radius: 999px;
+  background: rgba(255,255,255,0.14); border: 1px solid rgba(255,233,176,0.7);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); color: #ffe9b0;
+  animation: pm-rise 1s var(--ease-out) both;
+}
+.gm-logo { position: relative; width: min(640px, 86vw); line-height: 0; margin: 0; animation: gm-logo-in 1.6s var(--ease-out) 0.15s both; }
+.gm-logo img { width: 100%; height: auto; filter: drop-shadow(0 8px 26px rgba(120,30,80,0.5)); }
+.gm-logo__shine {
+  position: absolute; inset: 0; pointer-events: none; mix-blend-mode: overlay;
+  background: linear-gradient(105deg, transparent 35%, rgba(255,255,255,0.95) 48%, rgba(255,240,200,0.9) 52%, transparent 65%);
+  background-size: 300% 100%; background-position: 150% 0;
+  -webkit-mask: url('../images/game/logo-rpg.webp') center / 100% 100% no-repeat;
+          mask: url('../images/game/logo-rpg.webp') center / 100% 100% no-repeat;
+  animation: pm-logo-shine 5.5s ease-in-out 1.8s infinite;
+}
+@keyframes gm-logo-in { from { opacity: 0; transform: translateY(20px) scale(0.94); filter: blur(10px); } to { opacity: 1; transform: none; filter: none; } }
+.gm-sub {
+  font-weight: 900; font-size: clamp(1.4rem, 4vw, 2.3rem); letter-spacing: 0.16em;
+  text-shadow: 0 2px 14px rgba(110,30,80,0.7), 0 0 2px rgba(110,30,80,0.7);
+  animation: pm-rise 1.1s var(--ease-out) 0.5s both;
+}
+.gm-tag {
+  font-size: clamp(0.85rem, 1.8vw, 1rem); letter-spacing: 0.24em;
+  text-shadow: 0 1px 8px rgba(80,20,60,0.75); animation: pm-rise 1.1s var(--ease-out) 0.7s both;
+}
+.gm-tag::before, .gm-tag::after { content: '✦'; margin: 0 0.7em; color: #ffe08a; font-size: 0.8em; }
+.gm-soon {
+  position: relative; display: flex; flex-direction: column; align-items: center; gap: 0.2rem;
+  margin-top: 0.6rem; padding: 0.9rem 2.6rem; border-radius: 18px; isolation: isolate; overflow: hidden;
+  background: linear-gradient(135deg, rgba(61,26,46,0.7), rgba(90,33,64,0.6));
+  border: 1px solid rgba(255,233,176,0.65);
+  box-shadow: 0 10px 40px rgba(40,10,30,0.45), inset 0 1px 0 rgba(255,255,255,0.15);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  animation: pm-rise 1.1s var(--ease-out) 0.9s both;
+}
+.gm-soon::before {
+  content: ''; position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(110deg, transparent 30%, rgba(255,233,176,0.35) 50%, transparent 70%);
+  transform: translateX(-120%); animation: pm-sheen 3.4s ease-in-out 2s infinite;
+}
+.gm-soon__en {
+  font-family: var(--font-title); font-weight: 900; font-size: clamp(1.5rem, 4.6vw, 2.6rem); letter-spacing: 0.12em; line-height: 1.1;
+  background: linear-gradient(180deg, #fff 0%, #ffe9b0 55%, #e8b84a 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.gm-soon__ja { font-size: 0.85rem; letter-spacing: 0.5em; padding-left: 0.5em; color: #ffd0e0; }
+.gm-hero__btns { display: flex; gap: 0.9rem; flex-wrap: wrap; justify-content: center; margin-top: 0.8rem; animation: pm-rise 1.1s var(--ease-out) 1.1s both; }
+.gm-hero .btn-hero {
+  background: linear-gradient(rgba(61,26,46,0.45), rgba(61,26,46,0.45)) padding-box, linear-gradient(135deg, rgba(255,233,176,0.9), rgba(255,183,207,0.9)) border-box !important;
+  backdrop-filter: blur(12px); color: #fff !important; min-width: 190px;
+}
+.gm-hero .btn-hero.hm-btn-main {
+  background: linear-gradient(135deg, #d4567f, var(--rose) 45%, var(--gold) 120%) padding-box, linear-gradient(135deg, #ffe9b0, #fff) border-box !important;
+  box-shadow: 0 10px 34px rgba(212,86,127,0.45);
+}
+@media (max-aspect-ratio: 1/1) {
+  .gm-hero__bg { background-image: url('../images/game/title-bg-tall.webp'); }
+}
+
+/* About */
+.gm-about { background: linear-gradient(180deg, #fff5f8, #fffdf7); overflow: hidden; }
+.gm-about__grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: clamp(2rem, 6vw, 5rem); align-items: center; }
+.gm-spec { margin-top: 2rem; display: grid; gap: 0; border-top: 1px solid rgba(201,162,39,0.3); }
+.gm-spec > div { display: grid; grid-template-columns: 9em 1fr; gap: 1rem; padding: 0.9rem 0.2rem; border-bottom: 1px solid rgba(201,162,39,0.3); }
+.gm-spec dt { font-family: var(--font-heading); font-size: 0.78rem; letter-spacing: 0.12em; color: var(--rose); padding-top: 0.15rem; }
+.gm-spec dd { color: var(--plum); font-weight: 600; line-height: 1.7; }
+.gm-spec dd span { font-weight: 400; font-size: 0.85rem; color: var(--text-mid); }
+.gm-about__art { position: relative; aspect-ratio: 1 / 0.92; }
+.gm-about__art img {
+  position: absolute; width: 74%; border-radius: 20px; border: 4px solid #fff;
+  box-shadow: 0 24px 60px rgba(90,33,64,0.25); transition: transform 0.8s var(--ease-out);
+}
+.gm-about__art img:nth-child(1) { top: 0; left: 0; transform: rotate(-4deg); z-index: 1; }
+.gm-about__art img:nth-child(2) { top: 28%; right: 0; transform: rotate(3deg); z-index: 2; }
+.gm-about__art img:nth-child(3) { bottom: 0; left: 8%; transform: rotate(-1.5deg); z-index: 3; }
+.gm-about__art:hover img:nth-child(1) { transform: rotate(-7deg) translate(-12px, -8px); }
+.gm-about__art:hover img:nth-child(2) { transform: rotate(6deg) translate(12px, -6px); }
+.gm-about__art:hover img:nth-child(3) { transform: rotate(0deg) translateY(10px); }
+@media (max-width: 860px) {
+  .gm-about__grid { grid-template-columns: 1fr; }
+  .gm-about__art { max-width: 520px; width: 100%; margin: 0 auto; }
+}
+@media (max-width: 480px) { .gm-spec > div { grid-template-columns: 1fr; gap: 0.2rem; } }
+
+/* Features */
+.gm-features { background: linear-gradient(180deg, #fffdf7, #fdeef4); }
+.gm-feats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; }
+.gm-feats .hm-pillar:nth-child(even) { transform: none; }
+.gm-feats .hm-pillar.pm-reveal:nth-child(even) { transform: translateY(40px); }
+.gm-feats .hm-pillar.pm-reveal.is-in:nth-child(even) { transform: none; }
+@media (max-width: 1000px) { .gm-feats { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .gm-feats { grid-template-columns: 1fr; } }
+
+/* Stages */
+.gm-stages { background: linear-gradient(180deg, #fdeef4, #f7ecfa); }
+.gm-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+.gm-card {
+  position: relative; display: flex; flex-direction: column; justify-content: flex-end; gap: 0.15rem;
+  padding: 0.75rem 0.9rem; aspect-ratio: 16 / 9; border-radius: 18px; overflow: hidden; isolation: isolate;
+  color: #fff; text-decoration: none; box-shadow: 0 12px 32px rgba(90,33,64,0.18);
+  transition: transform 0.5s var(--ease-out), box-shadow 0.5s ease;
+}
+.gm-card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; transition: transform 1.1s var(--ease-out), filter 0.6s ease; }
+.gm-card::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(40,10,28,0) 40%, rgba(40,10,28,0.82)); }
+.gm-card::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none; mix-blend-mode: soft-light;
+  background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,0.75) 45%, transparent 60%);
+  background-size: 250% 100%; background-position: 120% 0; transition: background-position 0.9s var(--ease-out);
+}
+.gm-card:hover { transform: translateY(-6px); box-shadow: 0 22px 50px rgba(90,33,64,0.3); color: #fff; }
+.gm-card:hover img { transform: scale(1.08); }
+.gm-card:hover::after { background-position: -20% 0; }
+.gm-card__no {
+  font-family: var(--font-heading); font-weight: 700;
+  font-size: 0.66rem; letter-spacing: 0.24em; color: #ffe9b0;
+}
+.gm-card__name { font-size: clamp(0.88rem, 1.4vw, 1.02rem); letter-spacing: 0.08em; text-shadow: 0 2px 10px rgba(0,0,0,0.5); line-height: 1.4; }
+.gm-card--secret img { filter: blur(10px) brightness(0.7) saturate(1.2); transform: scale(1.15); }
+.gm-card--secret:hover img { filter: blur(6px) brightness(0.85) saturate(1.3); transform: scale(1.2); }
+.gm-card--secret .gm-card__name { letter-spacing: 0.4em; }
+.gm-card__lock {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -70%); font-size: 1.8rem;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.5)); animation: gm-badge 2.4s ease-in-out infinite;
+}
+@media (max-width: 1000px) { .gm-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 700px) { .gm-grid { grid-template-columns: repeat(2, 1fr); gap: 0.7rem; } .gm-card { border-radius: 14px; padding: 0.55rem 0.65rem; } .gm-card__no { font-size: 0.56rem; } .gm-card__name { font-size: 0.82rem; } }
+
+/* How to play */
+.gm-howto { background: #fff5f8; }
+.gm-ctrl { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+.gm-ctrl__box {
+  padding: 1.8rem 1.6rem; border-radius: 22px; background: #fff;
+  border: 1px solid rgba(201,162,39,0.28); box-shadow: 0 10px 34px rgba(180,90,140,0.08);
+}
+.gm-ctrl__box h3 { font-family: var(--font-heading); color: var(--gold-dark); letter-spacing: 0.16em; font-size: 0.95rem; margin-bottom: 1rem; }
+.gm-ctrl__box ul { list-style: none; display: grid; gap: 0.75rem; }
+.gm-ctrl__box li { display: flex; align-items: center; flex-wrap: wrap; gap: 0.35rem; font-size: 0.86rem; color: var(--text-mid); line-height: 1.6; }
+.gm-ctrl__box li span { margin-left: 0.4rem; }
+.gm-ctrl kbd {
+  font-family: var(--font-heading); font-size: 0.72rem; font-weight: 700; color: var(--plum);
+  min-width: 2em; padding: 0.25rem 0.55rem; border-radius: 8px; text-align: center;
+  background: linear-gradient(180deg, #fff, #fbe9f0); border: 1px solid rgba(201,162,39,0.45);
+  box-shadow: 0 2px 0 rgba(201,162,39,0.45);
+}
+@media (max-width: 900px) { .gm-ctrl { grid-template-columns: 1fr; max-width: 520px; margin: 0 auto; } }
+
+/* Coming soon toast（ステージカードを押したとき） */
+.gm-toast {
+  position: fixed; left: 50%; bottom: 7rem; z-index: 4000; transform: translate(-50%, 20px);
+  padding: 0.8rem 1.5rem; border-radius: 999px; color: #fff; font-size: 0.9rem; letter-spacing: 0.08em;
+  background: linear-gradient(135deg, var(--wine), var(--plum)); border: 1px solid rgba(255,233,176,0.6);
+  box-shadow: 0 14px 40px rgba(60,20,45,0.35); opacity: 0; pointer-events: none;
+  transition: opacity 0.35s ease, transform 0.5s var(--ease-spring);
+}
+.gm-toast.is-on { opacity: 1; transform: translate(-50%, 0); }
+
+/* トップページ：ゲーム告知バナー */
+.hm-game { padding-top: clamp(3rem, 6vw, 5rem); padding-bottom: 0; background: #fff5f8; }
+.hm-game__box {
+  position: relative; display: grid; grid-template-columns: 1.1fr 1fr; align-items: center; gap: 2rem;
+  border-radius: 32px; overflow: hidden; isolation: isolate; color: #fff; text-decoration: none;
+  padding: clamp(2rem, 5vw, 3.5rem); min-height: 340px;
+  box-shadow: 0 30px 80px rgba(90,33,64,0.3);
+}
+.hm-game__box:hover { color: #fff; }
+.hm-game__bg { position: absolute; inset: 0; z-index: -2; background: url('../images/game/title-bg-wide.webp') center / cover no-repeat; transition: transform 1.4s var(--ease-out); }
+.hm-game__box:hover .hm-game__bg { transform: scale(1.05); }
+.hm-game__box::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(42,16,40,0.85) 0%, rgba(60,22,52,0.55) 50%, rgba(60,22,52,0.1) 100%); }
+.hm-game__logo { width: min(420px, 100%); height: auto; filter: drop-shadow(0 6px 20px rgba(80,20,60,0.5)); }
+.hm-game__text .gm-new { display: inline-block; margin-bottom: 1rem; animation: none; }
+.hm-game__title { font-size: clamp(1.4rem, 3.2vw, 2.2rem); font-weight: 900; letter-spacing: 0.12em; margin: 0.6rem 0 0.4rem; text-shadow: 0 2px 12px rgba(0,0,0,0.4); }
+.hm-game__soon { font-family: var(--font-title); font-weight: 900; letter-spacing: 0.12em; font-size: clamp(1.1rem, 2.4vw, 1.6rem);
+  background: linear-gradient(180deg, #fff, #ffe9b0 55%, #e8b84a); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.hm-game__more { display: inline-flex; align-items: center; gap: 0.6rem; margin-top: 1.4rem; font-family: var(--font-heading); letter-spacing: 0.2em; font-size: 0.78rem; color: #ffe9b0; }
+.hm-game__more i { width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; font-style: normal; background: linear-gradient(135deg, var(--rose), var(--gold)); color: #fff; transition: transform 0.5s var(--ease-spring); }
+.hm-game__box:hover .hm-game__more i { transform: translateX(6px) rotate(-10deg); }
+@media (max-width: 760px) {
+  .hm-game__box { grid-template-columns: 1fr; text-align: center; min-height: 0; }
+  .hm-game__box::before { background: linear-gradient(180deg, rgba(42,16,40,0.35), rgba(42,16,40,0.85)); }
+  .hm-game__logo { margin: 0 auto; }
+}
 
 /* ============================================================
    Reduced motion

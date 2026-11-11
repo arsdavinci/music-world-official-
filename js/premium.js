@@ -615,6 +615,41 @@
     els.forEach(function (el) { el.textContent = '0'; io.observe(el); });
   }
 
+  /* ── ゲームページ：ヒーローの星屑・「近日公開」トースト ── */
+  function initGamePage() {
+    var hero = document.querySelector('.gm-hero');
+    var sp = hero && hero.querySelector('.gm-hero__sparkles');
+    if (sp && !reduceMotion) {
+      makeSparkleField(sp, {
+        palette: ['#fff3cf', '#ffd36e', '#ffd0e0', '#ffffff'],
+        density: 14000, max: 90, size: 1.6, speed: 0.35, alpha: 0.9, observe: hero
+      });
+    }
+    var cards = document.querySelectorAll('[data-coming-soon]');
+    if (!cards.length) return;
+    var toast = document.createElement('div');
+    toast.className = 'gm-toast';
+    toast.setAttribute('role', 'status');
+    document.body.appendChild(toast);
+    var timer = 0;
+    var MSG = {
+      ja: '✦ 近日公開！もうしばらくお待ちください ✦',
+      en: '✦ Coming soon — stay tuned! ✦',
+      zh: '✦ 即将推出，敬请期待！✦'
+    };
+    cards.forEach(function (c) {
+      c.addEventListener('click', function (e) {
+        e.preventDefault();
+        var lang = 'ja';
+        try { lang = localStorage.getItem('siteLanguage') || 'ja'; } catch (err) {}
+        toast.textContent = MSG[lang] || MSG.ja;
+        toast.classList.add('is-on');
+        clearTimeout(timer);
+        timer = setTimeout(function () { toast.classList.remove('is-on'); }, 2200);
+      });
+    });
+  }
+
   /* ── BGM：再生中のイコライザー表示 ── */
   function initBgmEq() {
     var audio = document.getElementById('bgm-audio');
@@ -645,6 +680,7 @@
     initKingdoms();
     initCast();
     initCounters();
+    initGamePage();
     initBgmEq();
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
