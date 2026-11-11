@@ -465,7 +465,7 @@
   function initCast() {
     var track = document.querySelector('.hm-cast__track');
     var rail = track && track.querySelector('.hm-cast__rail');
-    if (!rail) return;
+    if (!rail || track.hasAttribute('data-mw-carousel')) return; // motion.js の奥行きカルーセルを使う
     var originals = Array.prototype.slice.call(rail.children);
 
     // ループ用の複製（読み上げ・Tab移動の対象外）
