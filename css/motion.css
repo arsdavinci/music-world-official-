@@ -376,3 +376,6 @@ body.page-top .hm-cta { border-top: 0; box-shadow: none; }
 @media (max-width: 640px) {
   body.page-top .stars-bg { background-size: auto 100% !important; background-position: 62% top !important; }
 }
+
+/* ナビ「ゲーム」の NEW バッジが見切れないように（effects.css がリンクを overflow:hidden にしている） */
+nav ul li a.nav-game { overflow: visible !important; }
