@@ -376,3 +376,32 @@ body.page-top .hm-cta { border-top: 0; box-shadow: none; }
 @media (max-width: 640px) {
   body.page-top .stars-bg { background-size: auto 100% !important; background-position: 62% top !important; }
 }
+
+/* ============================================================
+   11. ゲーム：30秒プロモーション動画
+   ============================================================ */
+.gm-trailer { background: radial-gradient(90% 70% at 50% 30%, #4a2552, #1e0d24 75%); color: #fff; }
+.gm-trailer .hm-h2 { color: #fff; }
+.gm-trailer .hm-eyebrow { color: var(--gold-light); }
+.gm-trailer__frame {
+  position: relative; max-width: 1080px; margin: 2.4rem auto 0;
+  aspect-ratio: 16 / 9; border-radius: 22px; overflow: hidden; background: #0d0610;
+  border: 1px solid rgba(232,201,106,0.45);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.45), 0 0 0 6px rgba(232,201,106,0.08);
+}
+.gm-trailer__video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.gm-trailer__sound {
+  position: absolute; right: 16px; bottom: 16px; z-index: 2;
+  display: inline-flex; align-items: center; gap: 0.5em; cursor: pointer;
+  padding: 0.55rem 1.1rem; border-radius: 999px; font-size: 0.82rem; letter-spacing: 0.1em;
+  color: #fff; background: rgba(20,6,16,0.55); border: 1px solid rgba(255,255,255,0.4);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); transition: background 0.3s;
+}
+.gm-trailer__sound:hover { background: rgba(20,6,16,0.75); }
+.gm-trailer__sound[aria-pressed="true"] { border-color: var(--gold-light); }
+.gm-trailer__off, .gm-trailer__sound[aria-pressed="true"] .gm-trailer__on { display: none; }
+.gm-trailer__sound[aria-pressed="true"] .gm-trailer__off { display: inline; }
+@media (max-width: 640px) {
+  .gm-trailer__frame { border-radius: 14px; }
+  .gm-trailer__sound { right: 10px; bottom: 10px; padding: 0.45rem 0.9rem; }
+}

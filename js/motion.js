@@ -583,6 +583,37 @@
     kick();
   }
 
+
+  /* ══════════════════════════════════════════════════════════
+     11. ゲーム：プロモーション動画（画面に入ったら無音で再生）
+     ══════════════════════════════════════════════════════════ */
+  function initGameTrailer() {
+    var video = $('.gm-trailer__video');
+    if (!video) return;
+    var btn = $('.gm-trailer__sound');
+    var icon = btn && btn.querySelector('.gm-trailer__icon');
+    if (!reduceMotion && 'IntersectionObserver' in window) {
+      new IntersectionObserver(function (es) {
+        if (es[0].isIntersecting) { var p = video.play(); if (p && p.catch) p.catch(function () {}); }
+        else video.pause();
+      }, { threshold: 0.4 }).observe(video);
+    } else {
+      video.controls = true;
+    }
+    if (btn) btn.addEventListener('click', function () {
+      var on = video.muted;
+      video.muted = !on;
+      btn.setAttribute('aria-pressed', String(on));
+      if (icon) icon.textContent = on ? '🔊' : '🔇';
+      if (on) {
+        // 動画の音を出すときはサイトのBGMを止める
+        var bgm = document.getElementById('bgm-audio');
+        if (bgm && !bgm.paused) bgm.pause();
+        var p = video.play(); if (p && p.catch) p.catch(function () {});
+      }
+    });
+  }
+
   function init() {
     initHomeCast();
     initCharacterCarousel();
@@ -594,6 +625,7 @@
     initKingdomStage();
     initCtaMagnet();
     initHeroDepth();
+    initGameTrailer();
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();

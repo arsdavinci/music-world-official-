@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="css/style.css?v=20261112a">
   <link rel="stylesheet" href="css/effects.css?v=20261112a">
   <link rel="stylesheet" href="css/premium.css?v=20261112a">
-  <link rel="stylesheet" href="css/motion.css?v=20261027a">
+  <link rel="stylesheet" href="css/motion.css?v=20261112b">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WZSLHDJ1MQ"></script>
   <script>
@@ -84,10 +84,29 @@
     </div>
     <div class="gm-hero__btns">
       <a href="#features" class="btn btn-hero hm-btn-main"><span data-i18n="game-btn-features">ゲームの特徴</span></a>
+      <a href="#trailer" class="btn btn-hero"><span data-i18n="game-btn-trailer">トレーラーを見る</span></a>
       <a href="#stages" class="btn btn-hero"><span data-i18n="game-btn-stages">ステージ紹介</span></a>
     </div>
   </div>
-  <a href="#about" class="hm-scroll" aria-label="下へスクロール">SCROLL<i></i></a>
+  <a href="#trailer" class="hm-scroll" aria-label="下へスクロール">SCROLL<i></i></a>
+</section>
+
+<!-- ── Trailer（js/motion.js が画面内でだけ再生） ── -->
+<section class="hm-section gm-trailer" id="trailer">
+  <div class="hm-wrap">
+    <div class="hm-head hm-head--center">
+      <span class="hm-eyebrow pm-reveal">Promotion Trailer</span>
+      <h2 class="hm-h2 pm-reveal" data-i18n="game-trailer-title" data-i18n-html>30秒で見る、<em>MUSIC WORLD RPG</em></h2>
+    </div>
+    <div class="gm-trailer__frame pm-reveal">
+      <video class="gm-trailer__video" src="videos/music-world-rpg-trailer.mp4" poster="images/game/stage-00.webp"
+             muted loop playsinline preload="metadata" width="1920" height="1080"
+             aria-label="MUSIC WORLD RPG プロモーション動画（30秒）"></video>
+      <button type="button" class="gm-trailer__sound" aria-pressed="false">
+        <span class="gm-trailer__icon" aria-hidden="true">🔇</span><span class="gm-trailer__on" data-i18n="game-trailer-sound">音を出す</span><span class="gm-trailer__off" data-i18n="game-trailer-mute">音を消す</span>
+      </button>
+    </div>
+  </div>
 </section>
 
 <!-- ── About ── -->
@@ -249,9 +268,9 @@
   <p style="margin-top:0.5rem;" data-i18n="footer-copy2">このサイトはフィクション作品の公式サイトです。</p>
 </footer>
 
-<script src="js/main.js?v=20261112a"></script>
+<script src="js/main.js?v=20261112b"></script>
 <script src="js/effects.js?v=20261112a"></script>
 <script src="js/premium.js?v=20261112a"></script>
-<script src="js/motion.js?v=20261026a"></script>
+<script src="js/motion.js?v=20261112b"></script>
 </body>
 </html>
