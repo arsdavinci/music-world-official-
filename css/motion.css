@@ -405,3 +405,6 @@ body.page-top .hm-cta { border-top: 0; box-shadow: none; }
   .gm-trailer__frame { border-radius: 14px; }
   .gm-trailer__sound { right: 10px; bottom: 10px; padding: 0.45rem 0.9rem; }
 }
+
+/* ナビ「ゲーム」の NEW バッジが見切れないように（effects.css がリンクを overflow:hidden にしている） */
+nav ul li a.nav-game { overflow: visible !important; }
