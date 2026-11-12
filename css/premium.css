@@ -1122,3 +1122,11 @@ nav ul li a.nav-game::before {
   .fade-in, .pm-reveal { opacity: 1 !important; transform: none !important; filter: none !important; }
   .pm-stardust, .hm-hero__sparkles, .pm-curtain { display: none !important; }
 }
+
+/* ▶ 体験版をあそぶ（2026-11-13） */
+.gm-play{display:inline-flex;flex-direction:column;align-items:center;gap:.15em;margin:1.4rem auto 0;padding:1rem 2.6rem;border-radius:999px;text-decoration:none;color:#fff;
+  background:linear-gradient(180deg,#ff8ac4,#d4568f);box-shadow:0 6px 26px rgba(255,120,190,.55),inset 0 1px 0 rgba(255,255,255,.45);font-weight:800;font-size:1.25rem;letter-spacing:.08em;transition:transform .15s,box-shadow .15s}
+.gm-play:hover{transform:translateY(-2px) scale(1.03);box-shadow:0 10px 34px rgba(255,120,190,.7)}
+.gm-play__main{display:inline-flex;align-items:center;gap:.4em}.gm-play__icon{font-size:.85em}
+.gm-play small{font-size:.72rem;font-weight:600;letter-spacing:.04em;opacity:.92}
+.gm-hero__inner .gm-play{display:flex;width:max-content;max-width:calc(100vw - 32px)}
