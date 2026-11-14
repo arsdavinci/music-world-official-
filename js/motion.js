@@ -614,6 +614,129 @@
     });
   }
 
+
+  /* ══════════════════════════════════════════════════════════
+     12. ゲーム：ステージごとのコンセプトアートルーム
+     カードに data-art-room="stage-03" を付けると、ここのデータで部屋が開く。
+     ══════════════════════════════════════════════════════════ */
+  var ART_ROOMS = {
+    'stage-03': {
+      no: 'STAGE 3', bg: 'images/game/stage-03.webp',
+      title: { ja: '謁見と地下牢', en: 'The Audience & the Dungeon', zh: '觐见与地牢' },
+      lead: {
+        ja: 'この地下牢は、ここに並ぶ4つの家具でできています。<br>鉄輪も、棚も、樽も、寝床も。どれもバイオリンの f字孔や弦、渦巻きをかたどりました。',
+        en: 'This dungeon is built from the four pieces of furniture below.<br>The wall ring, the shelf, the barrel and the bed all borrow a violin’s f-holes, strings and scroll.',
+        zh: '这座地牢由下面这四件家具组成。<br>铁环、石架、木桶和床铺，都融入了小提琴的 f 孔、琴弦与琴头涡卷。'
+      },
+      items: [
+        { img: 'images/game/art/stage-03/iron-ring.webp',
+          name: { ja: '壁の鉄輪', en: 'Iron Wall Ring', zh: '墙上的铁环' },
+          note: { ja: 'バイオリンの胴をかたどった台座に、f字孔と弓。渦巻きの金具から重い鉄の輪が下がる。', en: 'A violin-body plate with f-holes and a bow; a heavy ring hangs from a scroll-shaped hinge.', zh: '小提琴琴身造型的底座，饰以 f 孔与琴弓，涡卷形挂扣下垂着沉重的铁环。' } },
+        { img: 'images/game/art/stage-03/stone-shelf.webp',
+          name: { ja: '石の棚', en: 'Stone Shelf', zh: '石架' },
+          note: { ja: 'ろうそく、楽器の形のガラス瓶、水差し、ランタン。棚の脚にも f字孔が彫られている。', en: 'Candles, instrument-shaped bottles, a jug and a lantern. Even the brackets are carved with f-holes.', zh: '蜡烛、乐器形状的玻璃瓶、水壶和提灯。连支架上也雕着 f 孔。' } },
+        { img: 'images/game/art/stage-03/barrel.webp',
+          name: { ja: '樽', en: 'Barrel', zh: '木桶' },
+          note: { ja: '胴に f字孔、ふたには駒と弦。両わきの取っ手はバイオリンの渦巻き。', en: 'F-holes on the body, a bridge and strings on the lid, and scroll-shaped handles on each side.', zh: '桶身开着 f 孔，桶盖上有琴码与琴弦，两侧把手是小提琴的涡卷。' } },
+        { img: 'images/game/art/stage-03/straw-bed.webp',
+          name: { ja: 'わらの寝床', en: 'Straw Bed', zh: '稻草床' },
+          note: { ja: 'バイオリンの形に編んだわらの寝床。f字孔は縄で、弦はロープで表している。', en: 'A straw bed woven in the shape of a violin, with rope f-holes and rope strings.', zh: '编成小提琴形状的稻草床，用绳子做出 f 孔和琴弦。' } }
+      ]
+    }
+  };
+  var ROOM_UI = {
+    ja: { eyebrow: 'CONCEPT ART ROOM', close: 'とじる', foot: '絵をクリックすると大きく見られます', zoomClose: '拡大をとじる' },
+    en: { eyebrow: 'CONCEPT ART ROOM', close: 'Close', foot: 'Click a piece to see it larger', zoomClose: 'Close zoom' },
+    zh: { eyebrow: 'CONCEPT ART ROOM', close: '关闭', foot: '点击图片可放大查看', zoomClose: '关闭放大' }
+  };
+  function siteLang() { try { return localStorage.getItem('siteLanguage') || 'ja'; } catch (e) { return 'ja'; } }
+
+  function initArtRooms() {
+    var cards = $$('[data-art-room]');
+    if (!cards.length) return;
+    var room = document.createElement('div');
+    room.className = 'mw-room';
+    room.setAttribute('role', 'dialog');
+    room.setAttribute('aria-modal', 'true');
+    room.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(room);
+    var lastFocus = null, current = null;
+
+    function t(obj, lang) { return obj[lang] || obj.ja; }
+    function render(id) {
+      var d = ART_ROOMS[id], lang = siteLang(), ui = ROOM_UI[lang] || ROOM_UI.ja;
+      room.setAttribute('aria-label', ui.eyebrow + ' ' + d.no + ' ' + t(d.title, lang));
+      room.innerHTML =
+        '<div class="mw-room__bg" style="background-image:url(\'' + d.bg + '\')"></div>' +
+        '<button type="button" class="mw-room__close" aria-label="' + ui.close + '">✕</button>' +
+        '<div class="mw-room__inner">' +
+          '<p class="mw-room__eyebrow">' + ui.eyebrow + '</p>' +
+          '<h2 class="mw-room__title">' + t(d.title, lang) + '</h2>' +
+          '<p class="mw-room__stage">' + d.no + '</p>' +
+          '<p class="mw-room__lead">' + t(d.lead, lang) + '</p>' +
+          '<div class="mw-room__grid">' + d.items.map(function (it, i) {
+            return '<button type="button" class="mw-room__item" data-i="' + i + '">' +
+              '<span class="mw-room__pic"><img src="' + it.img + '" alt="' + t(it.name, lang) + '" loading="lazy" decoding="async"></span>' +
+              '<span class="mw-room__cap"><span class="mw-room__no">No. ' + String(i + 1).padStart(2, '0') + '</span>' +
+              '<b class="mw-room__name">' + t(it.name, lang) + '</b><span class="mw-room__note">' + t(it.note, lang) + '</span></span></button>';
+          }).join('') + '</div>' +
+          '<p class="mw-room__foot">' + ui.foot + '</p>' +
+        '</div>' +
+        '<div class="mw-room__zoom" role="button" tabindex="-1" aria-label="' + ui.zoomClose + '"><figure><img alt=""><p></p></figure></div>';
+      var zoom = $('.mw-room__zoom', room);
+      $('.mw-room__close', room).addEventListener('click', function () { close(); });
+      $$('.mw-room__item', room).forEach(function (b) {
+        b.addEventListener('click', function () {
+          var it = d.items[+b.dataset.i];
+          var zi = zoom.querySelector('img');
+          zi.src = it.img; zi.alt = t(it.name, lang);
+          zoom.querySelector('p').textContent = t(it.name, lang);
+          zoom.classList.add('is-open');
+          zoom.focus();
+        });
+      });
+      zoom.addEventListener('click', function () { zoom.classList.remove('is-open'); });
+    }
+    function open(id, fromHash) {
+      if (!ART_ROOMS[id]) return;
+      current = id;
+      lastFocus = document.activeElement;
+      render(id);
+      room.scrollTop = 0;
+      room.classList.add('is-open');
+      room.setAttribute('aria-hidden', 'false');
+      document.documentElement.classList.add('mw-room-open');
+      if (!fromHash) { try { history.pushState({ mwRoom: id }, '', '#art-' + id); } catch (e) {} }
+      setTimeout(function () { var c = $('.mw-room__close', room); if (c) c.focus(); }, 50);
+    }
+    function close(fromHash) {
+      if (!current) return;
+      current = null;
+      room.classList.remove('is-open');
+      room.setAttribute('aria-hidden', 'true');
+      document.documentElement.classList.remove('mw-room-open');
+      if (!fromHash && /^#art-/.test(location.hash)) {
+        try { history.pushState({}, '', location.pathname + location.search + '#stages'); } catch (e) {}
+      }
+      if (lastFocus && lastFocus.focus) lastFocus.focus();
+    }
+    cards.forEach(function (c) {
+      c.addEventListener('click', function (e) { e.preventDefault(); open(c.getAttribute('data-art-room')); });
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key !== 'Escape' || !current) return;
+      var zoom = $('.mw-room__zoom.is-open', room);
+      if (zoom) zoom.classList.remove('is-open'); else close();
+    });
+    function fromHash() {
+      var m = location.hash.match(/^#art-(.+)$/);
+      if (m && ART_ROOMS[m[1]]) open(m[1], true); else close(true);
+    }
+    window.addEventListener('popstate', fromHash);
+    window.addEventListener('hashchange', fromHash);
+    fromHash();
+  }
+
   function init() {
     initHomeCast();
     initCharacterCarousel();
@@ -626,6 +749,7 @@
     initCtaMagnet();
     initHeroDepth();
     initGameTrailer();
+    initArtRooms();
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
