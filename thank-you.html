@@ -156,7 +156,7 @@
       </p>
     </div>
     <div id="reward-supporter">
-      <p style="font-size:0.82rem; color:var(--purple-pale); margin-bottom:1.4rem; line-height:1.8;">
+      <p id="supporter-greeting-line" data-no-auto style="font-size:0.82rem; color:var(--purple-pale); margin-bottom:1.4rem; line-height:1.8;">
         <span id="supporter-greeting"></span>の一枚が選ばれました。
       </p>
       <div id="message-image-wrap" style="text-align:center; margin-bottom:1.4rem;">
@@ -245,7 +245,7 @@
   <p>© 2025 Violin Princess Production Committee. All Rights Reserved.</p>
 </footer>
 
-<script src="js/main.js?v=20261120a"></script>
+<script src="js/main.js?v=20261120b"></script>
 <script>
   // お礼メッセージ画像（通常5枚＋レアカード1枚 / master-tactは1/20=5%）
   const MESSAGE_IMAGES = [
@@ -301,9 +301,26 @@
 
   // ニックネームで呼びかけ（未入力なら「あなた」）
   const nickname = localStorage.getItem('mw_nickname') || '';
-  const callName = nickname ? nickname + 'さん' : 'あなた';
-  const greetingEl = document.getElementById('supporter-greeting');
-  if (greetingEl) greetingEl.textContent = '今日の' + callName;
+  // 言語ごとの文（{n} にニックネーム。未入力なら「あなた」にあたる言葉）
+  const GREET = {
+    ja: ['今日の{n}の一枚が選ばれました。', '{n}さん', 'あなた'],
+    en: ['Today’s card for {n} has been chosen.', '{n}', 'you'],
+    zh: ['今天为{n}选出了这一张。', '{n}', '你'],
+    'zh-TW': ['今天為{n}選出了這一張。', '{n}', '你'],
+    ko: ['오늘 {n}을(를) 위한 한 장이 골라졌어요.', '{n} 님', '당신'],
+    es: ['Hoy se ha elegido esta carta para {n}.', '{n}', 'ti'],
+    fr: ['Aujourd’hui, cette carte a été choisie pour {n}.', '{n}', 'vous'],
+    th: ['วันนี้การ์ดใบนี้ถูกเลือกมาเพื่อ{n}แล้ว', 'คุณ{n}', 'คุณ']
+  };
+  const greetingLine = document.getElementById('supporter-greeting-line');
+  function renderGreeting() {
+    if (!greetingLine) return;
+    const g = GREET[window.mwLang ? window.mwLang() : 'ja'] || GREET.ja;
+    const name = nickname ? g[1].replace('{n}', nickname) : g[2];
+    greetingLine.textContent = g[0].replace('{n}', name);
+  }
+  renderGreeting();
+  document.addEventListener('mw:languagechange', renderGreeting);
 
   // checkout.htmlで決定したキャラクターをlocalStorageから取得して優先使用
   const storedChar = localStorage.getItem('mw_selected_character');
