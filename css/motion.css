@@ -471,3 +471,35 @@ nav ul li a.nav-game { overflow: visible !important; }
 html.mw-room-open, html.mw-room-open body { overflow: hidden; }
 @media (max-width: 900px) { .mw-room__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 420px) { .mw-room__cap { padding: 0.7rem 0.8rem 0.9rem; } .mw-room__note { font-size: 0.74rem; } }
+
+/* ============================================================
+   13. 言語の選択（8言語のプルダウン）
+   ============================================================ */
+.lang-select {
+  -webkit-appearance: none; appearance: none; cursor: pointer;
+  font-family: var(--font-body, serif); font-size: 0.74rem; letter-spacing: 0.06em; line-height: 1.2;
+  padding: 0.38rem 1.9rem 0.38rem 0.85rem; border-radius: 999px;
+  color: var(--gold-dark, #9a7a10); background-color: rgba(255,255,255,0.72);
+  border: 1px solid rgba(201,162,39,0.5);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%239a7a10' stroke-width='1.4' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 0.75rem center;
+  transition: border-color 0.3s, background-color 0.3s;
+  max-width: 9.5rem;
+}
+.lang-select:hover { border-color: var(--gold, #c9a227); background-color: #fff; }
+.lang-select:focus-visible { outline: 2px solid var(--gold, #c9a227); outline-offset: 2px; }
+.lang-select option { color: #3d1a2e; background: #fff; }
+body.page-top header:not(.scrolled) .lang-select {
+  color: #fff7fb; background-color: rgba(255,255,255,0.14); border-color: rgba(255,255,255,0.5);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23ffffff' stroke-width='1.4' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+@media (max-width: 560px) { .lang-select { font-size: 0.68rem; padding: 0.3rem 1.6rem 0.3rem 0.65rem; background-position: right 0.55rem center; } }
+/* タイ語は行の高さを少し広げる */
+html[lang="th"] body { line-height: 1.9; }
+
+/* ============================================================
+   14. トップ：ボタンがキャラクターの顔にかからないよう、画面の下の方へ
+   ============================================================ */
+@media (orientation: landscape), (min-width: 769px) {
+  body.page-top .hm-hero { justify-content: space-between !important; padding-bottom: 7.2rem !important; }
+}

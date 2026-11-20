@@ -622,47 +622,59 @@
   var ART_ROOMS = {
     'stage-03': {
       no: 'STAGE 3', bg: 'images/game/stage-03.webp',
-      title: { ja: '謁見と地下牢', en: 'The Audience & the Dungeon', zh: '觐见与地牢' },
+      title: { ja: '謁見と地下牢', en: 'The Audience & the Dungeon', zh: '觐见与地牢', 'zh-TW': '覲見與地牢', ko: '알현과 지하 감옥', es: 'La audiencia y la mazmorra', fr: 'L’audience et le cachot', th: 'การเข้าเฝ้าและคุกใต้ดิน' },
       lead: {
         ja: 'この地下牢は、ここに並ぶ4つの家具でできています。<br>鉄輪も、棚も、樽も、寝床も。どれもバイオリンの f字孔や弦、渦巻きをかたどりました。',
         en: 'This dungeon is built from the four pieces of furniture below.<br>The wall ring, the shelf, the barrel and the bed all borrow a violin’s f-holes, strings and scroll.',
-        zh: '这座地牢由下面这四件家具组成。<br>铁环、石架、木桶和床铺，都融入了小提琴的 f 孔、琴弦与琴头涡卷。'
+        zh: '这座地牢由下面这四件家具组成。<br>铁环、石架、木桶和床铺，都融入了小提琴的 f 孔、琴弦与琴头涡卷。',
+        'zh-TW': '這座地牢由下面這四件家具組成。<br>鐵環、石架、木桶和床鋪，都融入了小提琴的 f 孔、琴弦與琴頭渦卷。',
+        ko: '이 지하 감옥은 아래의 가구 네 가지로 이루어져 있어요.<br>쇠고리도, 선반도, 술통도, 침대도. 모두 바이올린의 f홀과 현, 스크롤을 본떠 만들었어요.',
+        es: 'Esta mazmorra está hecha con los cuatro muebles de abajo.<br>La argolla, el estante, el barril y la cama toman prestados los oídos en f, las cuerdas y la voluta de un violín.',
+        fr: 'Ce cachot est composé des quatre meubles ci-dessous.<br>L’anneau, l’étagère, le tonneau et le lit reprennent les ouïes en f, les cordes et la volute d’un violon.',
+        th: 'คุกใต้ดินแห่งนี้สร้างจากเฟอร์นิเจอร์ 4 ชิ้นด้านล่าง<br>ทั้งห่วงเหล็ก ชั้นวาง ถังไม้ และเตียง ล้วนได้แรงบันดาลใจจากช่อง f สาย และหัวม้วนของไวโอลิน'
       },
       items: [
         { img: 'images/game/art/stage-03/iron-ring.webp',
-          name: { ja: '壁の鉄輪', en: 'Iron Wall Ring', zh: '墙上的铁环' },
-          note: { ja: 'バイオリンの胴をかたどった台座に、f字孔と弓。渦巻きの金具から重い鉄の輪が下がる。', en: 'A violin-body plate with f-holes and a bow; a heavy ring hangs from a scroll-shaped hinge.', zh: '小提琴琴身造型的底座，饰以 f 孔与琴弓，涡卷形挂扣下垂着沉重的铁环。' } },
+          name: { ja: '壁の鉄輪', en: 'Iron Wall Ring', zh: '墙上的铁环', 'zh-TW': '牆上的鐵環', ko: '벽의 쇠고리', es: 'Argolla de pared', fr: 'Anneau mural', th: 'ห่วงเหล็กบนผนัง' },
+          note: { ja: 'バイオリンの胴をかたどった台座に、f字孔と弓。渦巻きの金具から重い鉄の輪が下がる。', en: 'A violin-body plate with f-holes and a bow; a heavy ring hangs from a scroll-shaped hinge.', zh: '小提琴琴身造型的底座，饰以 f 孔与琴弓，涡卷形挂扣下垂着沉重的铁环。', 'zh-TW': '小提琴琴身造型的底座，飾以 f 孔與琴弓，渦卷形掛扣下垂著沉重的鐵環。', ko: '바이올린 몸통 모양의 받침에 f홀과 활. 스크롤 모양 고리에 무거운 쇠고리가 매달려 있어요.', es: 'Una placa con forma de violín, con oídos en f y un arco; de una bisagra en forma de voluta cuelga una pesada argolla.', fr: 'Une plaque en forme de violon, ornée d’ouïes et d’un archet ; un lourd anneau pend d’une charnière en volute.', th: 'ฐานรูปตัวไวโอลิน ประดับช่อง f และคันชัก ห่วงเหล็กหนักห้อยจากบานพับรูปหัวม้วน' } },
         { img: 'images/game/art/stage-03/stone-shelf.webp',
-          name: { ja: '石の棚', en: 'Stone Shelf', zh: '石架' },
-          note: { ja: 'ろうそく、楽器の形のガラス瓶、水差し、ランタン。棚の脚にも f字孔が彫られている。', en: 'Candles, instrument-shaped bottles, a jug and a lantern. Even the brackets are carved with f-holes.', zh: '蜡烛、乐器形状的玻璃瓶、水壶和提灯。连支架上也雕着 f 孔。' } },
+          name: { ja: '石の棚', en: 'Stone Shelf', zh: '石架', 'zh-TW': '石架', ko: '돌 선반', es: 'Estante de piedra', fr: 'Étagère de pierre', th: 'ชั้นวางหิน' },
+          note: { ja: 'ろうそく、楽器の形のガラス瓶、水差し、ランタン。棚の脚にも f字孔が彫られている。', en: 'Candles, instrument-shaped bottles, a jug and a lantern. Even the brackets are carved with f-holes.', zh: '蜡烛、乐器形状的玻璃瓶、水壶和提灯。连支架上也雕着 f 孔。', 'zh-TW': '蠟燭、樂器形狀的玻璃瓶、水壺和提燈。連支架上也雕著 f 孔。', ko: '양초, 악기 모양의 유리병, 물병, 랜턴. 선반 다리에도 f홀이 새겨져 있어요.', es: 'Velas, botellas con forma de instrumento, una jarra y un farol. Hasta las ménsulas llevan oídos en f tallados.', fr: 'Bougies, flacons en forme d’instruments, une cruche et une lanterne. Même les consoles sont sculptées d’ouïes.', th: 'เทียน ขวดแก้วรูปเครื่องดนตรี เหยือกน้ำ และตะเกียง แม้แต่ขาชั้นวางก็สลักช่อง f ไว้' } },
         { img: 'images/game/art/stage-03/barrel.webp',
-          name: { ja: '樽', en: 'Barrel', zh: '木桶' },
-          note: { ja: '胴に f字孔、ふたには駒と弦。両わきの取っ手はバイオリンの渦巻き。', en: 'F-holes on the body, a bridge and strings on the lid, and scroll-shaped handles on each side.', zh: '桶身开着 f 孔，桶盖上有琴码与琴弦，两侧把手是小提琴的涡卷。' } },
+          name: { ja: '樽', en: 'Barrel', zh: '木桶', 'zh-TW': '木桶', ko: '술통', es: 'Barril', fr: 'Tonneau', th: 'ถังไม้' },
+          note: { ja: '胴に f字孔、ふたには駒と弦。両わきの取っ手はバイオリンの渦巻き。', en: 'F-holes on the body, a bridge and strings on the lid, and scroll-shaped handles on each side.', zh: '桶身开着 f 孔，桶盖上有琴码与琴弦，两侧把手是小提琴的涡卷。', 'zh-TW': '桶身開著 f 孔，桶蓋上有琴碼與琴弦，兩側把手是小提琴的渦卷。', ko: '몸통에는 f홀, 뚜껑에는 브리지와 현. 양옆 손잡이는 바이올린의 스크롤이에요.', es: 'Oídos en f en el cuerpo, puente y cuerdas en la tapa, y asas en forma de voluta a cada lado.', fr: 'Des ouïes sur le flanc, un chevalet et des cordes sur le couvercle, et des poignées en volute de chaque côté.', th: 'ตัวถังมีช่อง f ฝามีหย่องและสาย หูจับสองข้างเป็นหัวม้วนของไวโอลิน' } },
         { img: 'images/game/art/stage-03/straw-bed.webp',
-          name: { ja: 'わらの寝床', en: 'Straw Bed', zh: '稻草床' },
-          note: { ja: 'バイオリンの形に編んだわらの寝床。f字孔は縄で、弦はロープで表している。', en: 'A straw bed woven in the shape of a violin, with rope f-holes and rope strings.', zh: '编成小提琴形状的稻草床，用绳子做出 f 孔和琴弦。' } }
+          name: { ja: 'わらの寝床', en: 'Straw Bed', zh: '稻草床', 'zh-TW': '稻草床', ko: '짚 침대', es: 'Cama de paja', fr: 'Lit de paille', th: 'เตียงฟาง' },
+          note: { ja: 'バイオリンの形に編んだわらの寝床。f字孔は縄で、弦はロープで表している。', en: 'A straw bed woven in the shape of a violin, with rope f-holes and rope strings.', zh: '编成小提琴形状的稻草床，用绳子做出 f 孔和琴弦。', 'zh-TW': '編成小提琴形狀的稻草床，用繩子做出 f 孔和琴弦。', ko: '바이올린 모양으로 엮은 짚 침대. f홀과 현은 밧줄로 표현했어요.', es: 'Una cama de paja tejida con forma de violín, con oídos en f y cuerdas hechos de soga.', fr: 'Un lit de paille tressé en forme de violon, avec des ouïes et des cordes en corde.', th: 'เตียงฟางสานเป็นรูปไวโอลิน ใช้เชือกทำเป็นช่อง f และสาย' } }
       ]
     }
   };
   var ROOM_UI = {
     ja: { eyebrow: 'CONCEPT ART ROOM', close: 'とじる', foot: '絵をクリックすると大きく見られます', zoomClose: '拡大をとじる' },
     en: { eyebrow: 'CONCEPT ART ROOM', close: 'Close', foot: 'Click a piece to see it larger', zoomClose: 'Close zoom' },
-    zh: { eyebrow: 'CONCEPT ART ROOM', close: '关闭', foot: '点击图片可放大查看', zoomClose: '关闭放大' }
+    zh: { eyebrow: 'CONCEPT ART ROOM', close: '关闭', foot: '点击图片可放大查看', zoomClose: '关闭放大' },
+    'zh-TW': { eyebrow: 'CONCEPT ART ROOM', close: '關閉', foot: '點擊圖片可放大檢視', zoomClose: '關閉放大' },
+    ko: { eyebrow: 'CONCEPT ART ROOM', close: '닫기', foot: '그림을 클릭하면 크게 볼 수 있어요', zoomClose: '확대 닫기' },
+    es: { eyebrow: 'CONCEPT ART ROOM', close: 'Cerrar', foot: 'Haz clic en una pieza para verla más grande', zoomClose: 'Cerrar ampliación' },
+    fr: { eyebrow: 'CONCEPT ART ROOM', close: 'Fermer', foot: 'Cliquez sur une pièce pour l’agrandir', zoomClose: 'Fermer l’agrandissement' },
+    th: { eyebrow: 'CONCEPT ART ROOM', close: 'ปิด', foot: 'คลิกที่ภาพเพื่อดูขนาดใหญ่', zoomClose: 'ปิดภาพขยาย' }
   };
-  function siteLang() { try { return localStorage.getItem('siteLanguage') || 'ja'; } catch (e) { return 'ja'; } }
+  function siteLang() { if (window.mwLang) return window.mwLang(); try { return localStorage.getItem('siteLanguage') || 'ja'; } catch (e) { return 'ja'; } }
 
   function initArtRooms() {
     var cards = $$('[data-art-room]');
     if (!cards.length) return;
     var room = document.createElement('div');
     room.className = 'mw-room';
+    // 部屋を開いたまま言語を変えたら描き直す
+    document.addEventListener('mw:languagechange', function () { if (current) render(current); });
     room.setAttribute('role', 'dialog');
     room.setAttribute('aria-modal', 'true');
     room.setAttribute('aria-hidden', 'true');
     document.body.appendChild(room);
     var lastFocus = null, current = null;
 
-    function t(obj, lang) { return obj[lang] || obj.ja; }
+    function t(obj, lang) { return obj[lang] || (lang === 'ja' ? obj.ja : obj.en) || obj.ja; }
     function render(id) {
       var d = ART_ROOMS[id], lang = siteLang(), ui = ROOM_UI[lang] || ROOM_UI.ja;
       room.setAttribute('aria-label', ui.eyebrow + ' ' + d.no + ' ' + t(d.title, lang));

@@ -640,9 +640,8 @@
     cards.forEach(function (c) {
       c.addEventListener('click', function (e) {
         e.preventDefault();
-        var lang = 'ja';
-        try { lang = localStorage.getItem('siteLanguage') || 'ja'; } catch (err) {}
-        toast.textContent = MSG[lang] || MSG.ja;
+        var lang = window.mwLang ? window.mwLang() : 'ja';
+        toast.textContent = (window.MW_LANGS && window.MW_LANGS[lang].soon) || MSG[lang] || MSG.ja;
         toast.classList.add('is-on');
         clearTimeout(timer);
         timer = setTimeout(function () { toast.classList.remove('is-on'); }, 2200);

@@ -6,10 +6,7 @@
 
   /* ── Page Load Overlay ── */
   function initPageLoad() {
-    const _lang  = localStorage.getItem('siteLanguage') || 'ja';
-    const _title = _lang === 'en' ? 'Music World'
-                 : _lang === 'zh' ? '音乐世界'
-                 : 'ミュージックワールド';
+    const _title = window.MW_LANGS ? window.MW_LANGS[window.mwLang()].loadTitle : 'ミュージックワールド';
     const overlay = document.createElement('div');
     overlay.id = 'fx-load-overlay';
     overlay.innerHTML =

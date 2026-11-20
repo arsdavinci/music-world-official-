@@ -2,6 +2,41 @@
    バイオリン姫と魔法のシンフォニー - Main JavaScript
    ============================================================ */
 
+/* ── 対応言語（ja/en/zh は main.js 内の辞書、それ以外は js/i18n/<code>.js を必要な時だけ読み込む） ──
+   audio: BGMの歌のバージョン / subs: オープニング動画の字幕 */
+window.MW_LANGS = {
+  'ja':    { attrs: ['外見', '性格', '楽器', '能力'], label: '日本語',   html: 'ja',      audio: 'ja', subs: 'ja', loadTitle: 'ミュージックワールド',
+             consent: { title: 'この世界の音楽を再生しますか？', desc: '「Symphony of One World」が流れます。<br>いつでも停止・音量調節できます。', yes: '♪ 再生する', no: '静かに始める' },
+             bgmSub: 'バイオリン姫と魔法のシンフォニー BGM', soon: '✦ 近日公開！もうしばらくお待ちください ✦' },
+  'en':    { attrs: ['Look', 'Personality', 'Instrument', 'Ability'], label: 'English',  html: 'en',      audio: 'en', subs: 'en', loadTitle: 'Music World',
+             consent: { title: 'Play the music of this world?', desc: '"Symphony of One World" will play.<br>You can stop or adjust the volume anytime.', yes: '♪ Play', no: 'Start quietly' },
+             bgmSub: 'Violin Princess &amp; the Magic Symphony BGM', soon: '✦ Coming soon — stay tuned! ✦' },
+  'zh':    { attrs: ['外貌', '性格', '乐器', '能力'], label: '简体中文', html: 'zh-Hans', audio: 'zh', subs: 'zh', loadTitle: '音乐世界',
+             consent: { title: '要播放这个世界的音乐吗？', desc: '将播放「Symphony of One World」。<br>随时可以暂停或调节音量。', yes: '♪ 播放', no: '静静开始' },
+             bgmSub: '小提琴公主与魔法交响乐 BGM', soon: '✦ 即将推出，敬请期待！✦' },
+  'zh-TW': { attrs: ['外貌', '個性', '樂器', '能力'], label: '繁體中文', html: 'zh-Hant', audio: 'zh', subs: 'zh', loadTitle: '音樂世界',
+             consent: { title: '要播放這個世界的音樂嗎？', desc: '將播放「Symphony of One World」。<br>隨時可以暫停或調整音量。', yes: '♪ 播放', no: '安靜地開始' },
+             bgmSub: '小提琴公主與魔法交響曲 BGM', soon: '✦ 即將推出，敬請期待！✦' },
+  'ko':    { attrs: ['외모', '성격', '악기', '능력'], label: '한국어',   html: 'ko',      audio: 'en', subs: 'en', loadTitle: '뮤직 월드',
+             consent: { title: '이 세계의 음악을 재생할까요?', desc: '「Symphony of One World」가 흘러나옵니다.<br>언제든지 멈추거나 음량을 조절할 수 있어요.', yes: '♪ 재생하기', no: '조용히 시작하기' },
+             bgmSub: '바이올린 공주와 마법의 심포니 BGM', soon: '✦ 곧 공개됩니다! 조금만 기다려 주세요 ✦' },
+  'es':    { attrs: ['Aspecto', 'Personalidad', 'Instrumento', 'Habilidad'], label: 'Español',  html: 'es',      audio: 'en', subs: 'en', loadTitle: 'Music World',
+             consent: { title: '¿Reproducir la música de este mundo?', desc: 'Sonará «Symphony of One World».<br>Puedes pararla o ajustar el volumen cuando quieras.', yes: '♪ Reproducir', no: 'Empezar en silencio' },
+             bgmSub: 'La Princesa Violín y la Sinfonía Mágica BGM', soon: '✦ ¡Muy pronto! Mantente atento ✦' },
+  'fr':    { attrs: ['Apparence', 'Personnalité', 'Instrument', 'Pouvoir'], label: 'Français', html: 'fr',      audio: 'en', subs: 'en', loadTitle: 'Music World',
+             consent: { title: 'Écouter la musique de ce monde ?', desc: '« Symphony of One World » va être jouée.<br>Vous pouvez l’arrêter ou régler le volume à tout moment.', yes: '♪ Écouter', no: 'Commencer en silence' },
+             bgmSub: 'La Princesse Violon et la Symphonie magique BGM', soon: '✦ Bientôt disponible — restez à l’écoute ! ✦' },
+  'th':    { attrs: ['รูปลักษณ์', 'นิสัย', 'เครื่องดนตรี', 'ความสามารถ'], label: 'ไทย',      html: 'th',      audio: 'en', subs: 'en', loadTitle: 'มิวสิกเวิลด์',
+             consent: { title: 'เปิดเพลงของโลกใบนี้ไหม?', desc: 'เพลง “Symphony of One World” จะเริ่มเล่น<br>หยุดหรือปรับระดับเสียงได้ทุกเมื่อ', yes: '♪ เล่นเพลง', no: 'เริ่มแบบเงียบ ๆ' },
+             bgmSub: 'เจ้าหญิงไวโอลินกับซิมโฟนีเวทมนตร์ BGM', soon: '✦ เร็ว ๆ นี้! โปรดติดตาม ✦' }
+};
+window.MW_LANG_ORDER = ['ja', 'en', 'zh', 'zh-TW', 'ko', 'es', 'fr', 'th'];
+window.mwLang = function () {
+  let l = 'ja';
+  try { l = localStorage.getItem('siteLanguage') || 'ja'; } catch (e) {}
+  return window.MW_LANGS[l] ? l : 'ja';
+};
+
 document.addEventListener('DOMContentLoaded', () => {
   initLanguage();      // 言語設定を最初に適用
   initPageScripts();
@@ -318,8 +353,8 @@ function initPageScripts() {
         const _lang = localStorage.getItem(LANG_KEY) || 'ja';
         const _base = charData[id];
         let d = _base;
-        if (_lang === 'en' && charDataEn[id]) d = { ..._base, ...charDataEn[id] };
-        else if (_lang === 'zh' && charDataZh[id]) d = { ..._base, ...charDataZh[id] };
+        const _chars = _langChars(_lang);
+        if (_chars && _chars[id]) d = { ..._base, ..._chars[id] };
         if (!d) return;
         // 同じアイコンを再クリック → 閉じる
         if (icon.classList.contains('active') && document.getElementById('charPopup')) {
@@ -670,6 +705,7 @@ function _openCharPopup(icon, d) {
        </div>`
     : '';
 
+  const _attr = window.MW_LANGS[window.mwLang()].attrs;
   const popup = document.createElement('div');
   popup.id = 'charPopup';
   popup.className = 'char-popup';
@@ -687,12 +723,12 @@ function _openCharPopup(icon, d) {
         <span class="role-badge" style="margin:0;">${d.role}</span>
         <span class="country-badge" style="border-color:${d.color};color:${d.color};margin:0;">◆ ${d.country}</span>
       </div>
-      <div class="char-attr-row"><span class="char-attr-label">外見</span>${d.appearance}</div>
-      <div class="char-attr-row"><span class="char-attr-label">性格</span>${d.personality}</div>
+      <div class="char-attr-row"><span class="char-attr-label">${_attr[0]}</span>${d.appearance}</div>
+      <div class="char-attr-row"><span class="char-attr-label">${_attr[1]}</span>${d.personality}</div>
       <p class="char-popup-desc">${d.desc}</p>
       <dl class="char-stats">
-        <div class="char-stat"><dt>楽器</dt><dd>${d.instrument}</dd></div>
-        <div class="char-stat"><dt>能力</dt><dd>${d.ability}</dd></div>
+        <div class="char-stat"><dt>${_attr[2]}</dt><dd>${d.instrument}</dd></div>
+        <div class="char-stat"><dt>${_attr[3]}</dt><dd>${d.ability}</dd></div>
       </dl>
       ${detailImgHtml}
     </div>`;
@@ -1778,23 +1814,63 @@ const charDataZh = {
 };
 
 /* ── 言語切替関数 ── */
+/* 言語ごとの辞書。ja/en/zh はこのファイル、その他は js/i18n/<code>.js（window.MW_I18N[code]） */
+function _langDict(lang) {
+  if (lang === 'en') return i18n_en;
+  if (lang === 'zh') return i18n_zh;
+  const x = window.MW_I18N && window.MW_I18N[lang];
+  return x ? x.dict : null;
+}
+function _langChars(lang) {
+  if (lang === 'en') return charDataEn;
+  if (lang === 'zh') return charDataZh;
+  const x = window.MW_I18N && window.MW_I18N[lang];
+  return x ? x.chars : null;
+}
+const _langLoading = {};
+function _loadLangPack(lang, done) {
+  if (lang === 'ja' || lang === 'en' || lang === 'zh' || (window.MW_I18N && window.MW_I18N[lang])) { done(true); return; }
+  if (_langLoading[lang]) { _langLoading[lang].push(done); return; }
+  _langLoading[lang] = [done];
+  const sc = document.createElement('script');
+  sc.src = 'js/i18n/' + lang + '.js?v=20261120a';
+  sc.onload = () => { _langLoading[lang].forEach(f => f(true)); delete _langLoading[lang]; };
+  sc.onerror = () => { _langLoading[lang].forEach(f => f(false)); delete _langLoading[lang]; };
+  document.head.appendChild(sc);
+}
+
 function setLanguage(lang, syncSubs) {
-  localStorage.setItem(LANG_KEY, lang);
-  document.documentElement.lang = lang;
+  if (!window.MW_LANGS[lang]) lang = 'ja';
+  // 辞書がまだ無い言語は、読み込んでから適用（その間は英語で表示）
+  if (!_langDict(lang) && lang !== 'ja') {
+    _loadLangPack(lang, ok => setLanguage(ok ? lang : 'en', syncSubs));
+    if (!document.documentElement.hasAttribute('data-mw-lang')) _applyLanguage('en', lang, false);
+    return;
+  }
+  _applyLanguage(lang, lang, syncSubs);
+}
+
+function _applyLanguage(lang, chosen, syncSubs) {
+  const meta = window.MW_LANGS[lang];
+  localStorage.setItem(LANG_KEY, chosen);
+  document.documentElement.lang = meta.html;
+  document.documentElement.setAttribute('data-mw-lang', lang);
   // 字幕言語をサイト言語に同期（CCボタンも更新）
-  if (syncSubs) _applySubLang(lang);
+  if (syncSubs) _applySubLang(meta.subs);
+  const dict = _langDict(lang);
 
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key    = el.dataset.i18n;
     const isHtml = el.hasAttribute('data-i18n-html');
 
-    if (lang === 'en' || lang === 'zh') {
+    if (lang !== 'ja') {
       // 日本語テキストを data-ja に保存（初回のみ）
       if (!el.hasAttribute('data-ja')) {
         el.setAttribute('data-ja', isHtml ? el.innerHTML : el.textContent.trim());
       }
-      const dict = lang === 'en' ? i18n_en : i18n_zh;
-      const val = dict[key];
+      // 訳が無いキーは英語 → 日本語の順で補う
+      let val = dict && dict[key];
+      if (val == null) val = i18n_en[key];
       if (val != null) el[isHtml ? 'innerHTML' : 'textContent'] = val;
     } else {
       // 日本語へ復元
@@ -1803,18 +1879,18 @@ function setLanguage(lang, syncSubs) {
     }
   });
 
-  // lang-btn の active 状態を更新
+  // 言語の選択欄を更新
+  document.querySelectorAll('.lang-select').forEach(sel => { sel.value = chosen; });
   document.querySelectorAll('.lang-btn').forEach(btn => {
-    btn.classList.toggle('active', btn.dataset.lang === lang);
+    btn.classList.toggle('active', btn.dataset.lang === chosen);
   });
 
   // <title> を更新
   const titleEl = document.querySelector('title[data-i18n]');
   if (titleEl) {
-    if (lang === 'en' || lang === 'zh') {
+    if (lang !== 'ja') {
       if (!titleEl.hasAttribute('data-ja')) titleEl.setAttribute('data-ja', document.title);
-      const dict = lang === 'en' ? i18n_en : i18n_zh;
-      const t = dict[titleEl.dataset.i18n];
+      const t = (dict && dict[titleEl.dataset.i18n]) || i18n_en[titleEl.dataset.i18n];
       if (t) document.title = t;
     } else {
       const jaTitle = titleEl.getAttribute('data-ja');
@@ -1822,13 +1898,14 @@ function setLanguage(lang, syncSubs) {
     }
   }
 
+  // BGMのサブタイトル
+  const bgmSub = document.querySelector('.bgm-sub');
+  if (bgmSub) bgmSub.innerHTML = meta.bgmSub;
+
   // BGM音源を言語に合わせて切り替え
   const audio = document.getElementById('bgm-audio');
   if (audio) {
-    const enSrc  = 'audio/Symphony of One World English version.m4a';
-    const zhSrc  = 'audio/Symphony of One World Chinese version.m4a';
-    const jaSrc  = 'audio/Symphony of One World.m4a';
-    const target = lang === 'en' ? enSrc : lang === 'zh' ? zhSrc : jaSrc;
+    const target = _bgmSrc(lang);
     const source = audio.querySelector('source');
     const current = source ? source.getAttribute('src') : null;
     if (source && current !== target) {
@@ -1847,20 +1924,51 @@ function setLanguage(lang, syncSubs) {
       audio.addEventListener('canplay', _onReady);
     }
   }
+  document.dispatchEvent(new CustomEvent('mw:languagechange', { detail: { lang: lang } }));
+}
+function _bgmSrc(lang) {
+  const a = (window.MW_LANGS[lang] || window.MW_LANGS.ja).audio;
+  return a === 'en' ? 'audio/Symphony of One World English version.m4a'
+       : a === 'zh' ? 'audio/Symphony of One World Chinese version.m4a'
+       : 'audio/Symphony of One World.m4a';
+}
+
+/* ブラウザの言語設定から最初の言語を決める（日本語・対応外の言語は下のルール） */
+function _detectLang() {
+  const list = (navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || navigator.userLanguage || 'ja']);
+  for (const raw of list) {
+    const bl = String(raw).toLowerCase();
+    if (bl.startsWith('ja')) return 'ja';
+    if (bl.startsWith('zh')) return /(tw|hk|mo|hant)/.test(bl) ? 'zh-TW' : 'zh';
+    if (bl.startsWith('ko')) return 'ko';
+    if (bl.startsWith('es')) return 'es';
+    if (bl.startsWith('fr')) return 'fr';
+    if (bl.startsWith('th')) return 'th';
+    if (bl.startsWith('en')) return 'en';
+  }
+  return 'en'; // 対応していない言語の人には英語
 }
 
 function initLanguage() {
   let lang = localStorage.getItem(LANG_KEY);
-  if (!lang) {
-    const bl = (navigator.language || navigator.userLanguage || 'ja').toLowerCase();
-    if (bl.startsWith('zh')) lang = 'zh';
-    else if (bl.startsWith('en')) lang = 'en';
-    else lang = 'ja';
-  }
-  setLanguage(lang);
-  document.querySelectorAll('.lang-btn').forEach(btn => {
-    btn.addEventListener('click', () => setLanguage(btn.dataset.lang, true));
+  if (!lang || !window.MW_LANGS[lang]) lang = _detectLang();
+  // 3つのボタンを、全言語を選べるプルダウンに置き換える
+  document.querySelectorAll('.lang-switcher').forEach(box => {
+    if (box.querySelector('.lang-select')) return;
+    box.querySelectorAll('.lang-btn').forEach(b => b.remove());
+    const sel = document.createElement('select');
+    sel.className = 'lang-select';
+    sel.setAttribute('aria-label', 'Language / 言語');
+    window.MW_LANG_ORDER.forEach(code => {
+      const o = document.createElement('option');
+      o.value = code; o.textContent = window.MW_LANGS[code].label;
+      o.lang = window.MW_LANGS[code].html;
+      sel.appendChild(o);
+    });
+    sel.addEventListener('change', () => setLanguage(sel.value, true));
+    box.appendChild(sel);
   });
+  setLanguage(lang);
 }
 
 /* ══════════════════════════════════════════════════════════
@@ -1909,21 +2017,7 @@ function formatTime(s) {
    BGM CONSENT DIALOG
    ══════════════════════════════════════════════════════════ */
 function showMusicConsentDialog(callback) {
-  const _cl = localStorage.getItem(LANG_KEY) || 'ja';
-  const _ct = _cl === 'en'
-    ? { title: 'Play the music of this world?',
-        desc:  '"Symphony of One World" will play.<br>You can stop or adjust the volume anytime.',
-        yes:   '♪ Play',
-        no:    'Start quietly' }
-    : _cl === 'zh'
-    ? { title: '要播放这个世界的音乐吗？',
-        desc:  '将播放「Symphony of One World」。<br>随时可以暂停或调节音量。',
-        yes:   '♪ 播放',
-        no:    '静静开始' }
-    : { title: 'この世界の音楽を再生しますか？',
-        desc:  '「Symphony of One World」が流れます。<br>いつでも停止・音量調節できます。',
-        yes:   '♪ 再生する',
-        no:    '静かに始める' };
+  const _ct = window.MW_LANGS[window.mwLang()].consent;
   const overlay = document.createElement('div');
   overlay.id = 'bgm-consent-overlay';
   overlay.className = 'bgm-consent-overlay';
@@ -1954,17 +2048,9 @@ function initBGMPlayer() {
   const saved = loadBGMState();
   // ユーザーが意図的に停止したかどうか（ブラウザの自動再生制限による paused とは別管理）
   window._bgmUserPaused = (saved.playing === false);
-  const _initLang = localStorage.getItem(LANG_KEY) || 'ja';
-  const _initSrc  = _initLang === 'en'
-    ? 'audio/Symphony of One World English version.m4a'
-    : _initLang === 'zh'
-      ? 'audio/Symphony of One World Chinese version.m4a'
-      : 'audio/Symphony of One World.m4a';
-  const _initSub  = _initLang === 'en'
-    ? 'Violin Princess &amp; the Magic Symphony BGM'
-    : _initLang === 'zh'
-      ? '小提琴公主与魔法交响乐 BGM'
-      : 'バイオリン姫と魔法のシンフォニー BGM';
+  const _initLang = window.mwLang();
+  const _initSrc  = _bgmSrc(_initLang);
+  const _initSub  = window.MW_LANGS[_initLang].bgmSub;
 
   const playerHTML = `
     <div id="bgm-player" class="bgm-player">
