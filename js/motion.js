@@ -316,7 +316,14 @@
     var lead = $('.project-lead');
     if (!lead || reduceMotion) return;
     var paras = $$('.project-lead > p, .project-lead > .card > p', lead).filter(function (p) { return !p.closest('.project-cta') && p.textContent.trim().length > 8; });
-    var groups = paras.map(function (p) { p.classList.add('mw-chars'); return { el: p, chars: splitChars(p), lit: -1 }; });
+    var groups = paras.map(function (p) {
+      p.classList.add('mw-chars');
+      // 原文を残してから一文字ずつに分ける（言語を切り替えたら訳文で分け直す）
+      p.setAttribute('data-mw-src', p.innerHTML);
+      var g = { el: p, chars: splitChars(p), lit: -1 };
+      p.addEventListener('mw:retext', function () { g.chars = splitChars(p); g.lit = -1; runScroll(); });
+      return g;
+    });
     onScroll(function () {
       var vh = window.innerHeight;
       groups.forEach(function (g) {

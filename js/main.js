@@ -1933,6 +1933,101 @@ function _bgmSrc(lang) {
        : 'audio/Symphony of One World.m4a';
 }
 
+/* ══════════════════════════════════════════════════════════
+   自動翻訳（data-i18n が付いていない文章もまとめて訳す）
+   日本語の原文（空白をつめたHTML）をキーにした辞書 js/i18n/auto-<code>.js を使う。
+   ══════════════════════════════════════════════════════════ */
+const _AUTO_PHRASING = new Set(['BR','SPAN','EM','STRONG','B','I','A','SMALL','SUP','SUB','RUBY','RT','RP','MARK','U','S','WBR','IMG','ABBR','CODE','TIME']);
+const _AUTO_JA   = /[぀-ヿ㐀-鿿！-｠]/;
+const _AUTO_EXCL = 'script,style,noscript,template,textarea,select,option,input,button.lang-btn,[data-i18n],[data-no-auto],.supporter-chip,.mw-roll,#charPopup,.mw-room,.bgm-player,.mw-car__caption,.pm-ticker,.lang-switcher';
+const _autoNorm = s => s.replace(/\s+/g, ' ').trim();
+function _autoSrc(el) { return el.hasAttribute('data-mw-src') ? el.getAttribute('data-mw-src') : el.innerHTML; }
+// 文章のまとまり：中身が文中のタグ（br/span/a/em…）だけで、日本語を含む要素
+function _autoQual(el) {
+  if (!el || el.nodeType !== 1 || el === document.body || el.closest(_AUTO_EXCL)) return false;
+  if (el.hasAttribute('data-mw-src')) return true;
+  if (el.querySelector('[data-i18n],' + _AUTO_EXCL)) return false;
+  for (const d of el.querySelectorAll('*')) if (!_AUTO_PHRASING.has(d.tagName)) return false;
+  return _AUTO_JA.test(el.textContent);
+}
+// 翻訳の単位を集める（収集スクリプトと実行時で同じものを使う）
+window._mwAutoUnits = function (root) {
+  const units = [];
+  (root || document.body).querySelectorAll('*').forEach(el => {
+    if (_autoQual(el) && !_autoQual(el.parentElement) && !el.parentElement.closest('[data-mw-src]')) {
+      // li > a のように中身が1つの要素だけなら、内側を訳す（リンクのイベントを残すため）
+      let t = el;
+      while (!t.hasAttribute('data-mw-src') && t.children.length === 1 && ![...t.childNodes].some(n => n.nodeType === 3 && n.nodeValue.trim()) && _AUTO_JA.test(t.children[0].textContent) && t.children[0].tagName !== 'IMG') t = t.children[0];
+      units.push({ type: 'html', el: t, key: _autoNorm(t.hasAttribute('data-mw-ja-html') ? t.getAttribute('data-mw-ja-html') : _autoSrc(t)) });
+    } else if (!_autoQual(el) && !el.closest(_AUTO_EXCL) && !el.closest('[data-mw-src]')) {
+      el.childNodes.forEach(n => {
+        if (n.nodeType === 3 && (_AUTO_JA.test(n.nodeValue) || n._mwJa)) units.push({ type: 'text', node: n, key: _autoNorm(n._mwJa || n.nodeValue) });
+      });
+    }
+    if (!el.closest('[data-no-auto],.supporter-chip,.mw-roll')) {
+      ['placeholder', 'title', 'aria-label', 'alt'].forEach(a => {
+        const saved = el.getAttribute('data-mw-ja-' + a);
+        const v = saved != null ? saved : el.getAttribute(a);
+        if (v && _AUTO_JA.test(v)) units.push({ type: 'attr', el, attr: a, key: _autoNorm(v) });
+      });
+    }
+  });
+  return units;
+};
+let _autoLang = 'ja', _autoBusy = false;
+function _autoApply(lang) {
+  _autoLang = lang;
+  const dict = lang === 'ja' ? null : (window.MW_AUTO && window.MW_AUTO[lang]);
+  if (lang !== 'ja' && !dict) return;
+  _autoBusy = true;
+  window._mwAutoUnits().forEach(u => {
+    if (u.type === 'html') {
+      const el = u.el;
+      if (!el.hasAttribute('data-mw-ja-html')) el.setAttribute('data-mw-ja-html', _autoSrc(el));
+      const ja = el.getAttribute('data-mw-ja-html');
+      const val = lang === 'ja' ? ja : dict[u.key];
+      if (val == null) return;
+      if (el.hasAttribute('data-mw-src')) { if (el.getAttribute('data-mw-src') !== val) { el.setAttribute('data-mw-src', val); el.innerHTML = val; el.dispatchEvent(new CustomEvent('mw:retext')); } }
+      else if (_autoNorm(el.innerHTML) !== _autoNorm(val)) el.innerHTML = val;
+    } else if (u.type === 'text') {
+      const n = u.node;
+      if (!n._mwJa) n._mwJa = n.nodeValue;
+      const val = lang === 'ja' ? n._mwJa : dict[u.key];
+      if (val != null) {
+        const lead = n._mwJa.match(/^\s*/)[0], tail = n._mwJa.match(/\s*$/)[0];
+        n.nodeValue = lang === 'ja' ? n._mwJa : lead + val + tail;
+      }
+    } else {
+      const el = u.el, a = u.attr;
+      if (!el.hasAttribute('data-mw-ja-' + a)) el.setAttribute('data-mw-ja-' + a, el.getAttribute(a));
+      const val = lang === 'ja' ? el.getAttribute('data-mw-ja-' + a) : dict[u.key];
+      if (val != null) el.setAttribute(a, val);
+    }
+  });
+  _autoMO.takeRecords(); // 自分で書き換えた分は無視
+  _autoBusy = false;
+}
+const _autoLoading = {};
+function _autoRun(lang) {
+  if (lang === 'ja' || (window.MW_AUTO && window.MW_AUTO[lang])) { _autoApply(lang); return; }
+  _autoLang = lang;
+  if (_autoLoading[lang]) return;
+  _autoLoading[lang] = true;
+  const sc = document.createElement('script');
+  sc.src = 'js/i18n/auto-' + lang + '.js?v=20261120b';
+  sc.onload = () => { if (_autoLang === lang) _autoApply(lang); };
+  document.head.appendChild(sc);
+}
+// あとから追加された文章（読み込み後に作られる部分）も訳す
+let _autoTimer = 0;
+const _autoMO = new MutationObserver(() => {
+  if (_autoBusy || _autoLang === 'ja') return;
+  clearTimeout(_autoTimer);
+  _autoTimer = setTimeout(() => _autoApply(_autoLang), 150);
+});
+_autoMO.observe(document.documentElement, { childList: true, subtree: true });
+document.addEventListener('mw:languagechange', e => _autoRun(e.detail.lang));
+
 /* ブラウザの言語設定から最初の言語を決める（日本語・対応外の言語は下のルール） */
 function _detectLang() {
   const list = (navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || navigator.userLanguage || 'ja']);
